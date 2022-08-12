@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>619194274838-eo09m3u21vvavvui0hvvj0atid43jktm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.619194274838-eo09m3u21vvavvui0hvvj0atid43jktm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCcnKiocuPznypcpR71Pn0AQKZCb5aPw2M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>619194274838</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.project</string>
+	<key>PROJECT_ID</key>
+	<string>the-secret-of-better-health</string>
+	<key>STORAGE_BUCKET</key>
+	<string>the-secret-of-better-health.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:619194274838:ios:a3854a1f4085b7157a1137</string>
+	<key>DATABASE_URL</key>
+	<string>https://the-secret-of-better-health-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

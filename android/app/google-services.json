@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "619194274838",
+    "firebase_url": "https://the-secret-of-better-health-default-rtdb.firebaseio.com",
+    "project_id": "the-secret-of-better-health",
+    "storage_bucket": "the-secret-of-better-health.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619194274838:android:bbaca60fc59f484a7a1137",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619194274838-hrbr76u30t3cburochv4m1ebdipo4d6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKZ1jq5dvMILFFzdY3B3szc_5ioR_oyOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619194274838-hrbr76u30t3cburochv4m1ebdipo4d6k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "619194274838-eo09m3u21vvavvui0hvvj0atid43jktm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.project"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

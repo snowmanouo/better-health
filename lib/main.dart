@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'helpers/Constants.dart';
 import 'Page/HealthPage.dart';
+import 'Page/MyselfPage.dart';
 import 'Page/Page1.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -24,7 +25,7 @@ class ProjectApp extends StatelessWidget {
               (
               primaryColor: appGreenColor,
             ),
-            home: HealthPage(),
+            home: MyselfPage(),
           );
         },
     );

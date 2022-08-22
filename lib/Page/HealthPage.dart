@@ -167,7 +167,7 @@ class ExcerciseCardWidget extends StatelessWidget {
                   bottom: 10,
                   child: Text('約消耗${this.cal}千卡',
                       style: TextStyle(
-                          fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w700,
                           fontSize: 16,
                           color: Colors.white)),
                 ),

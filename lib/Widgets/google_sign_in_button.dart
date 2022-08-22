@@ -19,7 +19,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.fromLTRB(50, 0, 0, 30),
       child: _isSigningIn
           ? CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -62,7 +62,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image(
-                image: AssetImage("assets/images/google_logo.png"),
+                image: AssetImage("assets/images/google.png"),
                 height: 35.0,
               ),
               Padding(

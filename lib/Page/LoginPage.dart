@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:project/Page/HealthPage.dart';
 import 'package:project/Widgets/google_sign_in_button.dart';
 
 
@@ -11,39 +12,94 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body:Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-                alignment: Alignment.center,
-                color: Color.fromRGBO(18, 213, 214, 1),
-                child: SvgPicture.asset('assets/images/vector.svg'),
-                constraints: BoxConstraints(
-                    maxWidth: 150, maxHeight: 150)
-            ),
-            Text('願你暴瘦')
-            ,
-            Text('Hope you can be more fit!'),
-            SizedBox(height : 30),
-            RaisedButton(
-              child: Text('我是新用戶'),
+            SizedBox(height: 208.94,),
+            Padding(padding: EdgeInsets.only(left: 65),
+            child: Image(
+              image: AssetImage("assets/images/logo.png"),
+            ),),
+            SizedBox(height: 24,),
+            Padding(padding: EdgeInsets.only(left: 75),
+              child:Text('願你暴瘦',style: TextStyle(
+              fontSize: 28,fontWeight: FontWeight.w700,
+                color: Color.fromRGBO(0, 163, 165, 1)),), ),
+            SizedBox(height: 24,),
+            Padding(padding: EdgeInsets.only(left: 75),
+              child:Text('Hope you can be more fit!',style: TextStyle(
+              fontSize: 14,fontWeight: FontWeight.w500,
+              color: Color.fromRGBO(153, 161, 186, 0.6)
+            ),),),
+            SizedBox(height: 30,),
+            Padding(padding: EdgeInsets.only(left: 50),child:
+            OutlinedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Color.fromRGBO(18, 213, 214, 1),),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                ),
+              ),
               onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder:
                     (context) => NewLogin()));},
-              color: Color.fromRGBO(18, 213, 214, 1),
-            ),
-            RaisedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder:
-                    (context) => GoogleSignInButton()));},
-              child: Text('我已經有帳戶了'),
-              textColor: Color.fromRGBO(18, 213, 214, 1),
-              color: Colors.white,)
-          ],
+              child:Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child:Icon(Icons.account_circle,size: 40,),),
+                  Padding(padding: EdgeInsets.fromLTRB(20, 10, 40, 10),
+                    child:Text('我是新用戶',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,),
+                    ),),
+                ],
+              ),
+              ),),
+            SizedBox(height: 20,),
+            GoogleSignInButton(),
+            //   FutureBuilder(
+            //   future: Authentication.initializeFirebase(context: context),
+            //   builder: (context, snapshot) {
+            //     if (snapshot.hasError) {
+            //       return Text('Error initializing Firebase');
+            //     } else if (snapshot.connectionState == ConnectionState.done) {
+            //       return GoogleSignInButton();
+            //     }
+            //     return CircularProgressIndicator(
+            //       valueColor: AlwaysStoppedAnimation<Color>(
+            //         Colors.orange,
+            //       ),
+            //     );
+            //   },
+            // ),
+            // Container(
+            //     decoration: new BoxDecoration(
+            //       color: Color.fromRGBO(18, 213, 214, 1),
+            //       borderRadius: BorderRadius.all(Radius.circular(8.0)),),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //       children: <Widget>[
+            //         SizedBox(width: 16,),
+            //         Container(
+            //           constraints: BoxConstraints(maxWidth: 24, maxHeight: 24),
+            //         child: Image.asset('assets/images/google.png',),),
+            //         SizedBox(width: 97,),
+            //         Text("登入",style: TextStyle(
+            //             fontSize: 18,fontWeight: FontWeight.w700,
+            //             color: Colors.white
+            //         ),),
+            // ],),),
+            ],
         ),
-      ),
-    );
+      );
   }
 }
 
@@ -83,7 +139,7 @@ class NewLogin extends StatelessWidget{
               TextButton(
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => NewLogin()));},
+                      (context) => GoogleSignInButton()));},
                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
               )
             ],
@@ -93,8 +149,13 @@ class NewLogin extends StatelessWidget{
     );
   }
 }
-
-class Gender extends StatelessWidget {
+class Gender extends StatefulWidget{
+  @override
+  _Gender createState() => _Gender();
+}
+class _Gender extends State<Gender> {
+  bool _male =false;
+  bool _female=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,20 +176,45 @@ class Gender extends StatelessWidget {
               SizedBox(),
             ],
           ),
-          Container(
-            color: Color.fromRGBO(18, 213, 214, 1),
-            alignment: Alignment.topCenter,
-            child: Text('男性'),
-            constraints: BoxConstraints(
-                maxWidth: 100, maxHeight: 100),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          CheckboxListTile(
+            value: _male,
+            onChanged: (male){
+              setState((){
+                _male=true;
+                _female=false;
+              });
+            },
+            title: Text("男性"),
+            activeColor: Color.fromRGBO(18, 213, 214, 1),
           ),
-          Container(
-            color: Color.fromRGBO(18, 213, 214, 1),
-            alignment: Alignment.topCenter,
-            child: Text('女性'),
-            constraints: BoxConstraints(
-                maxWidth: 100, maxHeight: 100),
+          CheckboxListTile(
+            value: _female,
+            onChanged: (female){
+              setState((){
+                _male=false;
+                _female=true;
+              });
+            },
+            title: Text("女性"),
+            activeColor: Color.fromRGBO(18, 213, 214, 1),
           ),
+          // Container(
+          //   color: Color.fromRGBO(18, 213, 214, 1),
+          //   alignment: Alignment.topCenter,
+          //   child: Text('男性'),
+          //   constraints: BoxConstraints(
+          //       maxWidth: 100, maxHeight: 100),
+          // ),
+          // Container(
+          //   color: Color.fromRGBO(18, 213, 214, 1),
+          //   alignment: Alignment.topCenter,
+          //   child: Text('女性'),
+          //   constraints: BoxConstraints(
+          //       maxWidth: 100, maxHeight: 100),
+    ],),
           IconButton(
             onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder:
@@ -142,7 +228,7 @@ class Gender extends StatelessWidget {
               TextButton(
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => NewLogin()));},
+                      (context) => GoogleSignInButton()));},
                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
               )
             ],
@@ -201,7 +287,7 @@ class Old extends StatelessWidget {
               TextButton(
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => NewLogin()));},
+                      (context) => GoogleSignInButton()));},
                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
               )
             ],
@@ -259,7 +345,7 @@ class height extends StatelessWidget {
               TextButton(
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => NewLogin()));},
+                      (context) => GoogleSignInButton()));},
                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
               )
             ],
@@ -317,7 +403,7 @@ class NowWeight extends StatelessWidget {
               TextButton(
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => NewLogin()));},
+                      (context) => GoogleSignInButton()));},
                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
               )
             ],
@@ -375,7 +461,7 @@ class AfterWeight extends StatelessWidget {
               TextButton(
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => NewLogin()));},
+                      (context) => GoogleSignInButton()));},
                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
               )
             ],
@@ -434,7 +520,7 @@ class BodyFat extends StatelessWidget {
               TextButton(
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => NewLogin()));},
+                      (context) => GoogleSignInButton()));},
                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
               )
             ],
@@ -554,20 +640,10 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
               ),
             ],
           ),
-          FutureBuilder(
-            future: Authentication.initializeFirebase(context: context),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('Error initializing Firebase');
-              } else if (snapshot.connectionState == ConnectionState.done) {
-                return GoogleSignInButton();
-              }
-              return CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  Colors.orange,
-                ),
-              );
-            },
+          IconButton(
+            onPressed: (){
+              _showAlertDialog(context);},
+            icon: Icon(Icons.arrow_forward),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -576,7 +652,7 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
               TextButton(
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => NewLogin()));},
+                      (context) => GoogleSignInButton()));},
                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
               )
             ],
@@ -585,4 +661,34 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
       ),
     );
   }
+}
+
+Future<void> _showAlertDialog(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text("註冊成功"),
+              Icon(Icons.check_circle,color: Colors.green,),
+              Text("感謝您的註冊"),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          RaisedButton(
+            child: Text('確認'),
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder:
+                  (context) => HealthPage()));
+            },
+            color: Color.fromRGBO(18, 213, 214, 1),
+          ),
+        ],
+      );
+    },
+  );
 }

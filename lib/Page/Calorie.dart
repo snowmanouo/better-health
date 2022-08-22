@@ -54,9 +54,10 @@ class Calorie extends StatelessWidget{
       appBar: AppBar(
         title:const Text("Bar Chart"),
         centerTitle: true,
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Color.fromRGBO(0,163,165,1),
       ),
       body:Container(
+        height: 400,
         padding: const EdgeInsets.all(10),
         child: charts.BarChart(
           series,

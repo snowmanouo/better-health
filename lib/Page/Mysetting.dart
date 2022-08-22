@@ -22,36 +22,16 @@ class Mysetting extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: TextButton(
-            onPressed: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(AppTitle,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.white,
-                ),
-              ],
-            )),
-        leading: Image.asset('assets/images/setting.png'),
+        title: Text('設定個人頁面',
+            style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
         backgroundColor: appGreenColor,
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 0),
-            child: GestureDetector(
-              onTap: () {},
-              child: (Image.asset('assets/images/user.png')),
-            ),
-          )
-        ],
       ),
-      body:ListView(
-        children: [
+      body:Column(
+        children:[
+
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),

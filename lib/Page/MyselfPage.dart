@@ -50,8 +50,9 @@ class MyselfPage extends StatelessWidget {
           )
         ],
       ),
-      body:ListView(
+      body:Column(
         children: [
+
           IconButton(
             padding: EdgeInsets.zero,
             constraints: BoxConstraints(),
@@ -63,9 +64,14 @@ class MyselfPage extends StatelessWidget {
               );
             },
           ),
+
+          SizedBox(height:200,width:0,),
+
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              minimumSize:Size(15,50)
+                primary: Color.fromRGBO(0,163,165,1), // background
+                onPrimary: Colors.white, // foreground
+              minimumSize:Size(400,100)
             ),
             onPressed: () {
               Navigator.push(
@@ -75,69 +81,79 @@ class MyselfPage extends StatelessWidget {
             },
             child: Text('熱量'),
           ),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+          SizedBox(height:30,width:0,),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: Color.fromRGBO(0,163,165,1), // background
+                onPrimary: Colors.white, // foreground
+                minimumSize:Size(400,100)
             ),
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Time()),
+                context,
+                MaterialPageRoute(builder: (context) => Time()),
               );
             },
             child: Text('斷食'),
           ),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+          SizedBox(height:30,width:0,),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: Color.fromRGBO(0,163,165,1), // background
+                onPrimary: Colors.white, // foreground
+                minimumSize:Size(400,100)
             ),
-            onPressed: () { Navigator.push(
+            onPressed: () {
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Kg()),
-             );
-          },
+              );
+            },
             child: Text('體重'),
           ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
+    ],
+    ),
     );
+    }
   }
-}
-class BottomNavigationBarWidget extends StatelessWidget {
-  const BottomNavigationBarWidget({
+
+
+
+
+
+    class BottomNavigationBarWidget extends StatelessWidget {
+    const BottomNavigationBarWidget({
     Key? key,
-  }) : super(key: key);
+    }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
+    @override
+    Widget build(BuildContext context) {
     return BottomNavigationBar(
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/home_off.png'),
-            activeIcon: new Image.asset('assets/images/home_on.png'),
-            label: ('')),
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/diary_off.png'),
-            activeIcon: new Image.asset('assets/images/diary_on.png'),
-            label: ('')),
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/profile_off.png'),
-            activeIcon: new Image.asset('assets/images/profile_on.png'),
-            label: ('')),
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/more_off.png'),
-            activeIcon: new Image.asset('assets/images/more_on.png'),
-            label: ('')),
-      ],
-      type: BottomNavigationBarType.fixed,
+    showSelectedLabels: false,
+    showUnselectedLabels: false,
+    items: <BottomNavigationBarItem>[
+    BottomNavigationBarItem(
+    backgroundColor: Colors.white,
+    icon: new Image.asset('assets/images/home_off.png'),
+    activeIcon: new Image.asset('assets/images/home_on.png'),
+    label: ('')),
+    BottomNavigationBarItem(
+    backgroundColor: Colors.white,
+    icon: new Image.asset('assets/images/diary_off.png'),
+    activeIcon: new Image.asset('assets/images/diary_on.png'),
+    label: ('')),
+    BottomNavigationBarItem(
+    backgroundColor: Colors.white,
+    icon: new Image.asset('assets/images/profile_off.png'),
+    activeIcon: new Image.asset('assets/images/profile_on.png'),
+    label: ('')),
+    BottomNavigationBarItem(
+    backgroundColor: Colors.white,
+    icon: new Image.asset('assets/images/more_off.png'),
+    activeIcon: new Image.asset('assets/images/more_on.png'),
+    label: ('')),
+    ],
+    type: BottomNavigationBarType.fixed,
     );
-  }
-}
-
+    }
+    }

@@ -16,10 +16,11 @@ class Time extends StatelessWidget{
       appBar: AppBar(
         title: Text("Line Chart"),
         centerTitle: true,
-        backgroundColor: Colors.green[700],
+        backgroundColor: Color.fromRGBO(0,163,165,1),
         brightness: Brightness.dark ,
       ),
        body: Container(
+         height: 400,
          child: SfCartesianChart(
            primaryXAxis:CategoryAxis() ,
            title: ChartTitle(text: 'Half Yearly Sales Analysis'),

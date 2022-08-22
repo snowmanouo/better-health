@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/Page/LoginPage.dart';
 import 'helpers/Constants.dart';
 import 'Page/HealthPage.dart';
 import 'Page/Page1.dart';
@@ -24,7 +25,7 @@ class ProjectApp extends StatelessWidget {
               (
               primaryColor: appGreenColor,
             ),
-            home: HealthPage(),
+            home: LoginPage(),
           );
         },
     );

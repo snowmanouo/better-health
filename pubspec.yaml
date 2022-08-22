@@ -39,10 +39,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^1.20.1
   cloud_firestore: ^3.4.4
+  firebase_auth: ^1.0.1
+  google_sign_in: ^5.0.0
+  form_field_validator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_svg: any
+  fluttertoast: any
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -77,7 +82,7 @@ flutter:
     - assets/images/Dumbbel.png
     - assets/images/Tableware.png
     - assets/images/yourCalmore.png
-
+    - assets/images/
 
 
 

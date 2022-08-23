@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../helpers/Constants.dart';
 
-class Page1 extends StatelessWidget {
+class BreakfastList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../helpers/Constants.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'Page1.dart';
+import 'BreakfastListPage.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -256,7 +256,7 @@ class MealCardWidget extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Page1()),
+                      MaterialPageRoute(builder: (context) => BreakfastList()),
                     );
                   },
                 ),

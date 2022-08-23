@@ -17,23 +17,23 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 208.94,),
-            Padding(padding: EdgeInsets.only(left: 65),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 90),
             child: Image(
               image: AssetImage("assets/images/logo.png"),
             ),),
             SizedBox(height: 24,),
-            Padding(padding: EdgeInsets.only(left: 75),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 123),
               child:Text('願你暴瘦',style: TextStyle(
               fontSize: 28,fontWeight: FontWeight.w700,
                 color: Color.fromRGBO(0, 163, 165, 1)),), ),
             SizedBox(height: 24,),
-            Padding(padding: EdgeInsets.only(left: 75),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 99),
               child:Text('Hope you can be more fit!',style: TextStyle(
               fontSize: 14,fontWeight: FontWeight.w500,
               color: Color.fromRGBO(153, 161, 186, 0.6)
             ),),),
             SizedBox(height: 30,),
-            Padding(padding: EdgeInsets.only(left: 50),child:
+            Padding(padding: EdgeInsets.symmetric(horizontal: 50),child:
             OutlinedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Color.fromRGBO(18, 213, 214, 1),),
@@ -63,7 +63,8 @@ class LoginPage extends StatelessWidget {
               ),
               ),),
             SizedBox(height: 20,),
-            GoogleSignInButton(),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 50),
+              child: GoogleSignInButton(),),
             //   FutureBuilder(
             //   future: Authentication.initializeFirebase(context: context),
             //   builder: (context, snapshot) {
@@ -393,123 +394,6 @@ class NowWeight extends StatelessWidget {
           IconButton(
             onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder:
-                  (context) => AfterWeight()));},
-            icon: Icon(Icons.arrow_forward),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('已有帳戶?'),
-              TextButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => GoogleSignInButton()));},
-                child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-class AfterWeight extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }  ),
-              Text('您的目標體重',
-                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
-              ),
-              SizedBox(),
-            ],
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 60,right: 60),
-            child:TextField(
-              //controller: _pinCodeController,
-              keyboardType: TextInputType.number,
-              maxLength: 3,
-              maxLines: 1,
-              autofocus: true,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                suffixText: "kg",
-              ),
-            ),
-          ),
-          IconButton(
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder:
-                  (context) => BodyFat()));},
-            icon: Icon(Icons.arrow_forward),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('已有帳戶?'),
-              TextButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => GoogleSignInButton()));},
-                child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class BodyFat extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }  ),
-              Text('您的體脂率',
-                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
-              ),
-              SizedBox(),
-            ],
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 60,right: 60),
-            child:TextField(
-              //controller: _pinCodeController,
-              keyboardType: TextInputType.number,
-              maxLength: 3,
-              maxLines: 1,
-              autofocus: true,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                suffixText: "%",
-              ),
-            ),
-          ),
-          IconButton(
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder:
                   (context) => ExerciseFrequency()));},
             icon: Icon(Icons.arrow_forward),
           ),
@@ -530,6 +414,123 @@ class BodyFat extends StatelessWidget {
     );
   }
 }
+// class AfterWeight extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceAround,
+//         children: <Widget>[
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: <Widget>[
+//               IconButton(
+//                   icon: Icon(Icons.arrow_back),
+//                   onPressed: () {
+//                     Navigator.of(context).pop();
+//                   }  ),
+//               Text('您的目標體重',
+//                 style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
+//               ),
+//               SizedBox(),
+//             ],
+//           ),
+//           const Padding(
+//             padding: EdgeInsets.only(left: 60,right: 60),
+//             child:TextField(
+//               //controller: _pinCodeController,
+//               keyboardType: TextInputType.number,
+//               maxLength: 3,
+//               maxLines: 1,
+//               autofocus: true,
+//               textAlign: TextAlign.center,
+//               decoration: InputDecoration(
+//                 suffixText: "kg",
+//               ),
+//             ),
+//           ),
+//           IconButton(
+//             onPressed: (){
+//               Navigator.push(context, MaterialPageRoute(builder:
+//                   (context) => BodyFat()));},
+//             icon: Icon(Icons.arrow_forward),
+//           ),
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: <Widget>[
+//               Text('已有帳戶?'),
+//               TextButton(
+//                 onPressed: (){
+//                   Navigator.push(context, MaterialPageRoute(builder:
+//                       (context) => GoogleSignInButton()));},
+//                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
+//               )
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// class BodyFat extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceAround,
+//         children: <Widget>[
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: <Widget>[
+//               IconButton(
+//                   icon: Icon(Icons.arrow_back),
+//                   onPressed: () {
+//                     Navigator.of(context).pop();
+//                   }  ),
+//               Text('您的體脂率',
+//                 style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
+//               ),
+//               SizedBox(),
+//             ],
+//           ),
+//           const Padding(
+//             padding: EdgeInsets.only(left: 60,right: 60),
+//             child:TextField(
+//               //controller: _pinCodeController,
+//               keyboardType: TextInputType.number,
+//               maxLength: 3,
+//               maxLines: 1,
+//               autofocus: true,
+//               textAlign: TextAlign.center,
+//               decoration: InputDecoration(
+//                 suffixText: "%",
+//               ),
+//             ),
+//           ),
+//           IconButton(
+//             onPressed: (){
+//               Navigator.push(context, MaterialPageRoute(builder:
+//                   (context) => ExerciseFrequency()));},
+//             icon: Icon(Icons.arrow_forward),
+//           ),
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: <Widget>[
+//               Text('已有帳戶?'),
+//               TextButton(
+//                 onPressed: (){
+//                   Navigator.push(context, MaterialPageRoute(builder:
+//                       (context) => GoogleSignInButton()));},
+//                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
+//               )
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class ExerciseFrequency extends StatefulWidget{
   @override
@@ -674,19 +675,21 @@ Future<void> _showAlertDialog(BuildContext context) {
             children: [
               Text("註冊成功"),
               Icon(Icons.check_circle,color: Colors.green,),
-              Text("感謝您的註冊"),
+              Text("感謝您的註冊，請登入"),
             ],
           ),
         ),
         actions: <Widget>[
-          RaisedButton(
-            child: Text('確認'),
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder:
-                  (context) => HealthPage()));
-            },
-            color: Color.fromRGBO(18, 213, 214, 1),
-          ),
+          Padding(padding: EdgeInsets.fromLTRB(0, 0, 10, 40),
+      child:GoogleSignInButton(),),
+          // RaisedButton(
+          //   child: Text('確認'),
+          //   onPressed: (){
+          //     Navigator.push(context, MaterialPageRoute(builder:
+          //         (context) => HealthPage(user: user,)));
+          //   },
+          //   color: Color.fromRGBO(18, 213, 214, 1),
+          // ),
         ],
       );
     },

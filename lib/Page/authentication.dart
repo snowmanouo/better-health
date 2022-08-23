@@ -20,7 +20,7 @@ class Authentication {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => HealthPage(
-            //user: user,
+            user: user,
           ),
         ),
       );

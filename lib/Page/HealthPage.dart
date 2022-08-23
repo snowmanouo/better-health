@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:project/Page/SettingPage.dart';
 import '../helpers/Constants.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'Page1.dart';
@@ -8,6 +10,12 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class HealthPage extends StatelessWidget {
+  const HealthPage({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +37,10 @@ class HealthPage extends StatelessWidget {
                 ),
               ],
             )),
-        leading: Image.asset('assets/images/setting.png'),
+        leading: IconButton(icon: Icon(Icons.settings),onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder:
+            (context) => SettingPage(user: _user)));},),
+        //Image.asset('assets/images/setting.png'),
         backgroundColor: appGreenColor,
         actions: <Widget>[
           Padding(

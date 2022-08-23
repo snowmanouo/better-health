@@ -18,9 +18,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(50, 0, 0, 30),
-      child: _isSigningIn
+    return _isSigningIn
           ? CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       )
@@ -49,7 +47,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => HealthPage(
-                  //user: user,
+                  user: user,
                 ),
               ),
             );
@@ -79,7 +77,6 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

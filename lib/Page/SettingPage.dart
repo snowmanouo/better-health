@@ -24,7 +24,7 @@ class _SettingPage extends State<SettingPage> {
   late User _user;
   bool _isSigningOut = false;
 
-  Route _routeToSignInScreen() {
+  Route _routeToLoginPage() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => LoginPage(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -61,12 +61,15 @@ class _SettingPage extends State<SettingPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Row(
+          SizedBox(height: 10,),
+          Container(
+            constraints: BoxConstraints(maxHeight: 47,maxWidth: 360,minHeight: 47,minWidth: 360),
+          child:Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Image(image: AssetImage('assets/images/Signout.png'),height: 25,width: 20,),
-              SizedBox(width: 10,),
-              TextButton(
+              //Image(image: AssetImage('assets/images/Signout.png'),height: 25,width: 20,),
+              //SizedBox(width: 10,),
+              Expanded(child: TextButton(
                   onPressed: () async {
                     setState(() {
                       _isSigningOut = true;
@@ -76,14 +79,24 @@ class _SettingPage extends State<SettingPage> {
                       _isSigningOut = false;
                     });
                     Navigator.of(context)
-                        .pushReplacement(_routeToSignInScreen());
+                        .pushReplacement(_routeToLoginPage());
                   },
-                  child:Text('登出'), ),
-              Padding(padding: EdgeInsets.only(right: 10),
-              child: Image(image: AssetImage('assets/images/personal_arrow.png'),),
-              ),],
+                  child:Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children:<Widget>[
+                      Padding(padding: EdgeInsets.only(left: 10),
+                        child: Image(image: AssetImage('assets/images/Signout.png'),height: 25,width: 20,),
+                      ),
+                      Text('登出',
+                    style: TextStyle(fontSize: 18,fontWeight:FontWeight.w500,color: Colors.black),
+                      ),SizedBox(),SizedBox(),SizedBox(),SizedBox(),
+    Padding(padding: EdgeInsets.only(right: 10),
+    child: Image(image: AssetImage('assets/images/personal_arrow.png'),),),
+                    ],),),),
+
+              ],
           )
-        ],
+          ),],
       ),
       bottomNavigationBar: BottomNavigationBarWidget(),
     );

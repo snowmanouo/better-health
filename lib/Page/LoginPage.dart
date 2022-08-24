@@ -21,19 +21,19 @@ class LoginPage extends StatelessWidget {
             child: Image(
               image: AssetImage("assets/images/logo.png"),
             ),),
-            SizedBox(height: 24,),
+            SizedBox(height: 15,),
             Padding(padding: EdgeInsets.symmetric(horizontal: 123),
               child:Text('願你暴瘦',style: TextStyle(
               fontSize: 28,fontWeight: FontWeight.w700,
                 color: Color.fromRGBO(0, 163, 165, 1)),), ),
-            SizedBox(height: 24,),
+            SizedBox(height: 15,),
             Padding(padding: EdgeInsets.symmetric(horizontal: 99),
               child:Text('Hope you can be more fit!',style: TextStyle(
               fontSize: 14,fontWeight: FontWeight.w500,
               color: Color.fromRGBO(153, 161, 186, 0.6)
             ),),),
-            SizedBox(height: 30,),
-            Padding(padding: EdgeInsets.symmetric(horizontal: 50),child:
+            SizedBox(height: 40,),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 30),child:
             OutlinedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Color.fromRGBO(18, 213, 214, 1),),
@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
               Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child:Icon(Icons.account_circle,size: 40,),),
+                  child:Icon(Icons.account_circle,size: 40,color: Colors.white,),),
                   Padding(padding: EdgeInsets.fromLTRB(20, 10, 40, 10),
                     child:Text('我是新用戶',
                       style: TextStyle(
@@ -63,7 +63,7 @@ class LoginPage extends StatelessWidget {
               ),
               ),),
             SizedBox(height: 20,),
-            Padding(padding: EdgeInsets.symmetric(horizontal: 50),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 20),
               child: GoogleSignInButton(),),
             //   FutureBuilder(
             //   future: Authentication.initializeFirebase(context: context),
@@ -109,7 +109,7 @@ class NewLogin extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,13 +120,14 @@ class NewLogin extends StatelessWidget{
                     Navigator.of(context).pop();
                   }  ),
               Text('歡迎!',
-                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
+                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
               ),
-              SizedBox(),
+              SizedBox(width: 40,),
             ],
           ),
-          Text('我們需要向您詢問幾個簡單的問題，讓我們能夠計算出建議的每日熱量並協助您達成目標。',
-              style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
+          Padding(padding: EdgeInsets.symmetric(horizontal: 20),
+            child:Text('我們需要向您詢問幾個簡單的問題，讓我們能夠計算出建議的每日熱量並協助您達成目標。',
+              style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 20,fontWeight: FontWeight.w700,)),),
           IconButton(
             onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder:
@@ -161,7 +162,7 @@ class _Gender extends State<Gender> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -172,9 +173,9 @@ class _Gender extends State<Gender> {
                     Navigator.of(context).pop();
                   }  ),
               Text('選擇性別',
-                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
+                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
               ),
-              SizedBox(),
+              SizedBox(width: 40,),
             ],
           ),
       Column(
@@ -245,7 +246,7 @@ class Old extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -256,9 +257,9 @@ class Old extends StatelessWidget {
                     Navigator.of(context).pop();
                   }  ),
               Text('您的年齡',
-                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
+                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
               ),
-              SizedBox(),
+              SizedBox(width: 40,),
             ],
           ),
           const Padding(
@@ -303,7 +304,7 @@ class height extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -314,9 +315,9 @@ class height extends StatelessWidget {
                     Navigator.of(context).pop();
                   }  ),
               Text('您的身高',
-                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
+                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
               ),
-              SizedBox(),
+              SizedBox(width: 40,),
             ],
           ),
           const Padding(
@@ -361,7 +362,7 @@ class NowWeight extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -371,10 +372,10 @@ class NowWeight extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pop();
                   }  ),
-              Text('您的當前體重',
-                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
+              Text('您的體重',
+                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
               ),
-              SizedBox(),
+              SizedBox(width: 40,),
             ],
           ),
           const Padding(
@@ -546,7 +547,7 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -557,9 +558,9 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
                     Navigator.of(context).pop();
                   }  ),
               Text('您的運動頻率',
-                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
+                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
               ),
-              SizedBox(),
+              SizedBox(width: 40,),
             ],
           ),
 
@@ -673,9 +674,9 @@ Future<void> _showAlertDialog(BuildContext context) {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text("註冊成功"),
+              Text("填寫成功"),
               Icon(Icons.check_circle,color: Colors.green,),
-              Text("感謝您的註冊，請登入"),
+              Text("感謝您的填寫，請登入"),
             ],
           ),
         ),

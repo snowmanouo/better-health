@@ -11,35 +11,15 @@ import 'Calorie.dart';
 import 'Time.dart';
 import 'Kg.dart';
 
-
-
-
-
-
 class MyselfPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: TextButton(
-            onPressed: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(AppTitle,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.white,
-                ),
-              ],
-            )),
+        title: const Text("個人數據"),
+        backgroundColor: Color.fromRGBO(0, 163, 165, 1),
         leading: Image.asset('assets/images/setting.png'),
-        backgroundColor: appGreenColor,
         actions: <Widget>[
           Padding(
             padding: EdgeInsets.only(right: 0),
@@ -50,110 +30,123 @@ class MyselfPage extends StatelessWidget {
           )
         ],
       ),
-      body:Column(
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
         children: [
+          Column(
+            children: [
+              Image.asset('assets/images/monster_small.png'),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("小怪獸的個人檔案"),
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: BoxConstraints(),
+                    icon: Image.asset('assets/images/myselfsetting.png'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Mysetting()),
+                      );
+                    },
+                  ),
+                ],
+              ),
 
-          IconButton(
-            padding: EdgeInsets.zero,
-            constraints: BoxConstraints(),
-            icon: Image.asset('assets/images/addButton.png'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Mysetting()),
-              );
-            },
+              SizedBox(
+                height: 100,
+                width: 0,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Color.fromRGBO(0, 163, 165, 1), // background
+                    onPrimary: Colors.white, // foreground
+                    minimumSize: Size(400, 100)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Calorie()),
+                  );
+                },
+                child: Text('熱量'),
+              ),
+              SizedBox(
+                height: 30,
+                width: 0,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Color.fromRGBO(0, 163, 165, 1), // background
+                    onPrimary: Colors.white, // foreground
+                    minimumSize: Size(400, 100)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Time()),
+                  );
+                },
+                child: Text('斷食'),
+              ),
+              SizedBox(
+                height: 30,
+                width: 0,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Color.fromRGBO(0, 163, 165, 1), // background
+                    onPrimary: Colors.white, // foreground
+                    minimumSize: Size(400, 100)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Kg()),
+                  );
+                },
+                child: Text('體重'),
+              ),
+            ],
           ),
-
-          SizedBox(height:200,width:0,),
-
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: Color.fromRGBO(0,163,165,1), // background
-                onPrimary: Colors.white, // foreground
-              minimumSize:Size(400,100)
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Calorie()),
-              );
-            },
-            child: Text('熱量'),
-          ),
-          SizedBox(height:30,width:0,),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: Color.fromRGBO(0,163,165,1), // background
-                onPrimary: Colors.white, // foreground
-                minimumSize:Size(400,100)
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Time()),
-              );
-            },
-            child: Text('斷食'),
-          ),
-          SizedBox(height:30,width:0,),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: Color.fromRGBO(0,163,165,1), // background
-                onPrimary: Colors.white, // foreground
-                minimumSize:Size(400,100)
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Kg()),
-              );
-            },
-            child: Text('體重'),
-          ),
-    ],
-    ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBarWidget(),
     );
-    }
   }
+}
 
-
-
-
-
-    class BottomNavigationBarWidget extends StatelessWidget {
-    const BottomNavigationBarWidget({
+class BottomNavigationBarWidget extends StatelessWidget {
+  const BottomNavigationBarWidget({
     Key? key,
-    }) : super(key: key);
+  }) : super(key: key);
 
-    @override
-    Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     return BottomNavigationBar(
-    showSelectedLabels: false,
-    showUnselectedLabels: false,
-    items: <BottomNavigationBarItem>[
-    BottomNavigationBarItem(
-    backgroundColor: Colors.white,
-    icon: new Image.asset('assets/images/home_off.png'),
-    activeIcon: new Image.asset('assets/images/home_on.png'),
-    label: ('')),
-    BottomNavigationBarItem(
-    backgroundColor: Colors.white,
-    icon: new Image.asset('assets/images/diary_off.png'),
-    activeIcon: new Image.asset('assets/images/diary_on.png'),
-    label: ('')),
-    BottomNavigationBarItem(
-    backgroundColor: Colors.white,
-    icon: new Image.asset('assets/images/profile_off.png'),
-    activeIcon: new Image.asset('assets/images/profile_on.png'),
-    label: ('')),
-    BottomNavigationBarItem(
-    backgroundColor: Colors.white,
-    icon: new Image.asset('assets/images/more_off.png'),
-    activeIcon: new Image.asset('assets/images/more_on.png'),
-    label: ('')),
-    ],
-    type: BottomNavigationBarType.fixed,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+            backgroundColor: Colors.white,
+            icon: new Image.asset('assets/images/home_off.png'),
+            activeIcon: new Image.asset('assets/images/home_on.png'),
+            label: ('')),
+        BottomNavigationBarItem(
+            backgroundColor: Colors.white,
+            icon: new Image.asset('assets/images/diary_off.png'),
+            activeIcon: new Image.asset('assets/images/diary_on.png'),
+            label: ('')),
+        BottomNavigationBarItem(
+            backgroundColor: Colors.white,
+            icon: new Image.asset('assets/images/profile_off.png'),
+            activeIcon: new Image.asset('assets/images/profile_on.png'),
+            label: ('')),
+        BottomNavigationBarItem(
+            backgroundColor: Colors.white,
+            icon: new Image.asset('assets/images/more_off.png'),
+            activeIcon: new Image.asset('assets/images/more_on.png'),
+            label: ('')),
+      ],
+      type: BottomNavigationBarType.fixed,
     );
-    }
-    }
+  }
+}

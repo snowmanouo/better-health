@@ -11,11 +11,6 @@ import 'Calorie.dart';
 import 'Time.dart';
 import 'Kg.dart';
 
-
-
-
-
-
 class Mysetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,77 +24,193 @@ class Mysetting extends StatelessWidget {
                 color: Colors.white)),
         backgroundColor: appGreenColor,
       ),
-      body:Column(
-        children:[
+      body: ListView(
 
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-            ),
-            onPressed: (){},
-            child: Text('性別'),
-          ),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-            ),
-            onPressed: () {},
-            child: Text('年齡'),
-          ),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-            ),
-            onPressed: () {},
-            child: Text('身高'),
-          ),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-            ),
-            onPressed: () {},
-            child: Text('體重'),
+        children: [
+          Column(
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.account_box_rounded),
+                  Text("性別"),
+                  SizedBox(width: 206),
+                  Align(
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.black,
+                      ),
+                      onPressed: () => showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: Text('性別'),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.male),
+                                iconSize: 50.0,
+                              ),
+                              IconButton(
+                                  onPressed: () {}, icon: Icon(Icons.female),
+                                iconSize: 50.0,),
+                            ],
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'OK'),
+                              child: Text('OK'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: Text('Cancel'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Text('性別'),
+                          Icon(Icons.keyboard_double_arrow_right)
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.cake),
+                  Text("年齡"),
+                  SizedBox(width: 206),
+                  Align(
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.black,
+                      ),
+                      onPressed: () => showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: Text('年齡'),
+                          content: const TextField(
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: '請輸入年齡',
+                            ),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'OK'),
+                              child: Text('OK'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: Text('Cancel'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      child:Row(
+                        children: [
+                          Text('年齡'),
+                          Icon(Icons.keyboard_double_arrow_right)
+                        ],
+                      )
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.arrow_upward),
+                  Text("身高"),
+                  SizedBox(width: 206),
+                  Align(
+                    child: TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.black,
+                        ),
+                        onPressed: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: Text('身高'),
+                            content: const TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: '請輸入身高(cm)',
+                              ),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: Text('OK'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'Cancel'),
+                                child: Text('Cancel'),
+                              ),
+                            ],
+                          ),
+                        ),
+                        child:Row(
+                          children: [
+                            Text('身高'),
+                            Icon(Icons.keyboard_double_arrow_right)
+                          ],
+                        )
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.keyboard_outlined),
+                  Text("體重"),
+                  SizedBox(width: 206),
+                  Align(
+                    child: TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.black,
+                        ),
+                        onPressed: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: Text('體重'),
+                            content: const TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: '請輸入體重(kg)',
+                              ),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: Text('OK'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'Cancel'),
+                                child: Text('Cancel'),
+                              ),
+                            ],
+                          ),
+                        ),
+                        child:Row(
+                          children: [
+                            Text('體重'),
+                            Icon(Icons.keyboard_double_arrow_right)
+                          ],
+                        )
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
-class BottomNavigationBarWidget extends StatelessWidget {
-  const BottomNavigationBarWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/home_off.png'),
-            activeIcon: new Image.asset('assets/images/home_on.png'),
-            label: ('')),
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/diary_off.png'),
-            activeIcon: new Image.asset('assets/images/diary_on.png'),
-            label: ('')),
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/profile_off.png'),
-            activeIcon: new Image.asset('assets/images/profile_on.png'),
-            label: ('')),
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/more_off.png'),
-            activeIcon: new Image.asset('assets/images/more_on.png'),
-            label: ('')),
-      ],
-      type: BottomNavigationBarType.fixed,
-    );
-  }
-}
-

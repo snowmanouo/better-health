@@ -3,6 +3,9 @@ import 'package:flutter/rendering.dart';
 import '../helpers/Constants.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'BreakfastListPage.dart';
+import 'LunchListPage.dart';
+import 'DinnerListPage.dart';
+import 'SnackListPage.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -199,10 +202,10 @@ class EatDrinkWidget extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: <Widget>[
-              MealCardWidget(text: '早餐', mealPic: BreakfastPic, cal: 55.0),
-              MealCardWidget(text: '午餐', mealPic: LunchPic, cal: 99.0),
-              MealCardWidget(text: '晚餐', mealPic: DinnerPic, cal: 155.2),
-              MealCardWidget(text: '點心', mealPic: DessertPic, cal: 1355.6),
+              MealCardWidget(text: '早餐', mealPic: BreakfastPic, cal: 55.0, destination: BreakfastList()),
+              MealCardWidget(text: '午餐', mealPic: LunchPic, cal: 99.0, destination: LunchList()),
+              MealCardWidget(text: '晚餐', mealPic: DinnerPic, cal: 155.2, destination: DinnerList()),
+              MealCardWidget(text: '點心', mealPic: DessertPic, cal: 1355.6, destination: SnackList()),
             ],
           )
         ],
@@ -215,9 +218,10 @@ class MealCardWidget extends StatelessWidget {
   final String text;
   final double cal;
   final Image mealPic;
+  final StatelessWidget destination;
 
   MealCardWidget(
-      {required this.text, required this.mealPic, required this.cal});
+      {required this.text, required this.mealPic, required this.cal, required this.destination});
 
   @override
   Widget build(BuildContext context) {
@@ -256,7 +260,8 @@ class MealCardWidget extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BreakfastList()),
+                      MaterialPageRoute(builder: (context) => this.destination,
+                      ),
                     );
                   },
                 ),

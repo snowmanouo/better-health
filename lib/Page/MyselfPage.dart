@@ -35,24 +35,6 @@ class MyselfPage extends StatelessWidget {
         children: [
           Column(
             children: [
-              Image.asset('assets/images/monster_small.png'),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("小怪獸的個人檔案"),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    constraints: BoxConstraints(),
-                    icon: Image.asset('assets/images/myselfsetting.png'),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Mysetting()),
-                      );
-                    },
-                  ),
-                ],
-              ),
 
               SizedBox(
                 height: 100,

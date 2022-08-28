@@ -337,7 +337,7 @@ class height extends StatelessWidget {
           IconButton(
             onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder:
-                  (context) => NowWeight()));},
+                  (context) => Weight()));},
             icon: Icon(Icons.arrow_forward),
           ),
           Row(
@@ -357,7 +357,7 @@ class height extends StatelessWidget {
     );
   }
 }
-class NowWeight extends StatelessWidget {
+class Weight extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -394,8 +394,7 @@ class NowWeight extends StatelessWidget {
           ),
           IconButton(
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder:
-                  (context) => ExerciseFrequency()));},
+              _showAlertDialog(context);},
             icon: Icon(Icons.arrow_forward),
           ),
           Row(
@@ -533,137 +532,137 @@ class NowWeight extends StatelessWidget {
 //   }
 // }
 
-class ExerciseFrequency extends StatefulWidget{
-  @override
-  _ExerciseFrequencyState createState() => _ExerciseFrequencyState();
-}
-class _ExerciseFrequencyState extends State<ExerciseFrequency> {
-  bool _checkboxListChecked =false;
-  bool _checkboxList2Checked=false;
-  bool _checkboxList3Checked =false;
-  bool _checkboxList4Checked=false;
-  bool _checkboxList5Checked =false;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }  ),
-              Text('您的運動頻率',
-                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
-              ),
-              SizedBox(width: 40,),
-            ],
-          ),
-
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              CheckboxListTile(
-                value: _checkboxListChecked,
-                onChanged: (checkboxListChecked){
-                  setState((){
-                    _checkboxListChecked=true;
-                    _checkboxList2Checked=false;
-                    _checkboxList3Checked =false;
-                    _checkboxList4Checked=false;
-                    _checkboxList5Checked =false;
-                  });
-                },
-                title: Text("久坐"),
-                subtitle: Text("沒啥運動><"),
-                activeColor: Color.fromRGBO(18, 213, 214, 1),
-              ),
-              CheckboxListTile(
-                value: _checkboxList2Checked,
-                onChanged: (checkboxList2Checked){
-                  setState((){
-                    _checkboxListChecked=false;
-                    _checkboxList2Checked=true;
-                    _checkboxList3Checked =false;
-                    _checkboxList4Checked=false;
-                    _checkboxList5Checked =false;
-                  });
-                },
-                title: Text("久坐"),
-                subtitle: Text("每周運動1~3天"),
-                activeColor: Color.fromRGBO(18, 213, 214, 1),
-              ),
-              CheckboxListTile(
-                value: _checkboxList3Checked,
-                onChanged: (checkboxList3Checked){
-                  setState((){
-                    _checkboxListChecked=false;
-                    _checkboxList2Checked=false;
-                    _checkboxList3Checked =true;
-                    _checkboxList4Checked=false;
-                    _checkboxList5Checked =false;
-                  });
-                },
-                title: Text("中度活動量"),
-                subtitle: Text("每周運動3~5天"),
-                activeColor: Color.fromRGBO(18, 213, 214, 1),
-              ),CheckboxListTile(
-                value: _checkboxList4Checked,
-                onChanged: (checkboxList4Checked){
-                  setState((){
-                    _checkboxListChecked=false;
-                    _checkboxList2Checked=false;
-                    _checkboxList3Checked =false;
-                    _checkboxList4Checked=true;
-                    _checkboxList5Checked =false;
-                  });
-                },
-                title: Text("高度活動量"),
-                subtitle: Text("每周運動6~7天"),
-                activeColor: Color.fromRGBO(18, 213, 214, 1),
-              ),CheckboxListTile(
-                value: _checkboxList5Checked,
-                onChanged: (checkboxList5Checked){
-                  setState((){
-                    _checkboxListChecked=false;
-                    _checkboxList2Checked=false;
-                    _checkboxList3Checked =false;
-                    _checkboxList4Checked=false;
-                    _checkboxList5Checked =true;
-                  });
-                },
-                title: Text("非常高度活動量"),
-                subtitle: Text("無時無刻都在運動XD"),
-                activeColor: Color.fromRGBO(18, 213, 214, 1),
-              ),
-            ],
-          ),
-          IconButton(
-            onPressed: (){
-              _showAlertDialog(context);},
-            icon: Icon(Icons.arrow_forward),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('已有帳戶?'),
-              TextButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => GoogleSignInButton()));},
-                child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
+// class ExerciseFrequency extends StatefulWidget{
+//   @override
+//   _ExerciseFrequencyState createState() => _ExerciseFrequencyState();
+// }
+// class _ExerciseFrequencyState extends State<ExerciseFrequency> {
+//   bool _checkboxListChecked =false;
+//   bool _checkboxList2Checked=false;
+//   bool _checkboxList3Checked =false;
+//   bool _checkboxList4Checked=false;
+//   bool _checkboxList5Checked =false;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//         children: <Widget>[
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: <Widget>[
+//               IconButton(
+//                   icon: Icon(Icons.arrow_back),
+//                   onPressed: () {
+//                     Navigator.of(context).pop();
+//                   }  ),
+//               Text('您的運動頻率',
+//                 style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
+//               ),
+//               SizedBox(width: 40,),
+//             ],
+//           ),
+//
+//           Column(
+//             mainAxisAlignment: MainAxisAlignment.spaceAround,
+//             children: <Widget>[
+//               CheckboxListTile(
+//                 value: _checkboxListChecked,
+//                 onChanged: (checkboxListChecked){
+//                   setState((){
+//                     _checkboxListChecked=true;
+//                     _checkboxList2Checked=false;
+//                     _checkboxList3Checked =false;
+//                     _checkboxList4Checked=false;
+//                     _checkboxList5Checked =false;
+//                   });
+//                 },
+//                 title: Text("久坐"),
+//                 subtitle: Text("沒啥運動><"),
+//                 activeColor: Color.fromRGBO(18, 213, 214, 1),
+//               ),
+//               CheckboxListTile(
+//                 value: _checkboxList2Checked,
+//                 onChanged: (checkboxList2Checked){
+//                   setState((){
+//                     _checkboxListChecked=false;
+//                     _checkboxList2Checked=true;
+//                     _checkboxList3Checked =false;
+//                     _checkboxList4Checked=false;
+//                     _checkboxList5Checked =false;
+//                   });
+//                 },
+//                 title: Text("久坐"),
+//                 subtitle: Text("每周運動1~3天"),
+//                 activeColor: Color.fromRGBO(18, 213, 214, 1),
+//               ),
+//               CheckboxListTile(
+//                 value: _checkboxList3Checked,
+//                 onChanged: (checkboxList3Checked){
+//                   setState((){
+//                     _checkboxListChecked=false;
+//                     _checkboxList2Checked=false;
+//                     _checkboxList3Checked =true;
+//                     _checkboxList4Checked=false;
+//                     _checkboxList5Checked =false;
+//                   });
+//                 },
+//                 title: Text("中度活動量"),
+//                 subtitle: Text("每周運動3~5天"),
+//                 activeColor: Color.fromRGBO(18, 213, 214, 1),
+//               ),CheckboxListTile(
+//                 value: _checkboxList4Checked,
+//                 onChanged: (checkboxList4Checked){
+//                   setState((){
+//                     _checkboxListChecked=false;
+//                     _checkboxList2Checked=false;
+//                     _checkboxList3Checked =false;
+//                     _checkboxList4Checked=true;
+//                     _checkboxList5Checked =false;
+//                   });
+//                 },
+//                 title: Text("高度活動量"),
+//                 subtitle: Text("每周運動6~7天"),
+//                 activeColor: Color.fromRGBO(18, 213, 214, 1),
+//               ),CheckboxListTile(
+//                 value: _checkboxList5Checked,
+//                 onChanged: (checkboxList5Checked){
+//                   setState((){
+//                     _checkboxListChecked=false;
+//                     _checkboxList2Checked=false;
+//                     _checkboxList3Checked =false;
+//                     _checkboxList4Checked=false;
+//                     _checkboxList5Checked =true;
+//                   });
+//                 },
+//                 title: Text("非常高度活動量"),
+//                 subtitle: Text("無時無刻都在運動XD"),
+//                 activeColor: Color.fromRGBO(18, 213, 214, 1),
+//               ),
+//             ],
+//           ),
+//           IconButton(
+//             onPressed: (){
+//               _showAlertDialog(context);},
+//             icon: Icon(Icons.arrow_forward),
+//           ),
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: <Widget>[
+//               Text('已有帳戶?'),
+//               TextButton(
+//                 onPressed: (){
+//                   Navigator.push(context, MaterialPageRoute(builder:
+//                       (context) => GoogleSignInButton()));},
+//                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
+//               )
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 Future<void> _showAlertDialog(BuildContext context) {
   return showDialog<void>(
@@ -674,9 +673,11 @@ Future<void> _showAlertDialog(BuildContext context) {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text("填寫成功"),
-              Icon(Icons.check_circle,color: Colors.green,),
-              Text("感謝您的填寫，請登入"),
+              Text("填寫成功",
+                  style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,)),
+              Image(image: AssetImage('assets/images/success.png'),),
+              Text("感謝您的填寫，請登入",
+                  style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,)),
             ],
           ),
         ),

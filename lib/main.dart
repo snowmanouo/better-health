@@ -15,25 +15,17 @@ class ProjectApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform
-        ),
-        builder: (context, snapshot) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: new ThemeData
-              (
-              primaryColor: appGreenColor,
-            ),
-            home: LoginPage(),
-          );
-        },
+      future: Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform),
+      builder: (context, snapshot) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: new ThemeData(
+            primaryColor: appGreenColor,
+          ),
+          home: LoginPage(),
+        );
+      },
     );
   }
 }
-
-
-
-
-
-

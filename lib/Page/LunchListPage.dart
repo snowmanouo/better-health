@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../helpers/Constants.dart';
 
-class Page1 extends StatelessWidget {
+class LunchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('早餐',
+        title: Text('午餐',
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

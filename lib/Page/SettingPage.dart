@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:project/Page/LoginPage.dart';
 import 'package:project/Page/authentication.dart';
 import 'package:project/Widgets/google_sign_in_button.dart';
 import 'package:project/helpers/Constants.dart';
+import 'Mysetting.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key, required User user})
@@ -33,7 +33,7 @@ class _SettingPage extends State<SettingPage> {
         var curve = Curves.ease;
 
         var tween =
-        Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
         return SlideTransition(
           position: animation.drive(tween),
@@ -61,69 +61,116 @@ class _SettingPage extends State<SettingPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 10,),
-          Container(
-            constraints: BoxConstraints(maxHeight: 47,maxWidth: 360,minHeight: 47,minWidth: 360),
-          child:Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              //Image(image: AssetImage('assets/images/Signout.png'),height: 25,width: 20,),
-              //SizedBox(width: 10,),
-              Expanded(child: TextButton(
-                  onPressed: ()  {
-                    // Navigator.push(context, MaterialPageRoute(builder:
-                    //     (context) => Mysetting()));
-                  },
-                  child:Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:<Widget>[
-                      Padding(padding: EdgeInsets.only(left: 10),
-                        child: Icon(Icons.mode_edit_outline,size:26,color: Colors.black,),
-                      ),
-                      Text('修改個人資料',
-                    style: TextStyle(fontSize: 18,fontWeight:FontWeight.w500,color: Colors.black),
-                      ),SizedBox(),SizedBox(),SizedBox(),
-    Padding(padding: EdgeInsets.only(right: 10),
-    child: Image(image: AssetImage('assets/images/personal_arrow.png'),),),
-                    ],),),),
-              ],
-          )
+          SizedBox(
+            height: 10,
           ),
-          SizedBox(height: 10,),
           Container(
-              constraints: BoxConstraints(maxHeight: 47,maxWidth: 360,minHeight: 47,minWidth: 360),
-              child:Row(
+              constraints: BoxConstraints(
+                  maxHeight: 47, maxWidth: 360, minHeight: 47, minWidth: 360),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   //Image(image: AssetImage('assets/images/Signout.png'),height: 25,width: 20,),
                   //SizedBox(width: 10,),
-                  Expanded(child: TextButton(
-                    onPressed: () async {
-                      setState(() {
-                        _isSigningOut = true;
-                      });
-                      await Authentication.signOut(context: context);
-                      setState(() {
-                        _isSigningOut = false;
-                      });
-                      Navigator.of(context)
-                          .pushReplacement(_routeToLoginPage());
-                    },
-                    child:Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:<Widget>[
-                        Padding(padding: EdgeInsets.only(left: 10),
-                          child: Image(image: AssetImage('assets/images/Signout.png'),height: 25,width: 20,),
-                        ),
-                        Text('登出',
-                          style: TextStyle(fontSize: 18,fontWeight:FontWeight.w500,color: Colors.black),
-                        ),SizedBox(),SizedBox(),SizedBox(),SizedBox(),
-                        Padding(padding: EdgeInsets.only(right: 10),
-                          child: Image(image: AssetImage('assets/images/personal_arrow.png'),),),
-                      ],),),),
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder:
+                            (context) => Mysetting()));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Icon(
+                              Icons.mode_edit_outline,
+                              size: 26,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            '修改個人資料',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black),
+                          ),
+                          SizedBox(),
+                          SizedBox(),
+                          SizedBox(),
+                          Padding(
+                            padding: EdgeInsets.only(right: 10),
+                            child: Image(
+                              image: AssetImage(
+                                  'assets/images/personal_arrow.png'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
-              )
+              )),
+          SizedBox(
+            height: 10,
           ),
+          Container(
+              constraints: BoxConstraints(
+                  maxHeight: 47, maxWidth: 360, minHeight: 47, minWidth: 360),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  //Image(image: AssetImage('assets/images/Signout.png'),height: 25,width: 20,),
+                  //SizedBox(width: 10,),
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () async {
+                        setState(() {
+                          _isSigningOut = true;
+                        });
+                        await Authentication.signOut(context: context);
+                        setState(() {
+                          _isSigningOut = false;
+                        });
+                        Navigator.of(context)
+                            .pushReplacement(_routeToLoginPage());
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Image(
+                              image: AssetImage('assets/images/Signout.png'),
+                              height: 25,
+                              width: 20,
+                            ),
+                          ),
+                          Text(
+                            '登出',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black),
+                          ),
+                          SizedBox(),
+                          SizedBox(),
+                          SizedBox(),
+                          SizedBox(),
+                          Padding(
+                            padding: EdgeInsets.only(right: 10),
+                            child: Image(
+                              image: AssetImage(
+                                  'assets/images/personal_arrow.png'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )),
         ],
       ),
     );

@@ -18,16 +18,6 @@ class MyselfPage extends StatelessWidget {
         centerTitle: true,
         title: const Text("個人數據"),
         backgroundColor: Color.fromRGBO(0, 163, 165, 1),
-        leading: Image.asset('assets/images/setting.png'),
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 0),
-            child: GestureDetector(
-              onTap: () {},
-              child: (Image.asset('assets/images/user.png')),
-            ),
-          )
-        ],
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),

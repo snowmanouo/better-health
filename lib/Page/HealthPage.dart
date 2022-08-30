@@ -40,20 +40,7 @@ class HealthPage extends StatelessWidget {
                 ),
               ],
             )),
-        leading: IconButton(icon: Icon(Icons.settings),onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder:
-            (context) => SettingPage(user: _user)));},),
-        //Image.asset('assets/images/setting.png'),
         backgroundColor: appGreenColor,
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 0),
-            child: GestureDetector(
-              onTap: () {},
-              child: (Image.asset('assets/images/user.png')),
-            ),
-          )
-        ],
       ),
       body: ListView(
         shrinkWrap: true,

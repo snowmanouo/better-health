@@ -98,7 +98,6 @@ class HealthPage extends StatelessWidget {
           ExcerciseWidget(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
@@ -676,42 +675,5 @@ class BodyNumWidget extends StatelessWidget {
         flex: 1,
       ),
     ]);
-  }
-}
-
-class BottomNavigationBarWidget extends StatelessWidget {
-  const BottomNavigationBarWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/home_off.png'),
-            activeIcon: new Image.asset('assets/images/home_on.png'),
-            label: ('')),
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/diary_off.png'),
-            activeIcon: new Image.asset('assets/images/diary_on.png'),
-            label: ('')),
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/profile_off.png'),
-            activeIcon: new Image.asset('assets/images/profile_on.png'),
-            label: ('')),
-        BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: new Image.asset('assets/images/more_off.png'),
-            activeIcon: new Image.asset('assets/images/more_on.png'),
-            label: ('')),
-      ],
-      type: BottomNavigationBarType.fixed,
-    );
   }
 }

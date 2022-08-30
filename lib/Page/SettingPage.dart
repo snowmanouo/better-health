@@ -126,7 +126,6 @@ class _SettingPage extends State<SettingPage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }

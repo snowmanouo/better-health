@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'finishmonster.dart';
+import 'package:project/Page/startmonster.dart';
 
 class Dplan extends StatelessWidget {
   @override
@@ -96,7 +97,7 @@ class Dplan extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => finishmonster()));
+                              builder: (context) => startmonster()));
                     }),
               ),
               Container(

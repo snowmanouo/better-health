@@ -7,11 +7,9 @@ import '14_10plan.dart';
 class chooseplan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(0, 163, 165, 1),
-          leading: Image.asset('assets/images/gear.png'),
           centerTitle: true,
           title: Text('選擇一項計畫'),
         ),
@@ -254,24 +252,8 @@ class chooseplan extends StatelessWidget {
           ],
         ),
 
-        // ],
-      ),
-    );
+      );
   }
 }
 
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    //↓↓↓更改此處程式碼↓↓↓
-    return Center(
-        // child: ElevatedButton(
-        //   child: Text('立即開始'),
-        //   onPressed: () {
-        //     Navigator.push(
-        //         context, MaterialPageRoute(builder: (context) => BPage()));
-        //   },
-        // ),
-        );
-  }
-}
+

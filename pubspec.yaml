@@ -45,12 +45,17 @@ dependencies:
   google_sign_in: ^5.0.0
   form_field_validator: ^1.1.0
 
+flutter_icons:
+  image_path: "assets/images/logo.png"
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: true # can specify file name here e.g. "My-Launcher-Icon"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_svg: any
   fluttertoast: any
+  flutter_launcher_icons: ^0.10.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

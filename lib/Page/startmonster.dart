@@ -8,10 +8,10 @@ class startmonster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(0, 163, 165, 1),
-            leading: Image.asset('assets/images/gear.png'),
             centerTitle: true,
             title: Text('願你暴瘦'),
           ),

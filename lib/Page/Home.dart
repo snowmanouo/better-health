@@ -3,13 +3,14 @@ import 'package:project/Page/HealthPage.dart';
 import 'package:project/Page/MyselfPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project/Page/SettingPage.dart';
+import 'package:project/Page/startmonster.dart';
 
 class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
     _children = [
-      MyselfPage(),
+      startmonster(),
       HealthPage(user: widget._user),
       MyselfPage(),
       SettingPage(user: widget._user),

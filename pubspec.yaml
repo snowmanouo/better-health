@@ -65,28 +65,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/images/setting.png
-    - assets/images/user.png
-    - assets/images/home_off.png
-    - assets/images/diary_off.png
-    - assets/images/profile_off.png
-    - assets/images/more_off.png
-    - assets/images/home_on.png
-    - assets/images/diary_on.png
-    - assets/images/profile_on.png
-    - assets/images/more_on.png
-    - assets/images/Breakfast.png
-    - assets/images/Lunch.png
-    - assets/images/Dinner.png
-    - assets/images/Dessert.png
-    - assets/images/addButton.png
-    - assets/images/Excercise.png
-    - assets/images/question_mark.png
-    - assets/images/Dumbbel.png
-    - assets/images/Tableware.png
-    - assets/images/yourCalmore.png
-    - assets/images/myselfsetting.png
-    - assets/images/monster_small.png
+    - assets/images/
 
 
 

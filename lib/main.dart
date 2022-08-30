@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/Page/LoginPage.dart';
+import 'package:project/Page/MyselfPage.dart';
 import 'helpers/Constants.dart';
 import 'Page/HealthPage.dart';
 import 'Page/BreakfastListPage.dart';
@@ -8,6 +9,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:project/Page/Mysetting.dart';
 
 void main() => runApp(ProjectApp());
 

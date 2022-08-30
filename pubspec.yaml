@@ -77,12 +77,31 @@ flutter:
     - assets/images/Dumbbel.png
     - assets/images/Tableware.png
     - assets/images/yourCalmore.png
+    - assets/images/gear.png
+    - assets/images/guishoa.png
+    - assets/images/back1.png
+    - assets/images/fork.png
+    - assets/images/startfasting.png
+    - assets/images/yellowbolt.png
+    - assets/images/airyellowbolt.png
+    - assets/images/bluebolt.png
+    - assets/images/airbluebolt.png
+    - assets/images/redbolt.png
+    - assets/images/airredbolt.png
+    - assets/images/greenbolt.png
+    - assets/images/airgreenbolt.png
+    - assets/images/chicken.png
+    - assets/images/banana.png
+    - assets/images/drink.png
+    - assets/images/redapple.png
 
 
 
 
 
-  # The following line ensures that the Material Icons font is
+
+
+    # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true

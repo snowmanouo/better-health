@@ -7,6 +7,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'Page/startmonster.dart';
 
 void main() => runApp(ProjectApp());
 
@@ -24,7 +25,7 @@ class ProjectApp extends StatelessWidget {
               (
               primaryColor: appGreenColor,
             ),
-            home: HealthPage(),
+            home: startmonster(),
           );
         },
     );

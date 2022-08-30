@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:project/Page/HealthPage.dart';
-
+import 'Home.dart';
 
 class Authentication {
 
@@ -19,9 +19,10 @@ class Authentication {
     if (user != null) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => HealthPage(
-            user: user,
-          ),
+          builder: (context) => Home(),
+          // HealthPage(
+          //   user: user,
+          // ),
         ),
       );
     }

@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:project/Page/HealthPage.dart';
 import 'package:project/Page/MyselfPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:project/Page/SettingPage.dart';
 
 class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    _children = [
+      MyselfPage(),
+      HealthPage(user: widget._user),
+      MyselfPage(),
+      SettingPage(user: widget._user),
+    ];
+  }
+
+  // final User _user;
   int _currentIndex = 0;
-  final List<Widget> _children = [
-    // TODO: need to replace with correct pages
-    MyselfPage(),
-    MyselfPage(),
-    MyselfPage(),
-    MyselfPage(),
-    // HealthPage(),
-    // MyselfPage(),
-    // SettingPage(),
-  ];
+  List<Widget> _children = [];
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +64,12 @@ class _HomeState extends State<Home> {
 }
 
 class Home extends StatefulWidget {
+  const Home({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
+
   @override
   State<StatefulWidget> createState() {
     return _HomeState();

@@ -54,20 +54,12 @@ class HealthPage extends StatelessWidget {
           Container(
             child: Row(
               children: [
-                Expanded(
-                  child: Align(
+               Align(
                     alignment: Alignment.centerLeft,
                     child: Text(YourCal,
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
                   ),
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Image.asset('assets/images/yourCalmore.png'),
-                  ),
-                ),
               ],
             ),
           ),

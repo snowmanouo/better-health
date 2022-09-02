@@ -7,7 +7,7 @@ class SnackList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('零食',
+        title: Text('點心',
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

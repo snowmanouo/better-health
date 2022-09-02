@@ -362,7 +362,7 @@ class YourCalWidget extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Column(
-                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
                                         "建議攝入",
@@ -380,7 +380,9 @@ class YourCalWidget extends StatelessWidget {
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
-                                      SizedBox(height: 18),
+                                      SizedBox(height: 8),
+                                      Image.asset("assets/images/Divider.png"),
+                                      SizedBox(height: 8),
                                       Text(
                                         "今日已攝入",
                                         style: TextStyle(

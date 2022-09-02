@@ -167,7 +167,7 @@ class ExcerciseCardWidget extends StatelessWidget {
                   bottom: 10,
                   child: Text('約消耗${this.cal}千卡',
                       style: TextStyle(
-                            fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w700,
                           fontSize: 16,
                           color: Colors.white)),
                 ),
@@ -199,10 +199,26 @@ class EatDrinkWidget extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: <Widget>[
-              MealCardWidget(text: '早餐', mealPic: BreakfastPic, cal: 55.0, destination: BreakfastList()),
-              MealCardWidget(text: '午餐', mealPic: LunchPic, cal: 99.0, destination: LunchList()),
-              MealCardWidget(text: '晚餐', mealPic: DinnerPic, cal: 155.2, destination: DinnerList()),
-              MealCardWidget(text: '點心', mealPic: DessertPic, cal: 1355.6, destination: SnackList()),
+              MealCardWidget(
+                  text: '早餐',
+                  mealPic: BreakfastPic,
+                  cal: 55.0,
+                  destination: BreakfastList()),
+              MealCardWidget(
+                  text: '午餐',
+                  mealPic: LunchPic,
+                  cal: 99.0,
+                  destination: LunchList()),
+              MealCardWidget(
+                  text: '晚餐',
+                  mealPic: DinnerPic,
+                  cal: 155.2,
+                  destination: DinnerList()),
+              MealCardWidget(
+                  text: '點心',
+                  mealPic: DessertPic,
+                  cal: 1355.6,
+                  destination: SnackList()),
             ],
           )
         ],
@@ -218,7 +234,10 @@ class MealCardWidget extends StatelessWidget {
   final StatelessWidget destination;
 
   MealCardWidget(
-      {required this.text, required this.mealPic, required this.cal, required this.destination});
+      {required this.text,
+      required this.mealPic,
+      required this.cal,
+      required this.destination});
 
   @override
   Widget build(BuildContext context) {
@@ -257,7 +276,8 @@ class MealCardWidget extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => this.destination,
+                      MaterialPageRoute(
+                        builder: (context) => this.destination,
                       ),
                     );
                   },
@@ -311,6 +331,7 @@ class YourCalWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'TDEE 狀態(正常)',
@@ -320,32 +341,75 @@ class YourCalWidget extends StatelessWidget {
                           color: Colors.white),
                     ),
                     SizedBox(height: 10),
-                    Container(
-                      height: 160,
-                      margin: EdgeInsets.all(0),
-                      child: CircularPercentIndicator(
-                        radius: 70.0,
-                        percent: 0.8,
-                        lineWidth: 10,
-                        animation: true,
-                        animationDuration: 1200,
-                        center: Text('80%'),
-                        footer: Text(
-                          '今日已攝入/建議攝入',
-                          style: TextStyle(
-                            fontSize: 12,
+                    Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 157,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromRGBO(255, 255, 255, 0.5),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.transparent, spreadRadius: 3),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 25),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "建議攝入",
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(127, 127, 127, 1),
+                                        ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "1046.5大卡",
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(24, 24, 24, 0.75),
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      SizedBox(height: 18),
+                                      Text(
+                                        "今日已攝入",
+                                        style: TextStyle(
+                                            color: Color.fromRGBO(
+                                                127, 127, 127, 1)),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "502.2大卡",
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(24, 24, 24, 0.75),
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                        backgroundColor: Color.fromRGBO(255, 255, 255, 0.25),
-                        progressColor: Color.fromRGBO(255, 255, 255, 1),
-                      ),
-                    ),
+                        ]),
                   ],
                 ),
               ),
               SizedBox(width: 18),
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       children: [

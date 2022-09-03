@@ -1,16 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:project/Page/SettingPage.dart';
 import '../helpers/Constants.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'BreakfastListPage.dart';
 import 'LunchListPage.dart';
 import 'DinnerListPage.dart';
 import 'SnackListPage.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'ExcerciseListPage.dart';
+
 
 class HealthPage extends StatelessWidget {
   const HealthPage({Key? key, required User user})
@@ -147,7 +145,19 @@ class ExcerciseCardWidget extends StatelessWidget {
                           color: Colors.black)),
                 ),
                 SizedBox(width: 43),
-                Image.asset('assets/images/addButton.png'),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(),
+                  icon: Image.asset('assets/images/addButton.png'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ExcerciseList(),
+                      ),
+                    );
+                  },
+                ),
                 SizedBox(width: 13),
               ],
             ),
@@ -260,7 +270,6 @@ class MealCardWidget extends StatelessWidget {
                           color: Colors.black)),
                 ),
                 SizedBox(width: 75),
-                // Image.asset('assets/images/addButton.png'),
                 IconButton(
                   padding: EdgeInsets.zero,
                   constraints: BoxConstraints(),

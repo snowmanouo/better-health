@@ -40,8 +40,6 @@ class _ExcerciseListState extends State<ExcerciseList> {
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
         children: [
-          Column(
-            children: [
               Row(
                 children: [
                   Text('運動清單',
@@ -64,8 +62,6 @@ class _ExcerciseListState extends State<ExcerciseList> {
                 ],
               ),
               SizedBox(height: 24),
-              Column(
-                children: [
                 Container(
                   height: 40,
                   decoration: BoxDecoration(
@@ -86,26 +82,25 @@ class _ExcerciseListState extends State<ExcerciseList> {
                     onChanged: searchBook,
                   ),
                 ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: books.length,
-                  itemBuilder: (context, index) {
-                    final book = books[index];
-                    return ListTile(
-                      leading: Image.network(
-                        book.urlImage,
-                        fit: BoxFit.cover,
-                        width: 50,
-                        height: 50,
-                      ),
-                      title: Text(book.title),
-                    );
-                  },
-                ),
+                  ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    itemCount: books.length,
+                    itemBuilder: (context, index) {
+                      final book = books[index];
+                      return ListTile(
+                        leading: Image.network(
+                          book.urlImage,
+                          fit: BoxFit.cover,
+                          width: 50,
+                          height: 50,
+                        ),
+                        title: Text(book.title),
+                        contentPadding: EdgeInsets.zero,
+                      );
+                    },
+                  ),
 
-              ],),
-            ],
-          ),
         ],
       ),
     );

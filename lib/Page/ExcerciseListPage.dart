@@ -64,22 +64,20 @@ class _ExcerciseListState extends State<ExcerciseList> {
               SizedBox(height: 24),
                 Container(
                   height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Color.fromRGBO(238, 238, 238, 1.0),
-                    boxShadow: [
-                      BoxShadow(color: Colors.transparent, spreadRadius: 3),
-                    ],
-                  ),
                   child: TextField(
                     controller: controller,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search, color: Colors.black),
+                      filled: true,
+                      fillColor: Color.fromRGBO(238, 238, 238, 1.0),
+                      prefixIcon: Icon(Icons.search, color: Colors.black,size: 20),
                       hintText: '搜尋',
                       hintStyle: TextStyle(fontSize: 16),
-                      border: InputBorder.none,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
-                    onChanged: searchBook,
+                      onChanged: searchBook,
                   ),
                 ),
                   ListView.builder(

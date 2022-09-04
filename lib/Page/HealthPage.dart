@@ -490,7 +490,8 @@ class YourCalWidget extends StatelessWidget {
                                           ),
                                         ],
                                       );
-                                    });
+                                    }
+                                    );
                               },
                               child: Image.asset(
                                   'assets/images/question_mark.png'),

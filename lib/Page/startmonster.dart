@@ -2,6 +2,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'chooseplan.dart';
 import '14_10plan.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class startmonster extends StatelessWidget {
   @override
@@ -13,105 +15,320 @@ class startmonster extends StatelessWidget {
           title: Text('願你暴瘦'),
         ),
         body: ListView(
-          padding: const EdgeInsets.all(20),
           children: <Widget>[
-            Container(
-              height: 200,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/back1.png"),
-                  fit: BoxFit.cover,
+            Stack(children: <Widget>[
+              Container(
+                height: 176,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/back1.png"),
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
-              // child: Center(
-              //   child: Text(
-              //     '單眼小怪獸',
-              //     style: TextStyle(fontSize: 22.0, color: Colors.black,fontWeight: FontWeight.bold),
-              //   ),
-              // ),
-            ),
-            Container(
-              height: 192,
-              width: 72, //沒用
-              // color: Color.fromRGBO(253, 237, 114, 0.3),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text('單眼小怪獸',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                  Text('LV', style: TextStyle(fontSize: 24)),
+              Column(
+                children: [
+                  SizedBox(
+                    height: 102.5,
+                  ),
                   new ClipOval(
                     child: new Image.asset(
                       'assets/images/guishoa.png',
-                      height: 120,
+                      height: 160,
                     ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 150,
-              width: 72, //沒用
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(children: <Widget>[
-                    SizedBox(height: 30),
-                    Image.asset('assets/images/fork.png'),
-                    SizedBox(width: 9),
-                    Text('進食時間',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                  ]),
-                  SizedBox(height: 25),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Row(
-                    children: <Widget>[
-                      Image.asset('assets/images/startfasting.png'),
-                      SizedBox(width: 10),
-                      Text('開始你的斷食',
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('單眼小怪獸',
                           style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(0, 163, 165, 1))),
+                              fontSize: 16, fontWeight: FontWeight.bold)),
+                      SizedBox(width: 8),
+                      Image.asset('assets/images/pencil.png'),
                     ],
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('LV2',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold)),
+                      LinearPercentIndicator(
+                        width: 140.0,
+                        lineHeight: 20.0,
+                        percent: 0.5,//變數
+                        center: Text(
+                          "50.0%",
+                          style: new TextStyle(fontSize: 12.0),
+                        ),
+                        // trailing: Icon(Icons.mood),
+                        linearStrokeCap: LinearStrokeCap.roundAll,
+                        backgroundColor: Color.fromRGBO(226, 226, 226, 1),
+                        progressColor: Color.fromRGBO(18, 213, 214, 1),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(color: Colors.transparent, spreadRadius: 3),
+                        ],
+                      ),
+                      height: 230,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(children: <Widget>[
+                            SizedBox(height: 30),
+                            Image.asset('assets/images/fork.png'),
+                            SizedBox(width: 9),
+                            Text('進食時間',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                          ]),
+                          SizedBox(height: 25),
+                          Row(
+                            children: <Widget>[
+                              Image.asset('assets/images/startfasting.png'),
+                              SizedBox(width: 10),
+                              Text('開始你的斷食',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromRGBO(0, 163, 165, 1))),
+                            ],
+                          ),
+                          SizedBox(height: 16),
+                          SizedBox(
+                            height: 52,
+                            width: 296,
+                            child: ElevatedButton(
+                                child: Text(
+                                  '立即開始',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                style: TextButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromRGBO(18, 213, 214, 1),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => chooseplan()));
+                                }),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            ),
-            // Row(
-            //   children: [
-            //     Text('aaa'),
-            //   ],
-            // )
-            // Column(
-            //   children: [
-            //     ElevatedButton(
-            //       child: Text('立即開始'),
+              // Container(
+              //   height: 356,
+              //   alignment: Alignment.center,
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     crossAxisAlignment: CrossAxisAlignment.center,
+              //     children: <Widget>[
+              //       SizedBox(
+              //         height: 128,
+              //       ),
+              //       new ClipOval(
+              //         child: new Image.asset(
+              //           'assets/images/guishoa.png',
+              //           height: 160,
+              //         ),
+              //       ),
+              //       Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         children: [
+              //           Text('單眼小怪獸',
+              //               style: TextStyle(
+              //                   fontSize: 16, fontWeight: FontWeight.bold)),
+              //           SizedBox(width: 8),
+              //           Image.asset('assets/images/pencil.png'),
+              //         ],
+              //       ),
+              //       Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         children: [
+              //           Text('LV2',
+              //               style: TextStyle(
+              //                   fontSize: 16, fontWeight: FontWeight.bold)),
+              //           Padding(
+              //             padding: EdgeInsets.all(15.0),
+              //             child: new LinearPercentIndicator(
+              //               width: 140.0,
+              //               lineHeight: 14.0,
+              //               percent: 0.5,
+              //               center: Text(
+              //                 "50.0%",
+              //                 style: new TextStyle(fontSize: 12.0),
+              //               ),
+              //               // trailing: Icon(Icons.mood),
+              //               linearStrokeCap: LinearStrokeCap.roundAll,
+              //               backgroundColor: Color.fromRGBO(226, 226, 226, 1),
+              //               progressColor: Color.fromRGBO(18, 213, 214, 1),
+              //             ),
+              //           ),
+              //         ],
+              //       )
+              //     ],
+              //   ),
+              // ),
+            ]),
+            // Padding(
+            //   padding: const EdgeInsets.all(16),
+            //   child: Container(
+            //     padding: const EdgeInsets.all(16),
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(8),
+            //       color: Colors.white,
+            //       boxShadow: [
+            //         BoxShadow(color: Colors.transparent, spreadRadius: 3),
+            //       ],
+            //     ),
+            //     height: 230,
+            //     width: 72,
+            //     //沒用
+            //     child: Column(
+            //       mainAxisAlignment: MainAxisAlignment.start,
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: <Widget>[
+            //         Row(children: <Widget>[
+            //           SizedBox(height: 30),
+            //           Image.asset('assets/images/fork.png'),
+            //           SizedBox(width: 9),
+            //           Text('進食時間',
+            //               style: TextStyle(
+            //                   fontSize: 18, fontWeight: FontWeight.bold)),
+            //         ]),
+            //         SizedBox(height: 25),
+            //         Row(
+            //           children: <Widget>[
+            //             Image.asset('assets/images/startfasting.png'),
+            //             SizedBox(width: 10),
+            //             Text('開始你的斷食',
+            //                 style: TextStyle(
+            //                     fontSize: 18,
+            //                     fontWeight: FontWeight.bold,
+            //                     color: Color.fromRGBO(0, 163, 165, 1))),
+            //           ],
+            //         ),
+            //         SizedBox(height: 16),
+            //         SizedBox(
+            //           height: 52,
+            //           width: 350,
+            //           child: ElevatedButton(
+            //               child: Text(
+            //                 '立即開始',
+            //                 style: TextStyle(color: Colors.white),
+            //               ),
+            //               style: TextButton.styleFrom(
+            //                 backgroundColor: Color.fromRGBO(18, 213, 214, 1),
+            //               ),
+            //               onPressed: () {
+            //                 Navigator.push(
+            //                     context,
+            //                     MaterialPageRoute(
+            //                         builder: (context) => chooseplan()));
+            //               }),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Container(
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(8),
+            //     color: Colors.white,
+            //     boxShadow: [
+            //       BoxShadow(color: Colors.transparent, spreadRadius: 3),
+            //     ],
+            //   ),
+            //   height: 230,
+            //   width: 72,
+            //   //沒用
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: <Widget>[
+            //       Row(children: <Widget>[
+            //         SizedBox(height: 30),
+            //         Image.asset('assets/images/fork.png'),
+            //         SizedBox(width: 9),
+            //         Text('進食時間',
+            //             style: TextStyle(
+            //                 fontSize: 18, fontWeight: FontWeight.bold)),
+            //       ]),
+            //       SizedBox(height: 25),
+            //       Row(
+            //         children: <Widget>[
+            //           Image.asset('assets/images/startfasting.png'),
+            //           SizedBox(width: 10),
+            //           Text('開始你的斷食',
+            //               style: TextStyle(
+            //                   fontSize: 18,
+            //                   fontWeight: FontWeight.bold,
+            //                   color: Color.fromRGBO(0, 163, 165, 1))),
+            //         ],
+            //       ),
+            //       SizedBox(height: 16),
+            //       SizedBox(
+            //         height: 52,
+            //         width: 350,
+            //         child: ElevatedButton(
+            //             child: Text(
+            //               '立即開始',
+            //               style: TextStyle(color: Colors.white),
+            //             ),
+            //             style: TextButton.styleFrom(
+            //               backgroundColor: Color.fromRGBO(18, 213, 214, 1),
+            //             ),
+            //             onPressed: () {
+            //               Navigator.push(
+            //                   context,
+            //                   MaterialPageRoute(
+            //                       builder: (context) => chooseplan()));
+            //             }),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // Container(
+            //   child: ElevatedButton(
+            //       child: Text(
+            //         '立即開始',
+            //         style: TextStyle(color: Colors.white),
+            //       ),
+            //       style: TextButton.styleFrom(
+            //         backgroundColor: Color.fromRGBO(18, 213, 214, 1),
+            //       ),
             //       onPressed: () {
             //         Navigator.push(context,
-            //             MaterialPageRoute(builder: (context) => Cpage()));
-            //       },
-            //     ),
-            //   ],
-            // ),
-            Container(
-              child: ElevatedButton(
-                  child: Text(
-                    '立即開始',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  style: TextButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(18, 213, 214, 1),
-                  ),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => chooseplan()));
-                  }),
-            )
+            //             MaterialPageRoute(builder: (context) => chooseplan()));
+            //       }),
+            // )
 
             //   ],
             // ),

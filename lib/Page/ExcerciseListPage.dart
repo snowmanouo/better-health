@@ -187,6 +187,8 @@ class _ExcerciseListState extends State<ExcerciseList> {
                 filled: true,
                 fillColor: Color.fromRGBO(238, 238, 238, 1.0),
                 prefixIcon: Icon(Icons.search, color: Colors.black, size: 20),
+                contentPadding: EdgeInsets.symmetric(
+                    vertical: 10, horizontal: 10),
                 hintText: '搜尋',
                 hintStyle: TextStyle(fontSize: 16),
                 border: OutlineInputBorder(

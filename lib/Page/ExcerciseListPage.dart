@@ -90,7 +90,7 @@ class _ExcerciseListState extends State<ExcerciseList> {
                                             vertical: 9.5, horizontal: 12),
                                         fillColor:
                                             Color.fromRGBO(238, 238, 238, 1.0),
-                                        hintText: 'ex:豬頭皮',
+                                        hintText: 'ex:跳繩',
                                         hintStyle: TextStyle(fontSize: 14),
                                         border: OutlineInputBorder(
                                           borderRadius:
@@ -121,7 +121,7 @@ class _ExcerciseListState extends State<ExcerciseList> {
                                             vertical: 9.5, horizontal: 12),
                                         fillColor:
                                             Color.fromRGBO(238, 238, 238, 1.0),
-                                        hintText: 'ex:300',
+                                        hintText: 'ex:504',
                                         hintStyle: TextStyle(fontSize: 14),
                                         border: OutlineInputBorder(
                                           borderRadius:

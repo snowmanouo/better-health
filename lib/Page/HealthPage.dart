@@ -233,7 +233,7 @@ class MealCardWidget extends StatelessWidget {
   final String text;
   final double cal;
   final Image mealPic;
-  final StatelessWidget destination;
+  final StatefulWidget destination;
 
   MealCardWidget(
       {required this.text,

@@ -33,6 +33,7 @@ class LoginPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 88),
             child: Text(
               'The Secret of Better Health',
+              textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w700,

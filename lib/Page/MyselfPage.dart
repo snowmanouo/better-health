@@ -9,6 +9,7 @@ import 'Mysetting.dart';
 import 'Calorie.dart';
 import 'Time.dart';
 import 'Kg.dart';
+import 'Fat.dart';
 
 class MyselfPage extends StatelessWidget {
   @override
@@ -24,57 +25,180 @@ class MyselfPage extends StatelessWidget {
         children: [
           Column(
             children: [
-
-              SizedBox(
-                height: 100,
-                width: 0,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(0, 163, 165, 1), // background
-                    onPrimary: Colors.white, // foreground
-                    minimumSize: Size(400, 100)),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Calorie()),
-                  );
-                },
-                child: Text('熱量'),
-              ),
-              SizedBox(
-                height: 30,
-                width: 0,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(0, 163, 165, 1), // background
-                    onPrimary: Colors.white, // foreground
-                    minimumSize: Size(400, 100)),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Time()),
-                  );
-                },
-                child: Text('斷食'),
+              Container(
+                height: 72,
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(color: Colors.transparent, spreadRadius: 3),
+                  ],
+                ),
+                child: Row(children: [
+                  Text("熱量紀錄",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromRGBO(85, 85, 85, 1),
+                      )),
+                  SizedBox(
+                    height: 0,
+                    width: 150,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Calorie()),
+                      );
+                    },
+                    icon: Icon(Icons.chevron_right),
+                  ),
+                ]),
               ),
               SizedBox(
-                height: 30,
+                height: 10,
                 width: 0,
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(0, 163, 165, 1), // background
-                    onPrimary: Colors.white, // foreground
-                    minimumSize: Size(400, 100)),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Kg()),
-                  );
-                },
-                child: Text('體重'),
+              Container(
+                height: 72,
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(color: Colors.transparent, spreadRadius: 3),
+                  ],
+                ),
+                child: Row(children: [
+                  Text("斷食時間",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromRGBO(85, 85, 85, 1),
+                      )),
+                  SizedBox(
+                    height: 0,
+                    width: 150,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Time()),
+                      );
+                    },
+                    icon: Icon(Icons.chevron_right),
+                  ),
+                ]),
+              ),
+              SizedBox(
+                height: 10,
+                width: 0,
+              ),
+              Container(
+                height: 72,
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(color: Colors.transparent, spreadRadius: 3),
+                  ],
+                ),
+                child: Row(children: [
+                  Text("體重",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromRGBO(85, 85, 85, 1),
+                      )),
+                  Align(
+                    child: TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.black,
+                        ),
+                        onPressed: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: Text('每日體重'),
+                            content: const TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: '請輸入今日體重',
+                              ),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: Text('OK'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'Cancel'),
+                                child: Text('Cancel'),
+                              ),
+                            ],
+                          ),
+                        ),
+                        child:Row(
+                          children: [
+                            Icon(Icons.settings_applications)
+                          ],
+                        )
+                    ),
+                  ),
+                  SizedBox(
+                    height: 0,
+                    width: 120,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Kg()),
+                      );
+                    },
+                    icon: Icon(Icons.chevron_right),
+                  ),
+                ]),
+              ),
+              SizedBox(
+                height: 10,
+                width: 0,
+              ),
+              Container(
+                height: 72,
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(color: Colors.transparent, spreadRadius: 3),
+                  ],
+                ),
+                child: Row(children: [
+                  Text("體指率",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromRGBO(85, 85, 85, 1),
+                      )),
+                  SizedBox(
+                    height: 0,
+                    width: 170,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Fat()),
+                      );
+                    },
+                    icon: Icon(Icons.chevron_right),
+                  ),
+                ]),
               ),
             ],
           ),

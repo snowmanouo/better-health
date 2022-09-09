@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class Time extends StatelessWidget {
+class Fat extends StatelessWidget {
   List<SalesData> data = [
     SalesData('Jan', 12),
     SalesData('Feb', 13),
@@ -10,13 +10,6 @@ class Time extends StatelessWidget {
     SalesData('May', 20),
     SalesData('Jun', 15),
     SalesData('Jul', 20),
-    SalesData('EWQ', 12),
-    SalesData('aAS', 13),
-    SalesData('XZC', 14),
-    SalesData('FGH', 15),
-    SalesData('RTY', 20),
-    SalesData('YTR', 15),
-    SalesData('YRT', 20),
   ];
 
   @override
@@ -34,7 +27,7 @@ class Time extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("七日內斷食時間"),
+                Center(child: Text("七日內斷食時間")),
                 Container(
                   height: 400,
                   child: SfCartesianChart(
@@ -52,7 +45,7 @@ class Time extends StatelessWidget {
                 ),
 
               ],
-           ),
+            ),
           ],
         ));
   }

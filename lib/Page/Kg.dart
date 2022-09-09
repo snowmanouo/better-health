@@ -8,6 +8,8 @@ class Kg extends StatelessWidget {
     SalesData('Mar', 14),
     SalesData('Apr', 32),
     SalesData('May', 40),
+    SalesData('Jun', 15),
+    SalesData('Jul', 20),
   ];
 
   @override
@@ -22,6 +24,8 @@ class Kg extends StatelessWidget {
         body: ListView(
           children: [
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(child: Text("七日內體重紀錄")),
                 Container(
@@ -40,32 +44,7 @@ class Kg extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text("概覽"),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(width: 214,child: Text("維持體重或塑型需要攝入多少千卡")),
-                        SizedBox(width: 29),
-                        Container(width: 85,child: Text("1688.0千卡")),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(width: 214,child: Text("今日累積攝入了多少千卡")),
-                        SizedBox(width: 29),
-                        Container(width: 85,child: Text("549.0千卡")),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(width: 214,child: Text("今天運動累積消耗多少千卡")),
-                        SizedBox(width: 29),
-                        Container(width: 85,child: Text("0.0千卡")),
-                      ],
-                    ),
-                  ],
-                ),
+
               ],
             ),
           ],

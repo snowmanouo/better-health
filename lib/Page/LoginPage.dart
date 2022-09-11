@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:project/Page/Database.dart';
 import 'package:project/Page/HealthPage.dart';
 import 'package:project/Widgets/google_sign_in_button.dart';
+import 'Home.dart';
 import 'authentication.dart';
+
 
 class LoginPage extends StatelessWidget {
   @override
@@ -25,12 +28,13 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 15,
+            height: 24,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 123),
+            padding: EdgeInsets.symmetric(horizontal: 88),
             child: Text(
-              '願你暴瘦',
+              'The Secret of Better Health',
+              textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
@@ -38,67 +42,7 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 99),
-            child: Text(
-              'Hope you can be more fit!',
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Color.fromRGBO(153, 161, 186, 0.6)),
-            ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
-            child: OutlinedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
-                  Color.fromRGBO(18, 213, 214, 1),
-                ),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
-                  ),
-                ),
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => NewLogin()));
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: Icon(
-                      Icons.account_circle,
-                      size: 40,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 40, 10),
-                    child: Text(
-                      '我是新用戶',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
+            height: 110,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -144,6 +88,11 @@ class LoginPage extends StatelessWidget {
 }
 
 class NewLogin extends StatelessWidget {
+  const NewLogin({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,13 +100,13 @@ class NewLogin extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }),
+              // IconButton(
+              //     icon: Icon(Icons.arrow_back),
+              //     onPressed: () {
+              //       Navigator.of(context).pop();
+              //     }),
               Text(
                 '歡迎!',
                 style: TextStyle(
@@ -166,9 +115,9 @@ class NewLogin extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(
-                width: 40,
-              ),
+              // SizedBox(
+              //   width: 40,
+              // ),
             ],
           ),
           Padding(
@@ -183,26 +132,28 @@ class NewLogin extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Gender()));
+                  context, MaterialPageRoute(builder: (context) => Gender(user: _user)));
             },
-            icon: Icon(Icons.arrow_forward),
+            icon: Image.asset('assets/images/next.png'),
+            iconSize: 40,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('已有帳戶?'),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => GoogleSignInButton()));
-                },
-                child: Text('登入',
-                    style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-              )
-            ],
-          ),
+          // SizedBox(),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: <Widget>[
+          //     Text('已有帳戶?'),
+          //     TextButton(
+          //       onPressed: () {
+          //         Navigator.push(
+          //             context,
+          //             MaterialPageRoute(
+          //                 builder: (context) => GoogleSignInButton()));
+          //       },
+          //       child: Text('登入',
+          //           style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
+          //     )
+          //   ],
+          // ),
         ],
       ),
     );
@@ -210,13 +161,24 @@ class NewLogin extends StatelessWidget {
 }
 
 class Gender extends StatefulWidget {
+  const Gender({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
   @override
-  _Gender createState() => _Gender();
+  _Gender createState() => _Gender(user: _user);
 }
 
 class _Gender extends State<Gender> {
   bool _male = false;
   bool _female = false;
+  // const
+  _Gender({Key? key, required User user})
+      : _user = user;
+        // super(key: key);
+
+  final User _user;
 
   @override
   Widget build(BuildContext context) {
@@ -288,26 +250,27 @@ class _Gender extends State<Gender> {
           IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Old()));
+                  context, MaterialPageRoute(builder: (context) => Old(user: _user)));
             },
-            icon: Icon(Icons.arrow_forward),
+            icon: Image.asset('assets/images/next.png'),
+            iconSize: 40,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('已有帳戶?'),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => GoogleSignInButton()));
-                },
-                child: Text('登入',
-                    style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-              )
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: <Widget>[
+          //     Text('已有帳戶?'),
+          //     TextButton(
+          //       onPressed: () {
+          //         Navigator.push(
+          //             context,
+          //             MaterialPageRoute(
+          //                 builder: (context) => GoogleSignInButton()));
+          //       },
+          //       child: Text('登入',
+          //           style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
+          //     )
+          //   ],
+          // ),
         ],
       ),
     );
@@ -315,6 +278,11 @@ class _Gender extends State<Gender> {
 }
 
 class Old extends StatelessWidget {
+  const Old({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -330,7 +298,7 @@ class Old extends StatelessWidget {
                     Navigator.of(context).pop();
                   }),
               Text(
-                '您的年齡',
+                '您的出生年',
                 style: TextStyle(
                   color: Color.fromRGBO(18, 213, 214, 1),
                   fontSize: 24,
@@ -347,38 +315,39 @@ class Old extends StatelessWidget {
             child: TextField(
               //controller: _pinCodeController,
               keyboardType: TextInputType.number,
-              maxLength: 3,
+              maxLength: 4,
               maxLines: 1,
               autofocus: true,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
-                suffixText: "歲",
+                suffixText: "年(西元)",
               ),
             ),
           ),
           IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => height()));
+                  context, MaterialPageRoute(builder: (context) => height(user: _user)));
             },
-            icon: Icon(Icons.arrow_forward),
+            icon: Image.asset('assets/images/next.png'),
+            iconSize: 40,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('已有帳戶?'),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => GoogleSignInButton()));
-                },
-                child: Text('登入',
-                    style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-              )
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: <Widget>[
+          //     Text('已有帳戶?'),
+          //     TextButton(
+          //       onPressed: () {
+          //         Navigator.push(
+          //             context,
+          //             MaterialPageRoute(
+          //                 builder: (context) => GoogleSignInButton()));
+          //       },
+          //       child: Text('登入',
+          //           style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
+          //     )
+          //   ],
+          // ),
         ],
       ),
     );
@@ -386,6 +355,11 @@ class Old extends StatelessWidget {
 }
 
 class height extends StatelessWidget {
+  const height({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -430,26 +404,27 @@ class height extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Weight()));
+                  context, MaterialPageRoute(builder: (context) => Weight(user: _user)));
             },
-            icon: Icon(Icons.arrow_forward),
+            icon: Image.asset('assets/images/next.png'),
+            iconSize: 40,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('已有帳戶?'),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => GoogleSignInButton()));
-                },
-                child: Text('登入',
-                    style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-              )
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: <Widget>[
+          //     Text('已有帳戶?'),
+          //     TextButton(
+          //       onPressed: () {
+          //         Navigator.push(
+          //             context,
+          //             MaterialPageRoute(
+          //                 builder: (context) => GoogleSignInButton()));
+          //       },
+          //       child: Text('登入',
+          //           style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
+          //     )
+          //   ],
+          // ),
         ],
       ),
     );
@@ -457,6 +432,11 @@ class height extends StatelessWidget {
 }
 
 class Weight extends StatelessWidget {
+  const Weight({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -500,26 +480,30 @@ class Weight extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              _showAlertDialog(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ExerciseFrequency(user: _user)));
             },
-            icon: Icon(Icons.arrow_forward),
+            icon: Image.asset('assets/images/next.png'),
+            iconSize: 40,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('已有帳戶?'),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => GoogleSignInButton()));
-                },
-                child: Text('登入',
-                    style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-              )
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: <Widget>[
+          //     Text('已有帳戶?'),
+          //     TextButton(
+          //       onPressed: () {
+          //         Navigator.push(
+          //             context,
+          //             MaterialPageRoute(
+          //                 builder: (context) => GoogleSignInButton()));
+          //       },
+          //       child: Text('登入',
+          //           style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
+          //     )
+          //   ],
+          // ),
         ],
       ),
     );
@@ -643,178 +627,260 @@ class Weight extends StatelessWidget {
 //   }
 // }
 
-// class ExerciseFrequency extends StatefulWidget{
-//   @override
-//   _ExerciseFrequencyState createState() => _ExerciseFrequencyState();
-// }
-// class _ExerciseFrequencyState extends State<ExerciseFrequency> {
-//   bool _checkboxListChecked =false;
-//   bool _checkboxList2Checked=false;
-//   bool _checkboxList3Checked =false;
-//   bool _checkboxList4Checked=false;
-//   bool _checkboxList5Checked =false;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Column(
-//         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//         children: <Widget>[
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//             children: <Widget>[
-//               IconButton(
-//                   icon: Icon(Icons.arrow_back),
-//                   onPressed: () {
-//                     Navigator.of(context).pop();
-//                   }  ),
-//               Text('您的運動頻率',
-//                 style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
-//               ),
-//               SizedBox(width: 40,),
-//             ],
-//           ),
-//
-//           Column(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             children: <Widget>[
-//               CheckboxListTile(
-//                 value: _checkboxListChecked,
-//                 onChanged: (checkboxListChecked){
-//                   setState((){
-//                     _checkboxListChecked=true;
-//                     _checkboxList2Checked=false;
-//                     _checkboxList3Checked =false;
-//                     _checkboxList4Checked=false;
-//                     _checkboxList5Checked =false;
-//                   });
-//                 },
-//                 title: Text("久坐"),
-//                 subtitle: Text("沒啥運動><"),
-//                 activeColor: Color.fromRGBO(18, 213, 214, 1),
-//               ),
-//               CheckboxListTile(
-//                 value: _checkboxList2Checked,
-//                 onChanged: (checkboxList2Checked){
-//                   setState((){
-//                     _checkboxListChecked=false;
-//                     _checkboxList2Checked=true;
-//                     _checkboxList3Checked =false;
-//                     _checkboxList4Checked=false;
-//                     _checkboxList5Checked =false;
-//                   });
-//                 },
-//                 title: Text("久坐"),
-//                 subtitle: Text("每周運動1~3天"),
-//                 activeColor: Color.fromRGBO(18, 213, 214, 1),
-//               ),
-//               CheckboxListTile(
-//                 value: _checkboxList3Checked,
-//                 onChanged: (checkboxList3Checked){
-//                   setState((){
-//                     _checkboxListChecked=false;
-//                     _checkboxList2Checked=false;
-//                     _checkboxList3Checked =true;
-//                     _checkboxList4Checked=false;
-//                     _checkboxList5Checked =false;
-//                   });
-//                 },
-//                 title: Text("中度活動量"),
-//                 subtitle: Text("每周運動3~5天"),
-//                 activeColor: Color.fromRGBO(18, 213, 214, 1),
-//               ),CheckboxListTile(
-//                 value: _checkboxList4Checked,
-//                 onChanged: (checkboxList4Checked){
-//                   setState((){
-//                     _checkboxListChecked=false;
-//                     _checkboxList2Checked=false;
-//                     _checkboxList3Checked =false;
-//                     _checkboxList4Checked=true;
-//                     _checkboxList5Checked =false;
-//                   });
-//                 },
-//                 title: Text("高度活動量"),
-//                 subtitle: Text("每周運動6~7天"),
-//                 activeColor: Color.fromRGBO(18, 213, 214, 1),
-//               ),CheckboxListTile(
-//                 value: _checkboxList5Checked,
-//                 onChanged: (checkboxList5Checked){
-//                   setState((){
-//                     _checkboxListChecked=false;
-//                     _checkboxList2Checked=false;
-//                     _checkboxList3Checked =false;
-//                     _checkboxList4Checked=false;
-//                     _checkboxList5Checked =true;
-//                   });
-//                 },
-//                 title: Text("非常高度活動量"),
-//                 subtitle: Text("無時無刻都在運動XD"),
-//                 activeColor: Color.fromRGBO(18, 213, 214, 1),
-//               ),
-//             ],
-//           ),
-//           IconButton(
-//             onPressed: (){
-//               _showAlertDialog(context);},
-//             icon: Icon(Icons.arrow_forward),
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: <Widget>[
-//               Text('已有帳戶?'),
-//               TextButton(
-//                 onPressed: (){
-//                   Navigator.push(context, MaterialPageRoute(builder:
-//                       (context) => GoogleSignInButton()));},
-//                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-//               )
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+class ExerciseFrequency extends StatefulWidget{
+  const ExerciseFrequency({Key? key, required User user})
+      : _user = user,
+        super(key: key);
 
-Future<void> _showAlertDialog(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        content: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text("填寫成功",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                  )),
-              Image(
-                image: AssetImage('assets/images/success.png'),
+  final User _user;
+  @override
+  _ExerciseFrequencyState createState() => _ExerciseFrequencyState(user: _user);
+}
+class _ExerciseFrequencyState extends State<ExerciseFrequency> {
+  bool _checkboxListChecked =false;
+  bool _checkboxList2Checked=false;
+  bool _checkboxList3Checked =false;
+  bool _checkboxList4Checked=false;
+  bool _checkboxList5Checked =false;
+  // const
+  _ExerciseFrequencyState({Key? key, required User user})
+      : _user = user;
+        // super(key: key);
+
+  final User _user;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }  ),
+              Text('您的運動頻率',
+                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
               ),
-              Text("感謝您的填寫，請登入",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  )),
+              SizedBox(width: 40,),
             ],
           ),
-        ),
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 10, 40),
-            child: GoogleSignInButton(),
+
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              CheckboxListTile(
+                value: _checkboxListChecked,
+                onChanged: (checkboxListChecked){
+                  setState((){
+                    _checkboxListChecked=true;
+                    _checkboxList2Checked=false;
+                    _checkboxList3Checked =false;
+                    _checkboxList4Checked=false;
+                    _checkboxList5Checked =false;
+                  });
+                },
+                title: Text("久坐"),
+                subtitle: Text("沒啥運動><"),
+                activeColor: Color.fromRGBO(18, 213, 214, 1),
+              ),
+              CheckboxListTile(
+                value: _checkboxList2Checked,
+                onChanged: (checkboxList2Checked){
+                  setState((){
+                    _checkboxListChecked=false;
+                    _checkboxList2Checked=true;
+                    _checkboxList3Checked =false;
+                    _checkboxList4Checked=false;
+                    _checkboxList5Checked =false;
+                  });
+                },
+                title: Text("久坐"),
+                subtitle: Text("每周運動1~3天"),
+                activeColor: Color.fromRGBO(18, 213, 214, 1),
+              ),
+              CheckboxListTile(
+                value: _checkboxList3Checked,
+                onChanged: (checkboxList3Checked){
+                  setState((){
+                    _checkboxListChecked=false;
+                    _checkboxList2Checked=false;
+                    _checkboxList3Checked =true;
+                    _checkboxList4Checked=false;
+                    _checkboxList5Checked =false;
+                  });
+                },
+                title: Text("中度活動量"),
+                subtitle: Text("每周運動3~5天"),
+                activeColor: Color.fromRGBO(18, 213, 214, 1),
+              ),CheckboxListTile(
+                value: _checkboxList4Checked,
+                onChanged: (checkboxList4Checked){
+                  setState((){
+                    _checkboxListChecked=false;
+                    _checkboxList2Checked=false;
+                    _checkboxList3Checked =false;
+                    _checkboxList4Checked=true;
+                    _checkboxList5Checked =false;
+                  });
+                },
+                title: Text("高度活動量"),
+                subtitle: Text("每周運動6~7天"),
+                activeColor: Color.fromRGBO(18, 213, 214, 1),
+              ),CheckboxListTile(
+                value: _checkboxList5Checked,
+                onChanged: (checkboxList5Checked){
+                  setState((){
+                    _checkboxListChecked=false;
+                    _checkboxList2Checked=false;
+                    _checkboxList3Checked =false;
+                    _checkboxList4Checked=false;
+                    _checkboxList5Checked =true;
+                  });
+                },
+                title: Text("非常高度活動量"),
+                subtitle: Text("無時無刻都在運動XD"),
+                activeColor: Color.fromRGBO(18, 213, 214, 1),
+              ),
+            ],
           ),
-          // RaisedButton(
-          //   child: Text('確認'),
-          //   onPressed: (){
-          //     Navigator.push(context, MaterialPageRoute(builder:
-          //         (context) => HealthPage(user: user,)));
-          //   },
-          //   color: Color.fromRGBO(18, 213, 214, 1),
+          IconButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => Success(user: _user)));},
+            icon: Image.asset('assets/images/next.png'),
+            iconSize: 40,
+          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: <Widget>[
+          //     Text('已有帳戶?'),
+          //     TextButton(
+          //       onPressed: (){
+          //         Navigator.push(context, MaterialPageRoute(builder:
+          //             (context) => GoogleSignInButton()));},
+          //       child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
+          //     )
+          //   ],
           // ),
         ],
-      );
+      ),
+    );
+  }
+}
+
+// Future<void> _showAlertDialog(BuildContext context) {
+//
+//   return showDialog<void>(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         content: Container(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//             children: [
+//               Text("註冊成功",
+//                   style: TextStyle(
+//                     fontSize: 20,
+//                     fontWeight: FontWeight.w700,
+//                   )),
+//               Image(
+//                 image: AssetImage('assets/images/success.png'),
+//               ),
+//               Text("感謝您的註冊",
+//                   style: TextStyle(
+//                     fontSize: 14,
+//                     fontWeight: FontWeight.w500,
+//                   )),
+//             ],
+//           ),
+//         ),
+//         actions: <Widget>[
+//           Padding(
+//             padding: EdgeInsets.fromLTRB(0, 0, 10, 40),
+//             child: IconButton(
+//               onPressed: (){
+//                 var _user;
+//                 Navigator.push(context, MaterialPageRoute(builder:
+//                    (context) => Home(user: _user)));},
+//               icon: Image.asset('assets/images/nextpage.png'),
+//               iconSize: 40,
+//             ),
+//           ),
+//           // RaisedButton(
+//           //   child: Text('確認'),
+//           //   onPressed: (){
+//           //     Navigator.push(context, MaterialPageRoute(builder:
+//           //         (context) => HealthPage(user: user,)));
+//           //   },
+//           //   color: Color.fromRGBO(18, 213, 214, 1),
+//           // ),
+//         ],
+//       );
+//     },
+//   );
+// }
+
+class Success extends StatelessWidget {
+  const Success({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+        Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+        IconButton(
+        icon: Icon(Icons.arrow_back),
+    onPressed: () {
+    Navigator.of(context).pop();
+    }),
+    Text(
+    '註冊成功',
+    style: TextStyle(
+    color: Color.fromRGBO(18, 213, 214, 1),
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    ),
+    ),
+    SizedBox(
+    width: 40,
+    ),
+    ],
+    ),
+          Image(
+            image: AssetImage('assets/images/success.png'),
+          ),
+          Text("感謝您的註冊\n"
+              "確認資料無誤後\n請點擊下方按鈕進入",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color.fromRGBO(18, 213, 214, 1),
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+              ),),
+
+    IconButton(
+    onPressed: () {
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (context) => Home(user: _user)));
     },
-  );
+    icon: Image.asset('assets/images/next.png'),
+    iconSize: 40,
+    ),
+        ],
+        ),
+    );
+  }
 }

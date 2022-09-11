@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project/Page/HealthPage.dart';
 import 'package:project/Page/LoginPage.dart';
+import 'package:project/Page/Feedback.dart';
 import 'package:project/Page/authentication.dart';
 import 'package:project/Widgets/google_sign_in_button.dart';
 import 'package:project/helpers/Constants.dart';
@@ -125,6 +126,59 @@ class _SettingPage extends State<SettingPage> {
                   //SizedBox(width: 10,),
                   Expanded(
                     child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context, MaterialPageRoute(
+                              builder: (context) => FeedBack()));
+                        },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Icon(
+                              Icons.headphones,
+                              size: 26,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            '問題反饋',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black),
+                          ),
+                          SizedBox(),
+                          SizedBox(),
+                          SizedBox(),
+                          SizedBox(),
+                          Padding(
+                            padding: EdgeInsets.only(right: 10),
+                            child: Image(
+                              image: AssetImage(
+                                  'assets/images/personal_arrow.png'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+              constraints: BoxConstraints(
+                  maxHeight: 47, maxWidth: 360, minHeight: 47, minWidth: 360),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  //Image(image: AssetImage('assets/images/Signout.png'),height: 25,width: 20,),
+                  //SizedBox(width: 10,),
+                  Expanded(
+                    child: TextButton(
                       onPressed: () async {
                         setState(() {
                           _isSigningOut = true;
@@ -141,10 +195,10 @@ class _SettingPage extends State<SettingPage> {
                         children: <Widget>[
                           Padding(
                             padding: EdgeInsets.only(left: 10),
-                            child: Image(
-                              image: AssetImage('assets/images/Signout.png'),
-                              height: 25,
-                              width: 20,
+                            child: Icon(
+                              Icons.logout,
+                              size: 26,
+                              color: Colors.black,
                             ),
                           ),
                           Text(
@@ -154,6 +208,7 @@ class _SettingPage extends State<SettingPage> {
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black),
                           ),
+                          SizedBox(),
                           SizedBox(),
                           SizedBox(),
                           SizedBox(),

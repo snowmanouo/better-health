@@ -9,7 +9,7 @@ import 'package:project/helpers/Constants.dart';
 class _HomeState extends State<Home> {
   @override
   void initState() {
-    super.initState();
+    super.initState;
     _children = [
       startmonster(),
       HealthPage(user: widget._user),

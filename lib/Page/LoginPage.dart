@@ -626,123 +626,6 @@ class _WeightState extends State<Weight> {
     );
   }
 }
-// class AfterWeight extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Column(
-//         mainAxisAlignment: MainAxisAlignment.spaceAround,
-//         children: <Widget>[
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//             children: <Widget>[
-//               IconButton(
-//                   icon: Icon(Icons.arrow_back),
-//                   onPressed: () {
-//                     Navigator.of(context).pop();
-//                   }  ),
-//               Text('您的目標體重',
-//                 style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
-//               ),
-//               SizedBox(),
-//             ],
-//           ),
-//           const Padding(
-//             padding: EdgeInsets.only(left: 60,right: 60),
-//             child:TextField(
-//               //controller: _pinCodeController,
-//               keyboardType: TextInputType.number,
-//               maxLength: 3,
-//               maxLines: 1,
-//               autofocus: true,
-//               textAlign: TextAlign.center,
-//               decoration: InputDecoration(
-//                 suffixText: "kg",
-//               ),
-//             ),
-//           ),
-//           IconButton(
-//             onPressed: (){
-//               Navigator.push(context, MaterialPageRoute(builder:
-//                   (context) => BodyFat()));},
-//             icon: Icon(Icons.arrow_forward),
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: <Widget>[
-//               Text('已有帳戶?'),
-//               TextButton(
-//                 onPressed: (){
-//                   Navigator.push(context, MaterialPageRoute(builder:
-//                       (context) => GoogleSignInButton()));},
-//                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-//               )
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// class BodyFat extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Column(
-//         mainAxisAlignment: MainAxisAlignment.spaceAround,
-//         children: <Widget>[
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//             children: <Widget>[
-//               IconButton(
-//                   icon: Icon(Icons.arrow_back),
-//                   onPressed: () {
-//                     Navigator.of(context).pop();
-//                   }  ),
-//               Text('您的體脂率',
-//                 style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1)),
-//               ),
-//               SizedBox(),
-//             ],
-//           ),
-//           const Padding(
-//             padding: EdgeInsets.only(left: 60,right: 60),
-//             child:TextField(
-//               //controller: _pinCodeController,
-//               keyboardType: TextInputType.number,
-//               maxLength: 3,
-//               maxLines: 1,
-//               autofocus: true,
-//               textAlign: TextAlign.center,
-//               decoration: InputDecoration(
-//                 suffixText: "%",
-//               ),
-//             ),
-//           ),
-//           IconButton(
-//             onPressed: (){
-//               Navigator.push(context, MaterialPageRoute(builder:
-//                   (context) => ExerciseFrequency()));},
-//             icon: Icon(Icons.arrow_forward),
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: <Widget>[
-//               Text('已有帳戶?'),
-//               TextButton(
-//                 onPressed: (){
-//                   Navigator.push(context, MaterialPageRoute(builder:
-//                       (context) => GoogleSignInButton()));},
-//                 child: Text('登入',style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1))),
-//               )
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class ExerciseFrequency extends StatefulWidget {
   const ExerciseFrequency(
@@ -924,7 +807,7 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
                 _freq = 1.9;
               }
 
-              Database().newUser(_sex, _born, _height, _freq, _user.uid);
+              Database().newUser(_sex, _born, _height, _weight, _freq, _user.uid);
               Navigator.push(
                   context,
                   MaterialPageRoute(

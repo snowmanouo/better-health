@@ -9,7 +9,6 @@ import 'package:project/Widgets/google_sign_in_button.dart';
 import 'Home.dart';
 import 'authentication.dart';
 
-
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -93,6 +92,7 @@ class NewLogin extends StatelessWidget {
         super(key: key);
 
   final User _user;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,8 +131,8 @@ class NewLogin extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Gender(user: _user)));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Gender(user: _user)));
             },
             icon: Image.asset('assets/images/next.png'),
             iconSize: 40,
@@ -166,6 +166,7 @@ class Gender extends StatefulWidget {
         super(key: key);
 
   final User _user;
+
   @override
   _Gender createState() => _Gender(user: _user);
 }
@@ -173,10 +174,11 @@ class Gender extends StatefulWidget {
 class _Gender extends State<Gender> {
   bool _male = false;
   bool _female = false;
+
   // const
-  _Gender({Key? key, required User user})
-      : _user = user;
-        // super(key: key);
+  _Gender({Key? key, required User user}) : _user = user;
+
+  // super(key: key);
 
   final User _user;
 
@@ -250,7 +252,12 @@ class _Gender extends State<Gender> {
           IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Old(user: _user)));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Old(
+                            user: _user,
+                            sex: _male ? "male" : "female",
+                          )));
             },
             icon: Image.asset('assets/images/next.png'),
             iconSize: 40,
@@ -277,12 +284,31 @@ class _Gender extends State<Gender> {
   }
 }
 
-class Old extends StatelessWidget {
-  const Old({Key? key, required User user})
+class Old extends StatefulWidget {
+  const Old({
+    Key? key,
+    required User user,
+    required String sex,
+  })
       : _user = user,
+        _sex = sex,
         super(key: key);
 
   final User _user;
+  final String _sex;
+
+  @override
+  _OldState createState() => _OldState(user: _user, sex: _sex);
+}
+
+class _OldState extends State<Old> {
+  _OldState({Key? key, required User user, required String sex})
+      : _user = user, _sex = sex;
+
+  final User _user;
+  final String _sex;
+  int _born = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -310,7 +336,7 @@ class Old extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 60, right: 60),
             child: TextField(
               //controller: _pinCodeController,
@@ -322,12 +348,23 @@ class Old extends StatelessWidget {
               decoration: InputDecoration(
                 suffixText: "年(西元)",
               ),
+              onChanged: (String text) {
+                setState(() {
+                  _born = int.parse(text);
+                });
+              },
             ),
           ),
           IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => height(user: _user)));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => height(
+                            user: _user,
+                            sex: _sex,
+                            born: _born,
+                          )));
             },
             icon: Image.asset('assets/images/next.png'),
             iconSize: 40,
@@ -354,12 +391,34 @@ class Old extends StatelessWidget {
   }
 }
 
-class height extends StatelessWidget {
-  const height({Key? key, required User user})
-      : _user = user,
+class height extends StatefulWidget {
+  const height({
+    Key? key,
+    required User user,
+    required String sex,
+    required int born,
+  })  : _user = user,
+        _sex = sex,
+        _born = born,
         super(key: key);
 
   final User _user;
+  final String _sex;
+  final int _born;
+
+  @override
+  _HeightState createState() => _HeightState(user: _user, sex: _sex, born: _born);
+}
+
+class _HeightState extends State<height> {
+  _HeightState({Key? key, required User user, required String sex, required int born})
+      : _user = user, _sex = sex, _born = born;
+
+  final User _user;
+  final String _sex;
+  final int _born;
+  double _height = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -387,7 +446,7 @@ class height extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 60, right: 60),
             child: TextField(
               //controller: _pinCodeController,
@@ -399,12 +458,24 @@ class height extends StatelessWidget {
               decoration: InputDecoration(
                 suffixText: "cm",
               ),
+              onChanged: (String text) {
+                setState(() {
+                  _height = double.parse(text);
+                });
+              },
             ),
           ),
           IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Weight(user: _user)));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Weight(
+                            user: _user,
+                            sex: _sex,
+                            born: _born,
+                            height: _height,
+                          )));
             },
             icon: Image.asset('assets/images/next.png'),
             iconSize: 40,
@@ -431,12 +502,47 @@ class height extends StatelessWidget {
   }
 }
 
-class Weight extends StatelessWidget {
-  const Weight({Key? key, required User user})
-      : _user = user,
+class Weight extends StatefulWidget {
+  const Weight({
+    Key? key,
+    required User user,
+    required String sex,
+    required int born,
+    required double height,
+  })  : _user = user,
+        _sex = sex,
+        _born = born,
+        _height = height,
         super(key: key);
 
   final User _user;
+  final String _sex;
+  final int _born;
+  final double _height;
+
+  @override
+  _WeightState createState() =>
+      _WeightState(user: _user, sex: _sex, born: _born, height: _height);
+}
+
+class _WeightState extends State<Weight> {
+  _WeightState(
+      {Key? key,
+      required User user,
+      required String sex,
+      required int born,
+      required double height})
+      : _user = user,
+        _sex = sex,
+        _born = born,
+        _height = height;
+
+  final User _user;
+  final String _sex;
+  final int _born;
+  final double _height;
+  double _weight = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -464,7 +570,7 @@ class Weight extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 60, right: 60),
             child: TextField(
               //controller: _pinCodeController,
@@ -476,6 +582,11 @@ class Weight extends StatelessWidget {
               decoration: InputDecoration(
                 suffixText: "kg",
               ),
+              onChanged: (text) {
+                setState(() {
+                  _weight = double.parse(text);
+                });
+              },
             ),
           ),
           IconButton(
@@ -483,7 +594,13 @@ class Weight extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ExerciseFrequency(user: _user)));
+                      builder: (context) => ExerciseFrequency(
+                            user: _user,
+                            sex: _sex,
+                            born: _born,
+                            height: _height,
+                            weight: _weight,
+                          )));
             },
             icon: Image.asset('assets/images/next.png'),
             iconSize: 40,
@@ -627,27 +744,63 @@ class Weight extends StatelessWidget {
 //   }
 // }
 
-class ExerciseFrequency extends StatefulWidget{
-  const ExerciseFrequency({Key? key, required User user})
+class ExerciseFrequency extends StatefulWidget {
+  const ExerciseFrequency(
+      {Key? key,
+      required User user,
+      required String sex,
+      required int born,
+      required double height,
+      required double weight})
       : _user = user,
+        _sex = sex,
+        _born = born,
+        _height = height,
+        _weight = weight,
         super(key: key);
 
   final User _user;
-  @override
-  _ExerciseFrequencyState createState() => _ExerciseFrequencyState(user: _user);
-}
-class _ExerciseFrequencyState extends State<ExerciseFrequency> {
-  bool _checkboxListChecked =false;
-  bool _checkboxList2Checked=false;
-  bool _checkboxList3Checked =false;
-  bool _checkboxList4Checked=false;
-  bool _checkboxList5Checked =false;
-  // const
-  _ExerciseFrequencyState({Key? key, required User user})
-      : _user = user;
-        // super(key: key);
+  final String _sex;
+  final int _born;
+  final double _height;
+  final double _weight;
 
-  final User _user;
+  @override
+  _ExerciseFrequencyState createState() => _ExerciseFrequencyState(
+      user: _user, sex: _sex, born: _born, height: _height, weight: _weight);
+}
+
+class _ExerciseFrequencyState extends State<ExerciseFrequency> {
+  bool _checkboxListChecked = false;
+  bool _checkboxList2Checked = false;
+  bool _checkboxList3Checked = false;
+  bool _checkboxList4Checked = false;
+  bool _checkboxList5Checked = false;
+
+  User _user;
+  String _sex;
+  int _born;
+  double _weight;
+  double _height;
+
+  // const
+  _ExerciseFrequencyState(
+      {Key? key,
+      required User user,
+      required String sex,
+      required int born,
+      required double height,
+      required double weight})
+      : _user = user,
+        _sex = sex,
+        _born = born,
+        _height = height,
+        _weight = weight;
+
+  // super(key: key);
+
+  // final User _user;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -661,11 +814,18 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
                   icon: Icon(Icons.arrow_back),
                   onPressed: () {
                     Navigator.of(context).pop();
-                  }  ),
-              Text('您的運動頻率',
-                style: TextStyle(color: Color.fromRGBO(18, 213, 214, 1),fontSize: 24,fontWeight: FontWeight.w700,),
+                  }),
+              Text(
+                '您的運動頻率',
+                style: TextStyle(
+                  color: Color.fromRGBO(18, 213, 214, 1),
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-              SizedBox(width: 40,),
+              SizedBox(
+                width: 40,
+              ),
             ],
           ),
 
@@ -674,13 +834,13 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
             children: <Widget>[
               CheckboxListTile(
                 value: _checkboxListChecked,
-                onChanged: (checkboxListChecked){
-                  setState((){
-                    _checkboxListChecked=true;
-                    _checkboxList2Checked=false;
-                    _checkboxList3Checked =false;
-                    _checkboxList4Checked=false;
-                    _checkboxList5Checked =false;
+                onChanged: (checkboxListChecked) {
+                  setState(() {
+                    _checkboxListChecked = true;
+                    _checkboxList2Checked = false;
+                    _checkboxList3Checked = false;
+                    _checkboxList4Checked = false;
+                    _checkboxList5Checked = false;
                   });
                 },
                 title: Text("久坐"),
@@ -689,13 +849,13 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
               ),
               CheckboxListTile(
                 value: _checkboxList2Checked,
-                onChanged: (checkboxList2Checked){
-                  setState((){
-                    _checkboxListChecked=false;
-                    _checkboxList2Checked=true;
-                    _checkboxList3Checked =false;
-                    _checkboxList4Checked=false;
-                    _checkboxList5Checked =false;
+                onChanged: (checkboxList2Checked) {
+                  setState(() {
+                    _checkboxListChecked = false;
+                    _checkboxList2Checked = true;
+                    _checkboxList3Checked = false;
+                    _checkboxList4Checked = false;
+                    _checkboxList5Checked = false;
                   });
                 },
                 title: Text("久坐"),
@@ -704,41 +864,43 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
               ),
               CheckboxListTile(
                 value: _checkboxList3Checked,
-                onChanged: (checkboxList3Checked){
-                  setState((){
-                    _checkboxListChecked=false;
-                    _checkboxList2Checked=false;
-                    _checkboxList3Checked =true;
-                    _checkboxList4Checked=false;
-                    _checkboxList5Checked =false;
+                onChanged: (checkboxList3Checked) {
+                  setState(() {
+                    _checkboxListChecked = false;
+                    _checkboxList2Checked = false;
+                    _checkboxList3Checked = true;
+                    _checkboxList4Checked = false;
+                    _checkboxList5Checked = false;
                   });
                 },
                 title: Text("中度活動量"),
                 subtitle: Text("每周運動3~5天"),
                 activeColor: Color.fromRGBO(18, 213, 214, 1),
-              ),CheckboxListTile(
+              ),
+              CheckboxListTile(
                 value: _checkboxList4Checked,
-                onChanged: (checkboxList4Checked){
-                  setState((){
-                    _checkboxListChecked=false;
-                    _checkboxList2Checked=false;
-                    _checkboxList3Checked =false;
-                    _checkboxList4Checked=true;
-                    _checkboxList5Checked =false;
+                onChanged: (checkboxList4Checked) {
+                  setState(() {
+                    _checkboxListChecked = false;
+                    _checkboxList2Checked = false;
+                    _checkboxList3Checked = false;
+                    _checkboxList4Checked = true;
+                    _checkboxList5Checked = false;
                   });
                 },
                 title: Text("高度活動量"),
                 subtitle: Text("每周運動6~7天"),
                 activeColor: Color.fromRGBO(18, 213, 214, 1),
-              ),CheckboxListTile(
+              ),
+              CheckboxListTile(
                 value: _checkboxList5Checked,
-                onChanged: (checkboxList5Checked){
-                  setState((){
-                    _checkboxListChecked=false;
-                    _checkboxList2Checked=false;
-                    _checkboxList3Checked =false;
-                    _checkboxList4Checked=false;
-                    _checkboxList5Checked =true;
+                onChanged: (checkboxList5Checked) {
+                  setState(() {
+                    _checkboxListChecked = false;
+                    _checkboxList2Checked = false;
+                    _checkboxList3Checked = false;
+                    _checkboxList4Checked = false;
+                    _checkboxList5Checked = true;
                   });
                 },
                 title: Text("非常高度活動量"),
@@ -748,9 +910,28 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
             ],
           ),
           IconButton(
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => Success(user: _user)));},
+            onPressed: () {
+              double _freq = 0;
+              if (_checkboxListChecked) {
+                _freq = 1.2;
+              } else if (_checkboxList2Checked) {
+                _freq = 1.375;
+              } else if (_checkboxList3Checked) {
+                _freq = 1.55;
+              } else if (_checkboxList4Checked) {
+                _freq = 1.725;
+              } else if (_checkboxList5Checked) {
+                _freq = 1.9;
+              }
+
+              Database().newUser(_sex, _born, _height, _freq, _user.uid);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Success(user: _user)
+                  )
+              );
+            },
             icon: Image.asset('assets/images/next.png'),
             iconSize: 40,
           ),
@@ -830,57 +1011,57 @@ class Success extends StatelessWidget {
         super(key: key);
 
   final User _user;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-        Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-        IconButton(
-        icon: Icon(Icons.arrow_back),
-    onPressed: () {
-    Navigator.of(context).pop();
-    }),
-    Text(
-    '註冊成功',
-    style: TextStyle(
-    color: Color.fromRGBO(18, 213, 214, 1),
-    fontSize: 24,
-    fontWeight: FontWeight.w700,
-    ),
-    ),
-    SizedBox(
-    width: 40,
-    ),
-    ],
-    ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+              Text(
+                '註冊成功',
+                style: TextStyle(
+                  color: Color.fromRGBO(18, 213, 214, 1),
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(
+                width: 40,
+              ),
+            ],
+          ),
           Image(
             image: AssetImage('assets/images/success.png'),
           ),
-          Text("感謝您的註冊\n"
-              "確認資料無誤後\n請點擊下方按鈕進入",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color.fromRGBO(18, 213, 214, 1),
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-              ),),
-
-    IconButton(
-    onPressed: () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(
-    builder: (context) => Home(user: _user)));
-    },
-    icon: Image.asset('assets/images/next.png'),
-    iconSize: 40,
-    ),
+          Text(
+            "感謝您的註冊\n"
+            "確認資料無誤後\n請點擊下方按鈕進入",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color.fromRGBO(18, 213, 214, 1),
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Home(user: _user)));
+            },
+            icon: Image.asset('assets/images/next.png'),
+            iconSize: 40,
+          ),
         ],
-        ),
+      ),
     );
   }
 }

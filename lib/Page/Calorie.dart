@@ -29,7 +29,69 @@ class Calorie extends StatelessWidget {
         year: "2022",
         financial: 375,
         color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2023",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2024",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2025",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2026",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2027",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2028",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2029",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2030",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2031",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2032",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2033",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2034",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2022",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2022",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+    BarChartModel(
+        year: "2022",
+        financial: 375,
+        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
+
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +114,10 @@ class Calorie extends StatelessWidget {
         body: ListView(
           children: [
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(child: Text("七日內熱量紀錄")),
+                Text("七日內熱量紀錄"),
                 Container(
                     height: 400,
                     padding: EdgeInsets.all(10),
@@ -61,36 +125,10 @@ class Calorie extends StatelessWidget {
                       series,
                       animate: true,
                     )),
-                Text("概覽"),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(width: 214,child: Text("維持體重或塑型需要攝入多少千卡")),
-                        SizedBox(width: 29),
-                        Container(width: 85,child: Text("1688.0千卡")),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(width: 214,child: Text("今日累積攝入了多少千卡")),
-                        SizedBox(width: 29),
-                        Container(width: 85,child: Text("549.0千卡")),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(width: 214,child: Text("今天運動累積消耗多少千卡")),
-                        SizedBox(width: 29),
-                        Container(width: 85,child: Text("0.0千卡")),
-                      ],
-                    ),
-                  ],
-                ),
+
               ],
             ),
           ],
-        )
-    );
+        ));
   }
 }

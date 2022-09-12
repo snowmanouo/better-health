@@ -373,6 +373,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
+  r_calendar:
+    dependency: "direct main"
+    description:
+      name: r_calendar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.11"
   simple_gesture_detector:
     dependency: transitive
     description:

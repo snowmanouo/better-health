@@ -1,9 +1,8 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'chooseplan.dart';
-import '14_10plan.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+import '../helpers/Constants.dart';
+
 
 class startmonster extends StatelessWidget {
   @override
@@ -31,12 +30,27 @@ class startmonster extends StatelessWidget {
                   SizedBox(
                     height: 102.5,
                   ),
-                  new ClipOval(
-                    child: new Image.asset(
-                      'assets/images/guishoa.png',
-                      height: 160,
+                  if(Level<=10)
+                    new ClipOval(
+                      child: new Image.asset(
+                        'assets/images/monster1.png',
+                        height: 160,
+                      ),
                     ),
-                  ),
+                  if(Level>=11&&Level<=20)
+                    new ClipOval(
+                      child: new Image.asset(
+                        'assets/images/monster2.png',
+                        height: 160,
+                      ),
+                    ),
+                  if(Level>20)
+                    new ClipOval(
+                      child: new Image.asset(
+                        'assets/images/monster3.png',
+                        height: 160,
+                      ),
+                    ),
                   SizedBox(
                     height: 10,
                   ),
@@ -58,15 +72,15 @@ class startmonster extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('LV2',
+                      Text('LV'+Level.toString(),
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold)),
                       LinearPercentIndicator(
                         width: 140.0,
                         lineHeight: 20.0,
-                        percent: 0.5,//變數
+                        percent: LvPercent,//變數
                         center: Text(
-                          "50.0%",
+                          bar.toString()+"%",
                           style: new TextStyle(fontSize: 12.0),
                         ),
                         // trailing: Icon(Icons.mood),

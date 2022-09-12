@@ -48,6 +48,13 @@ Image TableWarePic = Image.asset('assets/images/Tableware.png');
 Image DumbbelPic = Image.asset('assets/images/Dumbbel.png');
 Image YourCalMore = Image.asset('assets/images/yourCalmore.png');
 
+//怪獸等級經驗
+int Level=1+(EXP~/100);
+double LvPercent=(EXP%100)/100;
+int bar=0+(EXP%100);
+int EXP=2514;
+
+
 
 
 

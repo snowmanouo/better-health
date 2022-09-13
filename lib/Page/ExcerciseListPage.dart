@@ -37,6 +37,43 @@ class _ExcerciseListState extends State<ExcerciseList> {
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
         children: [
+          Text('當前運動',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          SizedBox(height: 12),
+          Container(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.circle, size: 8, color: appCardGreenColor),
+                    SizedBox(width: 8),
+                    Text('跑步', style: TextStyle(fontSize: 16)),
+                    SizedBox(width: 79),
+                    Text('132.0千卡 / 1小時',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
+                    SizedBox(width: 35),
+                    Icon(Icons.remove_circle, size: 22, color: Colors.grey),
+                  ],
+                ),
+                SizedBox(height: 12),
+                Divider(height: 0,thickness: 1,color: Color.fromRGBO(226, 226, 226, 1)),
+                SizedBox(height: 24),
+                Row(
+                  children: [
+                    Text('加總消耗',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
+                    SizedBox(width: 193),
+                    Text('132 千卡',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 22),
           Row(
             children: [
               Text('運動清單',
@@ -59,8 +96,10 @@ class _ExcerciseListState extends State<ExcerciseList> {
                               backgroundColor: Colors.white,
                               insetPadding: EdgeInsets.all(16),
                               titlePadding: EdgeInsets.only(top: 24),
-                              contentPadding: EdgeInsets.only(top: 24,left: 24,right: 24),
-                              actionsPadding: EdgeInsets.only(top: 16,left: 24,right: 24,bottom: 24),
+                              contentPadding:
+                                  EdgeInsets.only(top: 24, left: 24, right: 24),
+                              actionsPadding: EdgeInsets.only(
+                                  top: 16, left: 24, right: 24, bottom: 24),
                               title: Text('新增自定義',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -140,11 +179,13 @@ class _ExcerciseListState extends State<ExcerciseList> {
                                       width: 132,
                                       child: ElevatedButton(
                                         child: Text("確認",
-                                            style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700)),
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700)),
                                         style: ButtonStyle(
                                           backgroundColor:
-                                          MaterialStateProperty.all(
-                                              appCardGreenColor),
+                                              MaterialStateProperty.all(
+                                                  appCardGreenColor),
                                         ),
                                         onPressed: () {
                                           Navigator.of(context).pop();
@@ -156,16 +197,18 @@ class _ExcerciseListState extends State<ExcerciseList> {
                                       width: 132,
                                       child: ElevatedButton(
                                         child: Text("取消",
-                                        style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700)),
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700)),
                                         style: ButtonStyle(
                                           backgroundColor:
-                                          MaterialStateProperty.all(
-                                              appCardGreenColor),
+                                              MaterialStateProperty.all(
+                                                  appCardGreenColor),
                                         ),
                                         onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -187,8 +230,8 @@ class _ExcerciseListState extends State<ExcerciseList> {
                 filled: true,
                 fillColor: Color.fromRGBO(238, 238, 238, 1.0),
                 prefixIcon: Icon(Icons.search, color: Colors.black, size: 20),
-                contentPadding: EdgeInsets.symmetric(
-                    vertical: 10, horizontal: 10),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 hintText: '搜尋',
                 hintStyle: TextStyle(fontSize: 16),
                 border: OutlineInputBorder(

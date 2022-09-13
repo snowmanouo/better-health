@@ -5,8 +5,11 @@ import '../helpers/Constants.dart';
 import  'package:intl/intl.dart';
 
 class Aplan extends StatelessWidget {
-  String begin = DateFormat("HH:mm").format(DateTime.now());
-  String finish = DateFormat("HH:mm").format(DateTime.now());
+  // var today = DateTime.now();
+  // var fiftyDaysFromNow = today.add(new Duration(days: 5));
+    String begin = DateFormat("HH:mm").format(DateTime.now());
+    String finish = DateFormat("HH:mm").format(DateTime.now());
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -140,7 +143,7 @@ class Aplan extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: Color.fromRGBO(127, 127, 127, 1))),
                     SizedBox(width: 86),
-                    Text('明天,4:00',
+                    Text('明天,'+finish.toString(),
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,

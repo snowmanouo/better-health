@@ -40,6 +40,24 @@ class _ExcerciseListState extends State<ExcerciseList> {
           Text('當前運動',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           SizedBox(height: 12),
+          ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            itemCount: books.length,
+            itemBuilder: (context, index) {
+              final book = books[index];
+              return ListTile(
+                leading: Image.network(
+                  book.urlImage,
+                  fit: BoxFit.cover,
+                  width: 50,
+                  height: 50,
+                ),
+                title: Text(book.title),
+                contentPadding: EdgeInsets.zero,
+              );
+            },
+          ),
           Container(
             child: Column(
               children: [
@@ -52,12 +70,32 @@ class _ExcerciseListState extends State<ExcerciseList> {
                     Text('132.0千卡 / 1小時',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
-                    SizedBox(width: 35),
-                    Icon(Icons.remove_circle, size: 22, color: Colors.grey),
+                    SizedBox(width: 11),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      constraints: BoxConstraints(),
+                      //解決按鈕點擊後產生的邊界
+                      iconSize: 22,
+                      onPressed: () {},
+                      icon: Icon(Icons.remove_circle,
+                          color: Color.fromRGBO(226, 226, 226, 1)),
+                    ),
+                    SizedBox(width: 11),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      constraints: BoxConstraints(),
+                      iconSize: 22,
+                      onPressed: () {},
+                      icon: Icon(Icons.more_vert,
+                          color: Color.fromRGBO(127, 127, 127, 1)),
+                    ),
                   ],
                 ),
                 SizedBox(height: 12),
-                Divider(height: 0,thickness: 1,color: Color.fromRGBO(226, 226, 226, 1)),
+                Divider(
+                    height: 0,
+                    thickness: 1,
+                    color: Color.fromRGBO(226, 226, 226, 1)),
                 SizedBox(height: 24),
                 Row(
                   children: [

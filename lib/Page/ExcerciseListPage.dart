@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import '../helpers/Constants.dart';
 
-class LunchList extends StatefulWidget {
+class ExcerciseList extends StatefulWidget {
   @override
-  _LunchListState createState() => _LunchListState();
+  _ExcerciseListState createState() => _ExcerciseListState();
 }
 
-class _LunchListState extends State<LunchList> {
+class _ExcerciseListState extends State<ExcerciseList> {
   final controller = TextEditingController();
   List<Book> books = allBooks;
 
@@ -26,7 +26,7 @@ class _LunchListState extends State<LunchList> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('午餐',
+        title: Text('今日運動',
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -39,7 +39,7 @@ class _LunchListState extends State<LunchList> {
         children: [
           Row(
             children: [
-              Text('飲食清單',
+              Text('運動清單',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               SizedBox(width: 173),
               Row(
@@ -89,12 +89,12 @@ class _LunchListState extends State<LunchList> {
                                         contentPadding: EdgeInsets.symmetric(
                                             vertical: 9.5, horizontal: 12),
                                         fillColor:
-                                        Color.fromRGBO(238, 238, 238, 1.0),
-                                        hintText: 'ex:豬頭皮',
+                                            Color.fromRGBO(238, 238, 238, 1.0),
+                                        hintText: 'ex:跳繩',
                                         hintStyle: TextStyle(fontSize: 14),
                                         border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(8),
+                                              BorderRadius.circular(8),
                                           borderSide: BorderSide.none,
                                         ),
                                       ),
@@ -120,12 +120,12 @@ class _LunchListState extends State<LunchList> {
                                         contentPadding: EdgeInsets.symmetric(
                                             vertical: 9.5, horizontal: 12),
                                         fillColor:
-                                        Color.fromRGBO(238, 238, 238, 1.0),
-                                        hintText: 'ex:300',
+                                            Color.fromRGBO(238, 238, 238, 1.0),
+                                        hintText: 'ex:504',
                                         hintStyle: TextStyle(fontSize: 14),
                                         border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(8),
+                                              BorderRadius.circular(8),
                                           borderSide: BorderSide.none,
                                         ),
                                       ),
@@ -156,16 +156,16 @@ class _LunchListState extends State<LunchList> {
                                       width: 132,
                                       child: ElevatedButton(
                                         child: Text("取消",
-                                            style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700)),
+                                        style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700)),
                                         style: ButtonStyle(
                                           backgroundColor:
                                           MaterialStateProperty.all(
                                               appCardGreenColor),
                                         ),
                                         onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
                                     ),
                                   ],
                                 ),
@@ -237,13 +237,13 @@ const allBooks = [
   Book(
       title: 'A',
       urlImage:
-      "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
+          "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
   Book(
       title: 'B',
       urlImage:
-      "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
+          "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
   Book(
       title: 'C',
       urlImage:
-      "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
+          "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
 ];

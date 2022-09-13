@@ -1,23 +1,42 @@
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:project/Page/SettingPage.dart';
 import '../helpers/Constants.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'BreakfastListPage.dart';
 import 'LunchListPage.dart';
 import 'DinnerListPage.dart';
 import 'SnackListPage.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'ExcerciseListPage.dart';
+import 'package:project/Page/Database.dart';
 
-class HealthPage extends StatelessWidget {
+class HealthPage extends StatefulWidget {
   const HealthPage({Key? key, required User user})
       : _user = user,
         super(key: key);
 
   final User _user;
+
+  @override
+  _HealthPageState createState() => _HealthPageState(user: _user);
+}
+
+class _HealthPageState extends State<HealthPage> {
+  _HealthPageState({Key? key, required User user}) : _user = user;
+
+  final User _user;
+  Map<String, dynamic> _userMap = Map();
+
+  @override
+  void initState() {
+    Database().getUser(widget._user.uid, (data) {
+      _userMap = data;
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,24 +68,21 @@ class HealthPage extends StatelessWidget {
           Text(BodyNum,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           SizedBox(height: 12),
-          BodyNumWidget(),
+          BodyNumWidget(
+            bmi: bmi,
+            pbf: pbf,
+            mbr: mbr,
+            idealWeight: idealWeight,
+          ),
           SizedBox(height: 12),
           Container(
             child: Row(
               children: [
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(YourCal,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                  ),
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Image.asset('assets/images/yourCalmore.png'),
-                  ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(YourCal,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -87,6 +103,18 @@ class HealthPage extends StatelessWidget {
       ),
     );
   }
+
+  bool get isMale => _userMap["sex"]! == "male";
+  int get born => _userMap["born"]!;
+  double get weight => _userMap["weight"]!;
+  double get height => _userMap["height"]!;
+  double get freq => _userMap["freq"]!;
+
+  int get age => 2022 - born;
+  double get bmi => weight / pow(height / 100, 2);
+  double get pbf => isMale ? (1.2 * bmi + 0.23 * age - 16.2) : (1.2 * bmi + 0.23 * age - 5.4);
+  double get mbr => isMale ? (10 * weight + 6.25 * height - 5 * age + 5) :  (10 * weight + 6.25 * height - 5 * age - 161);
+  double get idealWeight => isMale ? (height - 80) * 0.7 : (height - 70) * 0.6;
 }
 
 class ExcerciseWidget extends StatelessWidget {
@@ -155,7 +183,19 @@ class ExcerciseCardWidget extends StatelessWidget {
                           color: Colors.black)),
                 ),
                 SizedBox(width: 43),
-                Image.asset('assets/images/addButton.png'),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(),
+                  icon: Image.asset('assets/images/addButton.png'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ExcerciseList(),
+                      ),
+                    );
+                  },
+                ),
                 SizedBox(width: 13),
               ],
             ),
@@ -167,7 +207,7 @@ class ExcerciseCardWidget extends StatelessWidget {
                   bottom: 10,
                   child: Text('約消耗${this.cal}千卡',
                       style: TextStyle(
-                            fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w700,
                           fontSize: 16,
                           color: Colors.white)),
                 ),
@@ -199,10 +239,26 @@ class EatDrinkWidget extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: <Widget>[
-              MealCardWidget(text: '早餐', mealPic: BreakfastPic, cal: 55.0, destination: BreakfastList()),
-              MealCardWidget(text: '午餐', mealPic: LunchPic, cal: 99.0, destination: LunchList()),
-              MealCardWidget(text: '晚餐', mealPic: DinnerPic, cal: 155.2, destination: DinnerList()),
-              MealCardWidget(text: '點心', mealPic: DessertPic, cal: 1355.6, destination: SnackList()),
+              MealCardWidget(
+                  text: '早餐',
+                  mealPic: BreakfastPic,
+                  cal: 55.0,
+                  destination: BreakfastList()),
+              MealCardWidget(
+                  text: '午餐',
+                  mealPic: LunchPic,
+                  cal: 99.0,
+                  destination: LunchList()),
+              MealCardWidget(
+                  text: '晚餐',
+                  mealPic: DinnerPic,
+                  cal: 155.2,
+                  destination: DinnerList()),
+              MealCardWidget(
+                  text: '點心',
+                  mealPic: DessertPic,
+                  cal: 1355.6,
+                  destination: SnackList()),
             ],
           )
         ],
@@ -215,10 +271,13 @@ class MealCardWidget extends StatelessWidget {
   final String text;
   final double cal;
   final Image mealPic;
-  final StatelessWidget destination;
+  final StatefulWidget destination;
 
   MealCardWidget(
-      {required this.text, required this.mealPic, required this.cal, required this.destination});
+      {required this.text,
+      required this.mealPic,
+      required this.cal,
+      required this.destination});
 
   @override
   Widget build(BuildContext context) {
@@ -249,7 +308,6 @@ class MealCardWidget extends StatelessWidget {
                           color: Colors.black)),
                 ),
                 SizedBox(width: 75),
-                // Image.asset('assets/images/addButton.png'),
                 IconButton(
                   padding: EdgeInsets.zero,
                   constraints: BoxConstraints(),
@@ -257,7 +315,8 @@ class MealCardWidget extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => this.destination,
+                      MaterialPageRoute(
+                        builder: (context) => this.destination,
                       ),
                     );
                   },
@@ -311,6 +370,7 @@ class YourCalWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'TDEE 狀態(正常)',
@@ -320,32 +380,77 @@ class YourCalWidget extends StatelessWidget {
                           color: Colors.white),
                     ),
                     SizedBox(height: 10),
-                    Container(
-                      height: 160,
-                      margin: EdgeInsets.all(0),
-                      child: CircularPercentIndicator(
-                        radius: 70.0,
-                        percent: 0.8,
-                        lineWidth: 10,
-                        animation: true,
-                        animationDuration: 1200,
-                        center: Text('80%'),
-                        footer: Text(
-                          '今日已攝入/建議攝入',
-                          style: TextStyle(
-                            fontSize: 12,
+                    Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 157,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromRGBO(255, 255, 255, 0.5),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.transparent, spreadRadius: 3),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 25),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "建議攝入",
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(127, 127, 127, 1),
+                                        ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "1046.5大卡",
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(24, 24, 24, 0.75),
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      SizedBox(height: 8),
+                                      Image.asset("assets/images/Divider.png"),
+                                      SizedBox(height: 8),
+                                      Text(
+                                        "今日已攝入",
+                                        style: TextStyle(
+                                            color: Color.fromRGBO(
+                                                127, 127, 127, 1)),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "502.2大卡",
+                                        style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(24, 24, 24, 0.75),
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                        backgroundColor: Color.fromRGBO(255, 255, 255, 0.25),
-                        progressColor: Color.fromRGBO(255, 255, 255, 1),
-                      ),
-                    ),
+                        ]),
                   ],
                 ),
               ),
               SizedBox(width: 18),
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       children: [
@@ -509,7 +614,17 @@ class YourCalWidget extends StatelessWidget {
 class BodyNumWidget extends StatelessWidget {
   const BodyNumWidget({
     Key? key,
-  }) : super(key: key);
+    required double bmi,
+    required double pbf,
+    required double mbr,
+    required double idealWeight,
+  }) : _bmi = bmi, _pbf = pbf, _mbr = mbr, _idealWeight = idealWeight,
+        super(key: key);
+
+  final double _bmi;
+  final double _pbf;
+  final double _mbr;
+  final double _idealWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -541,7 +656,7 @@ class BodyNumWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 40),
-                  Text(BMI,
+                  Text(_bmi.toStringAsFixed(1),
                       style: TextStyle(fontSize: 12, color: Colors.black)),
                 ],
               ),
@@ -578,7 +693,7 @@ class BodyNumWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 40),
-                  Text(PBF,
+                  Text(_pbf.toStringAsFixed(1) + "%",
                       style: TextStyle(fontSize: 12, color: Colors.black)),
                 ],
               ),
@@ -615,7 +730,7 @@ class BodyNumWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 40),
-                  Text(BMR,
+                  Text(_mbr.toStringAsFixed(1) + "kcal",
                       style: TextStyle(fontSize: 12, color: Colors.black)),
                 ],
               ),
@@ -652,7 +767,7 @@ class BodyNumWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 40),
-                  Text(IdealWeight,
+                  Text(_idealWeight.toStringAsFixed(1) + "kg",
                       style: TextStyle(fontSize: 12, color: Colors.black)),
                 ],
               ),

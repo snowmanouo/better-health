@@ -10,8 +10,18 @@ import 'Calorie.dart';
 import 'Time.dart';
 import 'Kg.dart';
 
-class Mysetting extends StatelessWidget {
+class Mysetting extends StatefulWidget {
   @override
+  _Mysetting createState() => _Mysetting();
+}
+  class _Mysetting extends State<Mysetting> {
+  bool _male = false;
+  bool _female = false;
+  bool _checkboxListChecked =false;
+  bool _checkboxList2Checked=false;
+  bool _checkboxList3Checked =false;
+  bool _checkboxList4Checked=false;
+  bool _checkboxList5Checked =false;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -42,27 +52,31 @@ class Mysetting extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
                           title: Text('性別'),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.male),
-                                iconSize: 50.0,
-                              ),
-                              IconButton(
-                                  onPressed: () {}, icon: Icon(Icons.female),
-                                iconSize: 50.0,),
-                            ],
-                          ),
                           actions: <Widget>[
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'OK'),
-                              child: Text('OK'),
+                            CheckboxListTile(
+                              value: _male,
+                              onChanged: (value) {
+                                setState(() {
+                                  _male = true;
+                                  _female = false;
+                                });
+                                Navigator.of(context).pop();
+
+                              },
+                              title: Text("男性"),
+                              activeColor: Color.fromRGBO(18, 213, 214, 1),
                             ),
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'Cancel'),
-                              child: Text('Cancel'),
+                            CheckboxListTile(
+                              value: _female,
+                              onChanged: (value) {
+                                setState(() {
+                                  _male = false;
+                                  _female = true;
+                                });
+                                Navigator.of(context).pop();
+                              },
+                              title: Text("女性"),
+                              activeColor: Color.fromRGBO(18, 213, 214, 1),
                             ),
                           ],
                         ),
@@ -199,6 +213,107 @@ class Mysetting extends StatelessWidget {
                         child:Row(
                           children: [
                             Text('體重'),
+                            Icon(Icons.keyboard_double_arrow_right)
+                          ],
+                        )
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.directions_run),
+                  Text("運動頻率"),
+                  SizedBox(width: 150),
+                  Align(
+                    child: TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.black,
+                        ),
+                        onPressed: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: Text('運動頻率'),
+                            actions: <Widget>[
+                              CheckboxListTile(
+                                value: _checkboxListChecked,
+                                onChanged: (checkboxListChecked){
+                                  setState((){
+                                    _checkboxListChecked=true;
+                                    _checkboxList2Checked=false;
+                                    _checkboxList3Checked =false;
+                                    _checkboxList4Checked=false;
+                                    _checkboxList5Checked =false;
+                                  });Navigator.of(context).pop();
+                                },
+                                title: Text("久坐"),
+                                subtitle: Text("沒啥運動><"),
+                                activeColor: Color.fromRGBO(18, 213, 214, 1),
+                              ),
+                              CheckboxListTile(
+                                value: _checkboxList2Checked,
+                                onChanged: (checkboxList2Checked){
+                                  setState((){
+                                    _checkboxListChecked=false;
+                                    _checkboxList2Checked=true;
+                                    _checkboxList3Checked =false;
+                                    _checkboxList4Checked=false;
+                                    _checkboxList5Checked =false;
+                                  });Navigator.of(context).pop();
+                                },
+                                title: Text("久坐"),
+                                subtitle: Text("每周運動1~3天"),
+                                activeColor: Color.fromRGBO(18, 213, 214, 1),
+                              ),
+                              CheckboxListTile(
+                                value: _checkboxList3Checked,
+                                onChanged: (checkboxList3Checked){
+                                  setState((){
+                                    _checkboxListChecked=false;
+                                    _checkboxList2Checked=false;
+                                    _checkboxList3Checked =true;
+                                    _checkboxList4Checked=false;
+                                    _checkboxList5Checked =false;
+                                  });Navigator.of(context).pop();
+                                },
+                                title: Text("中度活動量"),
+                                subtitle: Text("每周運動3~5天"),
+                                activeColor: Color.fromRGBO(18, 213, 214, 1),
+                              ),CheckboxListTile(
+                                value: _checkboxList4Checked,
+                                onChanged: (checkboxList4Checked){
+                                  setState((){
+                                    _checkboxListChecked=false;
+                                    _checkboxList2Checked=false;
+                                    _checkboxList3Checked =false;
+                                    _checkboxList4Checked=true;
+                                    _checkboxList5Checked =false;
+                                  });Navigator.of(context).pop();
+                                },
+                                title: Text("高度活動量"),
+                                subtitle: Text("每周運動6~7天"),
+                                activeColor: Color.fromRGBO(18, 213, 214, 1),
+                              ),CheckboxListTile(
+                                value: _checkboxList5Checked,
+                                onChanged: (checkboxList5Checked){
+                                  setState((){
+                                    _checkboxListChecked=false;
+                                    _checkboxList2Checked=false;
+                                    _checkboxList3Checked =false;
+                                    _checkboxList4Checked=false;
+                                    _checkboxList5Checked =true;
+                                  });Navigator.of(context).pop();
+                                },
+                                title: Text("非常高度活動量"),
+                                subtitle: Text("無時無刻都在運動XD"),
+                                activeColor: Color.fromRGBO(18, 213, 214, 1),
+                              ),
+                            ],
+                          ),
+                        ),
+                        child:Row(
+                          children: [
+                            Text('運動頻率'),
                             Icon(Icons.keyboard_double_arrow_right)
                           ],
                         )

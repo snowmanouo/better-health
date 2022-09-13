@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/Page/HealthPage.dart';
+import 'package:project/Page/LoginPage.dart';
 import '../Page/Home.dart';
 
 import '../Page/authentication.dart';
@@ -24,10 +25,13 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
       )
           : OutlinedButton(
         style: ButtonStyle(
+          fixedSize: MaterialStateProperty.all(Size(320, 56)),
+          side: MaterialStateProperty.all(
+              BorderSide(color: Color.fromRGBO(18, 213, 214, 1),width: 1)),
           backgroundColor: MaterialStateProperty.all(Colors.white),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
         ),
@@ -46,7 +50,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
           if (user != null) {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => Home(
+                builder: (context) => NewLogin(
                   user: user,
                 ),
               ),
@@ -56,21 +60,21 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Image(
                 image: AssetImage("assets/images/google.png"),
                 height: 35.0,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.only(left: 97 ),
                 child: Text(
-                  'Sign in with Google',
+                  '登入',
                   style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                    color: Color.fromRGBO(18, 213, 214, 1),
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               )

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:project/Page/16_8plan.dart';
 import 'package:project/Page/18_6plan.dart';
 import 'package:project/Page/20_4plan.dart';
 import '14_10plan.dart';
+import '../helpers/Constants.dart';
 
 class chooseplan extends StatelessWidget {
   @override
@@ -22,7 +24,7 @@ class chooseplan extends StatelessWidget {
           GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Aplan()));
+                    context, MaterialPageRoute(builder: (context) => Aplan(a: 14,b:10)));
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -96,7 +98,7 @@ class chooseplan extends StatelessWidget {
           GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Aplan()));
+                    context, MaterialPageRoute(builder: (context) => Aplan(a: 16,b:8)));
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -170,7 +172,7 @@ class chooseplan extends StatelessWidget {
           GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Aplan()));
+                    context, MaterialPageRoute(builder: (context) => Aplan(a: 18,b:6)));
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -244,7 +246,7 @@ class chooseplan extends StatelessWidget {
           GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Aplan()));
+                    context, MaterialPageRoute(builder: (context) => Aplan(a: 20,b:4)));
               },
               child: Container(
                 decoration: BoxDecoration(

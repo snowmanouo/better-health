@@ -14,7 +14,7 @@ import 'package:r_calendar/r_calendar.dart';
 
 class MyselfPage extends StatelessWidget {
   late DateTime _myDateTime;
-  String time ='?';
+  String time = '?';
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MyselfPage extends StatelessWidget {
         backgroundColor: Color.fromRGBO(0, 163, 165, 1),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+        padding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
         children: [
           Column(
             children: [
@@ -47,7 +47,7 @@ class MyselfPage extends StatelessWidget {
                         color: Color.fromRGBO(85, 85, 85, 1),
                       )),
                   SizedBox(
-                    height: 0,
+                    height: 100,
                     width: 150,
                   ),
                   IconButton(
@@ -57,7 +57,7 @@ class MyselfPage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => Calorie()),
                       );
                     },
-                    icon: Icon(Icons.chevron_right),
+                    icon: Image.asset('assets/images/personal_arrow.png'),
                   ),
                 ]),
               ),
@@ -93,7 +93,7 @@ class MyselfPage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => Time()),
                       );
                     },
-                    icon: Icon(Icons.chevron_right),
+                    icon: Image.asset('assets/images/personal_arrow.png'),
                   ),
                 ]),
               ),
@@ -102,7 +102,7 @@ class MyselfPage extends StatelessWidget {
                 width: 0,
               ),
               Container(
-                height: 72,
+                height: 100,
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
@@ -127,7 +127,6 @@ class MyselfPage extends StatelessWidget {
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
                                 title: Text('每日體重'),
-
                                 content: const TextField(
                                   obscureText: true,
                                   decoration: InputDecoration(
@@ -144,7 +143,6 @@ class MyselfPage extends StatelessWidget {
                                           firstDate: DateTime(2010),
                                           lastDate: DateTime(2025),
                                         ))!;
-
                                       },
                                       child: Text('請選擇日期')),
                                   TextButton(
@@ -161,7 +159,12 @@ class MyselfPage extends StatelessWidget {
                               ),
                             ),
                         child: Row(
-                          children: [Icon(Icons.settings_applications)],
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: Image.asset('assets/images/myselfsetting.png'),
+                            ),
+                          ],
                         )),
                   ),
                   SizedBox(
@@ -175,7 +178,7 @@ class MyselfPage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => Kg()),
                       );
                     },
-                    icon: Icon(Icons.chevron_right),
+                    icon: Image.asset('assets/images/personal_arrow.png'),
                   ),
                 ]),
               ),
@@ -211,7 +214,7 @@ class MyselfPage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => Fat()),
                       );
                     },
-                    icon: Icon(Icons.chevron_right),
+                    icon: Image.asset('assets/images/personal_arrow.png'),
                   ),
                 ]),
               ),

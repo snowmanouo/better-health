@@ -741,7 +741,7 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
                     _checkboxList5Checked = false;
                   });
                 },
-                title: Text("低度活動量"),
+                title: Text("輕量活動"),
                 subtitle: Text("每周運動1~3天"),
                 activeColor: Color.fromRGBO(18, 213, 214, 1),
               ),

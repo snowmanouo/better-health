@@ -416,7 +416,7 @@ class Mysetting extends StatefulWidget {
                                           _checkboxList5Checked =false;
                                         });Navigator.of(context).pop();
                                       },
-                                      title: Text("久坐"),
+                                      title: Text("輕量活動"),
                                       subtitle: Text("每周運動1~3天"),
                                       activeColor: Color.fromRGBO(18, 213, 214, 1),
                                     ),
@@ -494,7 +494,7 @@ class Mysetting extends StatefulWidget {
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black),),
                             if(freq == 1.375)
-                              Text("低度活動量",style: TextStyle(
+                              Text("輕量活動",style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black),),

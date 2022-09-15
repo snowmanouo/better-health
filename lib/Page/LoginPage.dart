@@ -741,7 +741,7 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
                     _checkboxList5Checked = false;
                   });
                 },
-                title: Text("久坐"),
+                title: Text("輕量活動"),
                 subtitle: Text("每周運動1~3天"),
                 activeColor: Color.fromRGBO(18, 213, 214, 1),
               ),
@@ -806,7 +806,6 @@ class _ExerciseFrequencyState extends State<ExerciseFrequency> {
               } else if (_checkboxList5Checked) {
                 _freq = 1.9;
               }
-
               Database().newUser(_sex, _born, _height, _weight, _freq, _user.uid);
               Navigator.push(
                   context,

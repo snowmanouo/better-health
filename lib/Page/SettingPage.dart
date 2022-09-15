@@ -77,7 +77,7 @@ class _SettingPage extends State<SettingPage> {
                     child: TextButton(
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder:
-                            (context) => Mysetting()));
+                            (context) => Mysetting(user: _user)));
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

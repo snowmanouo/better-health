@@ -58,7 +58,6 @@ class FeedBack extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),),
                 child:Expanded(child:TextField(
                   keyboardType: TextInputType.text,
-                  obscureText: true,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: '請盡可能告訴我們細節，以便解決您的問題',

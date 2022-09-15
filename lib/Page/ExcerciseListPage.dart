@@ -10,13 +10,12 @@ class ExcerciseList extends StatefulWidget {
 
 class _ExcerciseListState extends State<ExcerciseList> {
   final controller = TextEditingController();
-  List<Exercise> excerLists = allExerciseList;
-  List<Exercise> currentExcerList = [];
+  List<Exercise> excerLists = defaultExerciseList;
 
-  double get totlaCal => currentExcerList.map((e) => e.cal).sum;
+  double get totlaCal => allExerciseRecords.map((e) => e.cal).sum;
 
   void searchExcerList(String query) {
-    final suggestions = allExerciseList.where((excerList) {
+    final suggestions = defaultExerciseList.where((excerList) {
       final excerTitle = excerList.name.toLowerCase();
       final input = query.toLowerCase();
 
@@ -47,9 +46,9 @@ class _ExcerciseListState extends State<ExcerciseList> {
           ListView.builder(
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount: currentExcerList.length,
+            itemCount: allExerciseRecords.length,
             itemBuilder: (context, index) {
-              final currentExercise = currentExcerList[index];
+              final currentExercise = allExerciseRecords[index];
               return Container(
                 decoration: BoxDecoration(border: Border(bottom: BorderSide(
                   color: Color.fromRGBO(226, 226, 226, 1),
@@ -70,7 +69,7 @@ class _ExcerciseListState extends State<ExcerciseList> {
                         iconSize: 22,
                         onPressed: () {
                           setState(() {
-                            currentExcerList.removeAt(index);
+                            allExerciseRecords.removeAt(index);
                           });
                         },
                         icon: Icon(Icons.remove_circle,
@@ -348,7 +347,7 @@ class _ExcerciseListState extends State<ExcerciseList> {
                                           final calories = exercise.cal * minutes / 60;
                                           final newExercise = Exercise(name: exercise.name, cal: calories);
                                           setState(() {
-                                            currentExcerList.add(newExercise);
+                                            allExerciseRecords.add(newExercise);
                                           });
                                           Navigator.of(context).pop();
                                         },

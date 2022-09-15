@@ -8,9 +8,10 @@ class Exercise {
   });
 }
 
-const allExerciseList = [
+const defaultExerciseList = [
   Exercise(name: '跑步', cal: 132.0),
   Exercise(name: 'swimmimg', cal: 132.0),
   Exercise(name: 'tennis', cal: 132.0),
 ];
 
+List<Exercise> allExerciseRecords = [];

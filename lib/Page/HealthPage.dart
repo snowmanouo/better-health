@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -9,6 +8,7 @@ import 'LunchListPage.dart';
 import 'DinnerListPage.dart';
 import 'SnackListPage.dart';
 import 'package:flutter/services.dart';
+import 'ExcerciseList.dart';
 import 'ExcerciseListPage.dart';
 import 'package:project/Page/Database.dart';
 
@@ -136,13 +136,20 @@ class ExcerciseWidget extends StatelessWidget {
   }
 }
 
-class ExcerciseCardWidget extends StatelessWidget {
+class ExcerciseCardWidget extends StatefulWidget {
   final String text;
   final double cal;
   final Image mealPic;
 
   ExcerciseCardWidget(
       {required this.text, required this.mealPic, required this.cal});
+
+  @override
+  State<ExcerciseCardWidget> createState() => _ExcerciseCardWidgetState();
+}
+
+class _ExcerciseCardWidgetState extends State<ExcerciseCardWidget> {
+  double get totlaCal => allExerciseRecords.map((e) => e.cal).sum;
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +172,7 @@ class ExcerciseCardWidget extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerLeft,
                   height: 45,
-                  child: Text(this.text,
+                  child: Text(this.widget.text,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
@@ -183,7 +190,9 @@ class ExcerciseCardWidget extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => ExcerciseList(),
                       ),
-                    );
+                    ).then((value) {
+                      setState(() => null);
+                    });
                   },
                 ),
                 SizedBox(width: 13),
@@ -192,10 +201,10 @@ class ExcerciseCardWidget extends StatelessWidget {
             Stack(
               alignment: Alignment.bottomCenter,
               children: <Widget>[
-                this.mealPic,
+                this.widget.mealPic,
                 Positioned(
                   bottom: 10,
-                  child: Text('約消耗${this.cal}千卡',
+                  child: Text('約消耗${totlaCal}千卡',
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 16,

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import '../helpers/Constants.dart';
 import 'ExcerciseList.dart';
@@ -10,6 +11,9 @@ class ExcerciseList extends StatefulWidget {
 class _ExcerciseListState extends State<ExcerciseList> {
   final controller = TextEditingController();
   List<Exercise> excerLists = allExerciseList;
+  List<Exercise> currentExcerList = [];
+
+  double get totlaCal => currentExcerList.map((e) => e.cal).sum;
 
   void searchExcerList(String query) {
     final suggestions = allExerciseList.where((excerList) {
@@ -40,51 +44,60 @@ class _ExcerciseListState extends State<ExcerciseList> {
         children: [
           Text('當前運動',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            itemCount: currentExcerList.length,
+            itemBuilder: (context, index) {
+              final currentExercise = currentExcerList[index];
+              return Container(
+                decoration: BoxDecoration(border: Border(bottom: BorderSide(
+                  color: Color.fromRGBO(226, 226, 226, 1),
+                  width: 1,
+                ))),
+                child: ListTile(
+                  leading: Icon(Icons.circle, size: 8, color: appCardGreenColor),
+                  title: Row(
+                    children: [
+                      Text(currentExercise.name),
+                      Spacer(),
+                      Text(currentExercise.cal.toString() + "千卡/1小時"),
+                      SizedBox(width: 11),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
+                        //解決按鈕點擊後產生的邊界
+                        iconSize: 22,
+                        onPressed: () {
+                          setState(() {
+                            currentExcerList.removeAt(index);
+                          });
+                        },
+                        icon: Icon(Icons.remove_circle,
+                            color: Color.fromRGBO(226, 226, 226, 1)),
+                      ),
+                    ],
+                  ),
+                  contentPadding: EdgeInsets.all(0),
+                  minLeadingWidth: 0,
+                  horizontalTitleGap: 9,
+                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                ),
+              );
+            },
+          ),
           SizedBox(height: 12),
-          Container(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.circle, size: 8, color: appCardGreenColor),
-                    SizedBox(width: 8),
-                    Text('跑步', style: TextStyle(fontSize: 16)),
-                    SizedBox(width: 118),
-                    Text('132.0千卡 / 1小時',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    SizedBox(width: 11),
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      constraints: BoxConstraints(),
-                      //解決按鈕點擊後產生的邊界
-                      iconSize: 22,
-                      onPressed: () {},
-                      icon: Icon(Icons.remove_circle,
-                          color: Color.fromRGBO(226, 226, 226, 1)),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 12),
-                Divider(
-                    height: 0,
-                    thickness: 1,
-                    color: Color.fromRGBO(226, 226, 226, 1)),
-                SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('加總消耗',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    // SizedBox(width: 193),
-                    Text('132 千卡',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('加總消耗',
+                  style: TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold)),
+              // SizedBox(width: 193),
+              Text(totlaCal.toString()+' 千卡',//'132 千卡',
+                  style: TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold)),
+            ],
           ),
           SizedBox(height: 22),
           Row(
@@ -260,7 +273,8 @@ class _ExcerciseListState extends State<ExcerciseList> {
             shrinkWrap: true,
             itemCount: excerLists.length,
             itemBuilder: (context, index) {
-              final excerList = excerLists[index];
+              final exercise = excerLists[index];
+              var minutes = 0;
               return Container(
                 decoration: BoxDecoration(border: Border(bottom: BorderSide(
                   color: Color.fromRGBO(226, 226, 226, 1),
@@ -282,7 +296,7 @@ class _ExcerciseListState extends State<ExcerciseList> {
                               // contentPadding:
                               // EdgeInsets.only(top: 24, left: 24, right: 24),
                               actionsPadding: EdgeInsets.only(left: 24, right: 24, bottom: 24),
-                              title: Text('運動名稱',
+                              title: Text(exercise.name,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 18,
@@ -309,6 +323,9 @@ class _ExcerciseListState extends State<ExcerciseList> {
                                         borderSide: BorderSide.none,
                                       ),
                                     ),
+                                    onChanged: (value) {
+                                      minutes = int.parse(value);
+                                    },
                                   ),
                                 ],
                               ),
@@ -328,6 +345,11 @@ class _ExcerciseListState extends State<ExcerciseList> {
                                               appCardGreenColor),
                                         ),
                                         onPressed: () {
+                                          final calories = exercise.cal * minutes / 60;
+                                          final newExercise = Exercise(name: exercise.name, cal: calories);
+                                          setState(() {
+                                            currentExcerList.add(newExercise);
+                                          });
                                           Navigator.of(context).pop();
                                         },
                                       ),
@@ -360,8 +382,8 @@ class _ExcerciseListState extends State<ExcerciseList> {
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(excerList.name),
-                      Text(excerList.cal.toString() + "千卡/1小時"),
+                      Text(exercise.name),
+                      Text(exercise.cal.toString() + "千卡/1小時"),
                     ],
                   ),
                   contentPadding: EdgeInsets.all(0),
@@ -377,20 +399,4 @@ class _ExcerciseListState extends State<ExcerciseList> {
     );
   }
 }
-
-// class excerList {
-//   final String excerName;
-//   final double excerCal;
-//
-//   const excerList({
-//     required this.excerName,
-//     required this.excerCal,
-//   });
-// }
-//
-// const allexcerLists = [
-//   excerList(excerName: '跑步', excerCal: 132.0),
-//   excerList(excerName: 'swimmimg', excerCal: 132.0),
-//   excerList(excerName: 'tennis', excerCal: 132.0),
-// ];
 

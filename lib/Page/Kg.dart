@@ -38,6 +38,8 @@ class Kg extends StatelessWidget {
                         dataSource: data,
                         xValueMapper: (SalesData sales, _) => sales.month,
                         yValueMapper: (SalesData sales, _) => sales.sales,
+                        markerSettings: MarkerSettings(
+                            isVisible: true),
                         name: 'sales',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                       )

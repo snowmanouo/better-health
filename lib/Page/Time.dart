@@ -1,5 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:project/Page/LoginPage.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import "package:intl/intl.dart";
 
 class Time extends StatelessWidget {
   List<SalesData> data = [
@@ -17,6 +21,31 @@ class Time extends StatelessWidget {
     SalesData('RTY', 20),
     SalesData('YTR', 15),
     SalesData('YRT', 20),
+    SalesData('YRT', 20),
+    SalesData('YRT', 20),
+    SalesData('May', 20),
+    SalesData('Jgf', 15),
+    SalesData('Jfs', 20),
+    SalesData('dsa', 12),
+    SalesData('dfa', 13),
+    SalesData('vcv', 14),
+    SalesData('ade', 15),
+    SalesData('Rty', 20),
+    SalesData('Ytr', 15),
+    SalesData('bfg', 20),
+    SalesData('rew', 20),
+    SalesData('rwe', 20),
+
+
+
+
+
+
+
+
+
+
+
   ];
 
   @override
@@ -39,20 +68,24 @@ class Time extends StatelessWidget {
                   height: 400,
                   child: SfCartesianChart(
                     primaryXAxis: CategoryAxis(),
+                    zoomPanBehavior: ZoomPanBehavior(
+                      enablePanning: true,
+                    ),
                     series: <ChartSeries<SalesData, String>>[
                       LineSeries<SalesData, String>(
                         dataSource: data,
+                        color: Color.fromRGBO(0, 163, 165, 1),
                         xValueMapper: (SalesData sales, _) => sales.month,
                         yValueMapper: (SalesData sales, _) => sales.sales,
+                        markerSettings: MarkerSettings(isVisible: true),
                         name: 'sales',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                       )
                     ],
                   ),
                 ),
-
               ],
-           ),
+            ),
           ],
         ));
   }

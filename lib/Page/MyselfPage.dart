@@ -14,7 +14,7 @@ import 'package:r_calendar/r_calendar.dart';
 
 class MyselfPage extends StatelessWidget {
   late DateTime _myDateTime;
-  String time ='?';
+  String time = '?';
 
   @override
   Widget build(BuildContext context) {
@@ -24,201 +24,186 @@ class MyselfPage extends StatelessWidget {
         title: const Text("個人數據"),
         backgroundColor: Color.fromRGBO(0, 163, 165, 1),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
-        children: [
-          Column(
-            children: [
-              Container(
-                height: 72,
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(color: Colors.transparent, spreadRadius: 3),
-                  ],
+      body: Stack(children: [
+        Image.asset('assets/images/selfpageBackground.png'),
+        ListView(
+          padding: EdgeInsets.symmetric(vertical: 116, horizontal: 16),
+          children: [
+            Column(
+              children: [
+                Container(
+                  height: 72,
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(color: Colors.transparent, spreadRadius: 3),
+                    ],
+                  ),
+                  child: Row(children: [
+                    Text("熱量紀錄",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromRGBO(85, 85, 85, 1),
+                        )),
+                    Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Calorie()),
+                        );
+                      },
+                      icon: Image.asset('assets/images/personal_arrow.png'),
+                    ),
+                  ]),
                 ),
-                child: Row(children: [
-                  Text("熱量紀錄",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(85, 85, 85, 1),
-                      )),
-                  SizedBox(
-                    height: 0,
-                    width: 150,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Calorie()),
-                      );
-                    },
-                    icon: Icon(Icons.chevron_right),
-                  ),
-                ]),
-              ),
-              SizedBox(
-                height: 10,
-                width: 0,
-              ),
-              Container(
-                height: 72,
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(color: Colors.transparent, spreadRadius: 3),
-                  ],
+                SizedBox(
+                  height: 10,
+                  width: 0,
                 ),
-                child: Row(children: [
-                  Text("斷食時間",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(85, 85, 85, 1),
-                      )),
-                  SizedBox(
-                    height: 0,
-                    width: 150,
+                Container(
+                  height: 72,
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(color: Colors.transparent, spreadRadius: 3),
+                    ],
                   ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Time()),
-                      );
-                    },
-                    icon: Icon(Icons.chevron_right),
-                  ),
-                ]),
-              ),
-              SizedBox(
-                height: 10,
-                width: 0,
-              ),
-              Container(
-                height: 72,
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(color: Colors.transparent, spreadRadius: 3),
-                  ],
+                  child: Row(children: [
+                    Text("斷食時間",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromRGBO(85, 85, 85, 1),
+                        )),
+                    Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Time()),
+                        );
+                      },
+                      icon: Image.asset('assets/images/personal_arrow.png'),
+                    ),
+                  ]),
                 ),
-                child: Row(children: [
-                  Text("體重",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(85, 85, 85, 1),
-                      )),
-                  Align(
-                    child: TextButton(
-                        style: TextButton.styleFrom(
-                          primary: Colors.black,
-                        ),
+                SizedBox(
+                  height: 10,
+                  width: 0,
+                ),
+                Container(
+                  height: 72,
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(color: Colors.transparent, spreadRadius: 3),
+                    ],
+                  ),
+                  child: Row(children: [
+                    Text("體重",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromRGBO(85, 85, 85, 1),
+                        )),
+                    SizedBox(width: 7),
+                    IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
                         onPressed: () => showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('每日體重'),
-
-                                content: const TextField(
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: '請輸入今日體重',
-                                  ),
-                                ),
-                                actions: <Widget>[
-                                  ElevatedButton(
-                                      onPressed: () async {
-                                        _myDateTime = (await showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime(2010),
-                                          lastDate: DateTime(2025),
-                                        ))!;
-
-                                      },
-                                      child: Text('請選擇日期')),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(context, 'OK'),
-                                    child: Text('OK'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(context, 'Cancel'),
-                                    child: Text('Cancel'),
-                                  ),
-                                ],
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: Text('每日體重'),
+                            content: const TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: '請輸入今日體重',
                               ),
                             ),
-                        child: Row(
-                          children: [Icon(Icons.settings_applications)],
-                        )),
-                  ),
-                  SizedBox(
-                    height: 0,
-                    width: 120,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Kg()),
-                      );
-                    },
-                    icon: Icon(Icons.chevron_right),
-                  ),
-                ]),
-              ),
-              SizedBox(
-                height: 10,
-                width: 0,
-              ),
-              Container(
-                height: 72,
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(color: Colors.transparent, spreadRadius: 3),
-                  ],
+                            actions: <Widget>[
+                              ElevatedButton(
+                                  onPressed: () async {
+                                    _myDateTime = (await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2010),
+                                      lastDate: DateTime(2025),
+                                    ))!;
+                                  },
+                                  child: Text('請選擇日期')),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, 'OK'),
+                                child: Text('OK'),
+                              ),
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(context, 'Cancel'),
+                                child: Text('Cancel'),
+                              ),
+                            ],
+                          ),
+                        ),
+                        icon: Image.asset('assets/images/myselfsetting.png')),
+                    Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Kg()),
+                        );
+                      },
+                      icon: Image.asset('assets/images/personal_arrow.png'),
+                    ),
+                  ]),
                 ),
-                child: Row(children: [
-                  Text("體指率",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(85, 85, 85, 1),
-                      )),
-                  SizedBox(
-                    height: 0,
-                    width: 170,
+                SizedBox(
+                  height: 10,
+                  width: 0,
+                ),
+                Container(
+                  height: 72,
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(color: Colors.transparent, spreadRadius: 3),
+                    ],
                   ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Fat()),
-                      );
-                    },
-                    icon: Icon(Icons.chevron_right),
-                  ),
-                ]),
-              ),
-            ],
-          ),
-        ],
-      ),
+                  child: Row(children: [
+                    Text("體脂率",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromRGBO(85, 85, 85, 1),
+                        )),
+                    Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Fat()),
+                        );
+                      },
+                      icon: Image.asset('assets/images/personal_arrow.png'),
+                    ),
+                  ]),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],)
+
     );
   }
 }

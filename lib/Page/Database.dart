@@ -14,6 +14,7 @@ class Database {
       "born": born,
       "freq": freq,
       "uid": uid,
+      "timestamp": FieldValue.serverTimestamp(),
     };
     // Add a new document with a generated ID
     _db.collection("users").add(user).then((DocumentReference doc) =>
@@ -22,7 +23,7 @@ class Database {
   }
 
   void getUser(String uid, Function(OurUser) onSuccess) {
-    _db.collection("users").where("uid", isEqualTo: uid).get().then(
+    _db.collection("users").where("uid", isEqualTo: uid).orderBy("timestamp", descending: true).limit(1).get().then(
           (res) {
         final data = res.docs.first.data();
         onSuccess(OurUser(data));

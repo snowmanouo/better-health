@@ -20,6 +20,7 @@ class MyselfPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text("個人數據"),
         backgroundColor: Color.fromRGBO(0, 163, 165, 1),

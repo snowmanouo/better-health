@@ -12,6 +12,7 @@ class startmonster extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Color.fromRGBO(0, 163, 165, 1),
           centerTitle: true,
           title: Text('願你暴瘦'),

@@ -55,6 +55,7 @@ class _SettingPage extends State<SettingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text('設定'),
         backgroundColor: appGreenColor,

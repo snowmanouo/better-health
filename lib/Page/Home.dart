@@ -7,6 +7,10 @@ import 'package:project/Page/startmonster.dart';
 import 'package:project/helpers/Constants.dart';
 
 class _HomeState extends State<Home> {
+  Future<bool> _onWillPop() async {
+    return false; //<-- SEE HERE
+  }
+
   @override
   void initState() {
     super.initState;
@@ -24,7 +28,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(child: Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
@@ -59,7 +63,9 @@ class _HomeState extends State<Home> {
         ],
         type: BottomNavigationBarType.fixed,
       ),
-    );
+    ), onWillPop: _onWillPop);
+
+
   }
 
   void onTabTapped(int index) {

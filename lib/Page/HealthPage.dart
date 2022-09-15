@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -100,18 +99,29 @@ class _HealthPageState extends State<HealthPage> {
           Text(Excercise,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           SizedBox(height: 12),
-          ExcerciseWidget(),
+          ExcerciseWidget(notifyParent: refresh,),
         ],
       ),
     );
   }
+
+  refresh() {
+    setState(() {});
+  }
 }
 
-class ExcerciseWidget extends StatelessWidget {
+class ExcerciseWidget extends StatefulWidget {
   const ExcerciseWidget({
-    Key? key,
+    Key? key, required this.notifyParent
   }) : super(key: key);
 
+  final Function() notifyParent;
+
+  @override
+  State<ExcerciseWidget> createState() => _ExcerciseWidgetState();
+}
+
+class _ExcerciseWidgetState extends State<ExcerciseWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -127,7 +137,7 @@ class ExcerciseWidget extends StatelessWidget {
             shrinkWrap: true,
             children: <Widget>[
               ExcerciseCardWidget(
-                  text: '今日運動', mealPic: ExcercisePic, cal: 9999.9),
+                  text: '今日運動', mealPic: ExcercisePic, notifyParent: widget.notifyParent,),
             ],
           )
         ],
@@ -138,19 +148,17 @@ class ExcerciseWidget extends StatelessWidget {
 
 class ExcerciseCardWidget extends StatefulWidget {
   final String text;
-  final double cal;
   final Image mealPic;
+  final Function() notifyParent;
 
   ExcerciseCardWidget(
-      {required this.text, required this.mealPic, required this.cal});
+      {required this.text, required this.mealPic, required this.notifyParent});
 
   @override
   State<ExcerciseCardWidget> createState() => _ExcerciseCardWidgetState();
 }
 
 class _ExcerciseCardWidgetState extends State<ExcerciseCardWidget> {
-  double get totlaCal => allExerciseRecords.map((e) => e.cal).sum;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -191,7 +199,7 @@ class _ExcerciseCardWidgetState extends State<ExcerciseCardWidget> {
                         builder: (context) => ExcerciseList(),
                       ),
                     ).then((value) {
-                      setState(() => null);
+                      widget.notifyParent();
                     });
                   },
                 ),
@@ -204,7 +212,7 @@ class _ExcerciseCardWidgetState extends State<ExcerciseCardWidget> {
                 this.widget.mealPic,
                 Positioned(
                   bottom: 10,
-                  child: Text('約消耗${totlaCal}千卡',
+                  child: Text('約消耗${totalExerciseCal}千卡',
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
@@ -344,13 +352,19 @@ class MealCardWidget extends StatelessWidget {
   }
 }
 
-class YourCalWidget extends StatelessWidget {
+class YourCalWidget extends StatefulWidget {
   const YourCalWidget({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<YourCalWidget> createState() => _YourCalWidgetState();
+}
+
+class _YourCalWidgetState extends State<YourCalWidget> {
+  @override
   Widget build(BuildContext context) {
+    var _totalExerciseCal = totalExerciseCal;
     return Card(
       clipBehavior: Clip.antiAlias,
       child: Container(
@@ -587,7 +601,7 @@ class YourCalWidget extends StatelessWidget {
                                                     127, 127, 127, 1),
                                                 fontSize: 12)),
                                         SizedBox(height: 3),
-                                        Text('9999.9千卡',
+                                        Text(_totalExerciseCal.toString()+'千卡',
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 12)),

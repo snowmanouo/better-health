@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import '../helpers/Constants.dart';
 import 'ExcerciseList.dart';
@@ -11,8 +10,6 @@ class ExcerciseList extends StatefulWidget {
 class _ExcerciseListState extends State<ExcerciseList> {
   final controller = TextEditingController();
   List<Exercise> excerLists = defaultExerciseList;
-
-  double get totlaCal => allExerciseRecords.map((e) => e.cal).sum;
 
   void searchExcerList(String query) {
     final suggestions = defaultExerciseList.where((excerList) {
@@ -93,7 +90,7 @@ class _ExcerciseListState extends State<ExcerciseList> {
                   style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
               // SizedBox(width: 193),
-              Text(totlaCal.toString()+' 千卡',//'132 千卡',
+              Text(totalExerciseCal.toString()+' 千卡',//'132 千卡',
                   style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
             ],

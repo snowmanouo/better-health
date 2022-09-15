@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 class Exercise {
   final String name;
   final double cal;
@@ -14,4 +16,5 @@ const defaultExerciseList = [
   Exercise(name: 'tennis', cal: 132.0),
 ];
 
+double get totalExerciseCal => allExerciseRecords.map((e) => e.cal).sum;
 List<Exercise> allExerciseRecords = [];

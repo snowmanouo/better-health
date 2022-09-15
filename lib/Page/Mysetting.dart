@@ -26,22 +26,18 @@ class Mysetting extends StatefulWidget {
     _Mysetting({Key? key, required User user}) : _user = user;
 
     final User _user;
-    Map<String, dynamic> _userMap = Map();
-    @override
+    OurUser _ourUser = OurUser.empty();
 
+    @override
     void initState() {
       Database().getUser(widget._user.uid, (data) {
-        _userMap = data;
+        setState((){
+          _ourUser = data;
+        });
       });
       super.initState();
     }
 
-  String get sex => _userMap["sex"];
-  int get born => _userMap["born"];
-  String get weight => (_userMap["weight"]).toString();
-  String get height => (_userMap["height"]).toString();
-  double get freq => _userMap["freq"];
-    int get age => 2022 - born;
     bool _male = true;
     bool _female = false;
     bool _checkboxListChecked =true;
@@ -126,13 +122,13 @@ class Mysetting extends StatefulWidget {
                                   color: Colors.black),
                             ),
                             Flexible(child: SizedBox(width: 205,)),
-                            if(sex == "male")
+                            if(_ourUser.sex == Sex.male)
                               Text("男性",
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black),),
-                            if(sex == "female")
+                            if(_ourUser.sex == Sex.female)
                               Text("女性",style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -206,7 +202,7 @@ class Mysetting extends StatefulWidget {
                                   color: Colors.black),
                             ),
                             Flexible(child:SizedBox(width: 205,)),
-                            Text((age).toString(),
+                            Text((_ourUser.age).toString(),
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -280,7 +276,7 @@ class Mysetting extends StatefulWidget {
                                   color: Colors.black),
                             ),
                             Flexible(child: SizedBox(width: 205,)),
-                            Text(height+"cm",
+                            Text(_ourUser.height.toString()+"cm",
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -354,7 +350,7 @@ class Mysetting extends StatefulWidget {
                                   color: Colors.black),
                             ),
                             Flexible(child: SizedBox(width: 205,)),
-                            Text(weight+"kg",
+                            Text(_ourUser.weight.toString()+"kg",
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -487,28 +483,28 @@ class Mysetting extends StatefulWidget {
                                   color: Colors.black),
                             ),
                             Flexible(child:SizedBox(width: 168,)),
-                            if(freq == 1.2)
+                            if(_ourUser.freq == 1.2)
                                 Text("久坐",
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black),),
-                            if(freq == 1.375)
+                            if(_ourUser.freq == 1.375)
                               Text("輕量活動",style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black),),
-                            if(freq == 1.55)
+                            if(_ourUser.freq == 1.55)
                               Text("中度活動量",style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black),),
-                            if(freq == 1.725)
+                            if(_ourUser.freq == 1.725)
                               Text("高度活動量",style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black),),
-                            if(freq == 1.9)
+                            if(_ourUser.freq == 1.9)
                               Text("非常高度活動量",style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,

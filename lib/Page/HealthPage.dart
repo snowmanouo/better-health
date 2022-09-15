@@ -27,12 +27,14 @@ class _HealthPageState extends State<HealthPage> {
   _HealthPageState({Key? key, required User user}) : _user = user;
 
   final User _user;
-  Map<String, dynamic> _userMap = Map();
+  OurUser _ourUser = OurUser.empty();
 
   @override
   void initState() {
     Database().getUser(widget._user.uid, (data) {
-      _userMap = data;
+      setState(() {
+        _ourUser = data;
+      });
     });
 
     super.initState();
@@ -69,10 +71,10 @@ class _HealthPageState extends State<HealthPage> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           SizedBox(height: 12),
           BodyNumWidget(
-            bmi: bmi,
-            pbf: pbf,
-            mbr: mbr,
-            idealWeight: idealWeight,
+            bmi: _ourUser.bmi,
+            pbf: _ourUser.pbf,
+            mbr: _ourUser.mbr,
+            idealWeight: _ourUser.idealWeight,
           ),
           SizedBox(height: 12),
           Container(
@@ -103,18 +105,6 @@ class _HealthPageState extends State<HealthPage> {
       ),
     );
   }
-
-  bool get isMale => _userMap["sex"]! == "male";
-  int get born => _userMap["born"]!;
-  double get weight => _userMap["weight"]!;
-  double get height => _userMap["height"]!;
-  double get freq => _userMap["freq"]!;
-
-  int get age => 2022 - born;
-  double get bmi => weight / pow(height / 100, 2);
-  double get pbf => isMale ? (1.2 * bmi + 0.23 * age - 16.2) : (1.2 * bmi + 0.23 * age - 5.4);
-  double get mbr => isMale ? (10 * weight + 6.25 * height - 5 * age + 5) :  (10 * weight + 6.25 * height - 5 * age - 161);
-  double get idealWeight => isMale ? (height - 80) * 0.7 : (height - 70) * 0.6;
 }
 
 class ExcerciseWidget extends StatelessWidget {

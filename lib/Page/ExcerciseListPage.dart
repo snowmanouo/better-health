@@ -8,17 +8,17 @@ class ExcerciseList extends StatefulWidget {
 
 class _ExcerciseListState extends State<ExcerciseList> {
   final controller = TextEditingController();
-  List<Book> books = allBooks;
+  List<excerList> excerLists = allexcerLists;
 
-  void searchBook(String query) {
-    final suggestions = allBooks.where((book) {
-      final bookTitle = book.title.toLowerCase();
+  void searchExcerList(String query) {
+    final suggestions = allexcerLists.where((excerList) {
+      final excerTitle = excerList.excerName.toLowerCase();
       final input = query.toLowerCase();
 
-      return bookTitle.contains(input);
+      return excerTitle.contains(input);
     }).toList();
 
-    setState(() => books = suggestions);
+    setState(() => excerLists = suggestions);
   }
 
   @override
@@ -40,24 +40,6 @@ class _ExcerciseListState extends State<ExcerciseList> {
           Text('當前運動',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           SizedBox(height: 12),
-          ListView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            itemCount: books.length,
-            itemBuilder: (context, index) {
-              final book = books[index];
-              return ListTile(
-                leading: Image.network(
-                  book.urlImage,
-                  fit: BoxFit.cover,
-                  width: 50,
-                  height: 50,
-                ),
-                title: Text(book.title),
-                contentPadding: EdgeInsets.zero,
-              );
-            },
-          ),
           Container(
             child: Column(
               children: [
@@ -125,7 +107,7 @@ class _ExcerciseListState extends State<ExcerciseList> {
                   IconButton(
                     padding: EdgeInsets.zero,
                     constraints: BoxConstraints(),
-                    icon: Image.asset('assets/images/addButton.png'),
+                    icon: Image.asset('assets/images/addButton.png',height: 22,width: 22),
                     onPressed: () {
                       showDialog(
                           context: context,
@@ -277,24 +259,115 @@ class _ExcerciseListState extends State<ExcerciseList> {
                   borderSide: BorderSide.none,
                 ),
               ),
-              onChanged: searchBook,
+              onChanged: searchExcerList,
             ),
           ),
           ListView.builder(
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount: books.length,
+            itemCount: excerLists.length,
             itemBuilder: (context, index) {
-              final book = books[index];
+              final excerList = excerLists[index];
               return ListTile(
-                leading: Image.network(
-                  book.urlImage,
-                  fit: BoxFit.cover,
-                  width: 50,
-                  height: 50,
+                leading: IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(),
+                  icon: Image.asset('assets/images/addButton.png',height: 22,width: 22),
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.white,
+                            insetPadding: EdgeInsets.all(16),
+                            titlePadding: EdgeInsets.only(top: 24),
+                            // contentPadding:
+                            // EdgeInsets.only(top: 24, left: 24, right: 24),
+                            actionsPadding: EdgeInsets.only(left: 24, right: 24, bottom: 24),
+                            title: Text('運動名稱',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                )),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text("請輸入運動時間(分鐘)"),
+                                SizedBox(height: 8),
+                                TextField(
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 9.5, horizontal: 12),
+                                    fillColor:
+                                    Color.fromRGBO(238, 238, 238, 1.0),
+                                    hintText: 'ex:35',
+                                    hintStyle: TextStyle(fontSize: 14),
+                                    border: OutlineInputBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(8),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            actions: [
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 132,
+                                    child: ElevatedButton(
+                                      child: Text("確認",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700)),
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                        MaterialStateProperty.all(
+                                            appCardGreenColor),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(width: 16),
+                                  Container(
+                                    width: 132,
+                                    child: ElevatedButton(
+                                      child: Text("取消",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700)),
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                        MaterialStateProperty.all(
+                                            appCardGreenColor),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          );
+                        });
+                  },
                 ),
-                title: Text(book.title),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(excerList.excerName),
+                    Text(excerList.excerCal.toString() + "千卡/1小時"),
+                  ],
+                ),
                 contentPadding: EdgeInsets.zero,
+                minLeadingWidth: 0,
               );
             },
           ),
@@ -304,27 +377,18 @@ class _ExcerciseListState extends State<ExcerciseList> {
   }
 }
 
-class Book {
-  final String title;
-  final String urlImage;
+class excerList {
+  final String excerName;
+  final double excerCal;
 
-  const Book({
-    required this.title,
-    required this.urlImage,
+  const excerList({
+    required this.excerName,
+    required this.excerCal,
   });
 }
 
-const allBooks = [
-  Book(
-      title: 'A',
-      urlImage:
-          "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
-  Book(
-      title: 'B',
-      urlImage:
-          "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
-  Book(
-      title: 'C',
-      urlImage:
-          "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
+const allexcerLists = [
+  excerList(excerName: '跑步', excerCal: 132.0),
+  excerList(excerName: 'swimmimg', excerCal: 132.0),
+  excerList(excerName: 'tennis', excerCal: 132.0),
 ];

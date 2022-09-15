@@ -70,13 +70,14 @@ class _ExcerciseListState extends State<ExcerciseList> {
                     height: 0,
                     thickness: 1,
                     color: Color.fromRGBO(226, 226, 226, 1)),
-                SizedBox(height: 24),
+                SizedBox(height: 12),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('加總消耗',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
-                    SizedBox(width: 193),
+                    // SizedBox(width: 193),
                     Text('132 千卡',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),

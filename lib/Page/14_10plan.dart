@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'finishmonster.dart';
+import 'package:project/Page/fasting.dart';
+import 'package:project/Page/finishmonster.dart';
 import 'package:project/Page/startmonster.dart';
 import '../helpers/Constants.dart';
 import  'package:intl/intl.dart';
@@ -173,7 +174,7 @@ class Aplan extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => startmonster()));
+                              builder: (context) => finishmonster(a:14,b:10)));
                     }),
               ),
               SizedBox(

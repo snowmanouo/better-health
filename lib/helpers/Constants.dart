@@ -58,9 +58,10 @@ int EXP=2514;
 DateTime now = DateTime.now();
 var begin = DateFormat("HH:mm").format(DateTime.now());
 var finish = DateFormat(":mm").format(DateTime.now());
+var countdown = DateFormat("HH:mm:ss").format(DateTime.now());
 var dt = DateTime.now();
 int hour = now.hour;
-
+//倒數計時
 
 
 

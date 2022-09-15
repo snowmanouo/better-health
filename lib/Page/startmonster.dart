@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:project/Page/fasting.dart';
+import 'package:project/Page/finishmonster.dart';
 import 'chooseplan.dart';
+import 'fasting.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import '../helpers/Constants.dart';
 
-
 class startmonster extends StatelessWidget {
+  String _ads = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,21 +33,21 @@ class startmonster extends StatelessWidget {
                   SizedBox(
                     height: 102.5,
                   ),
-                  if(Level<=10)
+                  if (Level <= 10)
                     new ClipOval(
                       child: new Image.asset(
                         'assets/images/monster1.png',
                         height: 160,
                       ),
                     ),
-                  if(Level>=11&&Level<=20)
+                  if (Level >= 11 && Level <= 20)
                     new ClipOval(
                       child: new Image.asset(
                         'assets/images/monster2.png',
                         height: 160,
                       ),
                     ),
-                  if(Level>20)
+                  if (Level > 20)
                     new ClipOval(
                       child: new Image.asset(
                         'assets/images/monster3.png',
@@ -61,8 +64,12 @@ class startmonster extends StatelessWidget {
                       Text('單眼小怪獸',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold)),
-                      SizedBox(width: 8),
-                      Image.asset('assets/images/pencil.png'),
+                      SizedBox(width: 4),
+                      IconButton(
+                        onPressed: (){
+                        },
+                        icon: Image.asset('assets/images/pencil.png'),
+                      )
                     ],
                   ),
                   SizedBox(
@@ -72,15 +79,16 @@ class startmonster extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('LV'+Level.toString(),
+                      Text('LV' + Level.toString(),
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold)),
                       LinearPercentIndicator(
                         width: 140.0,
                         lineHeight: 20.0,
-                        percent: LvPercent,//變數
+                        percent: LvPercent,
+                        //變數
                         center: Text(
-                          bar.toString()+"%",
+                          bar.toString() + "%",
                           style: new TextStyle(fontSize: 12.0),
                         ),
                         // trailing: Icon(Icons.mood),
@@ -109,14 +117,15 @@ class startmonster extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Row(children: <Widget>[
-                            SizedBox(height: 30),
-                            Image.asset('assets/images/fork.png'),
-                            SizedBox(width: 9),
-                            Text('進食時間',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold)),
-                          ]),
+                            Row(children: <Widget>[
+                              SizedBox(height: 30),
+                              Image.asset('assets/images/fork.png'),
+                              SizedBox(width: 9),
+                              Text('進食時間',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold)),
+                            ]),
                           SizedBox(height: 25),
                           Row(
                             children: <Widget>[

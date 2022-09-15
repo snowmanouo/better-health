@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-
 class Fat extends StatelessWidget {
   List<SalesData> data = [
     SalesData('Jan', 12),
@@ -13,7 +12,9 @@ class Fat extends StatelessWidget {
     SalesData('Jul', 20),
   ];
 
+
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -23,6 +24,8 @@ class Fat extends StatelessWidget {
           brightness: Brightness.dark,
         ),
         body: ListView(
+
+          padding: EdgeInsets.only(top: 10),
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -32,24 +35,21 @@ class Fat extends StatelessWidget {
                 Container(
                   height: 400,
                   child: SfCartesianChart(
+                    zoomPanBehavior: ZoomPanBehavior( enablePanning: true),
                     primaryXAxis: CategoryAxis(),
-                    primaryYAxis: NumericAxis(
-
-                    ),
+                    primaryYAxis: NumericAxis(minimum: 0, maximum: 25),
                     series: <ChartSeries<SalesData, String>>[
                       LineSeries<SalesData, String>(
                         dataSource: data,
                         xValueMapper: (SalesData sales, _) => sales.month,
                         yValueMapper: (SalesData sales, _) => sales.sales,
-                        markerSettings: MarkerSettings(
-                            isVisible: true),
+                        markerSettings: MarkerSettings(isVisible: true),
                         name: 'sales',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                       )
                     ],
                   ),
                 ),
-
               ],
             ),
           ],
@@ -58,7 +58,6 @@ class Fat extends StatelessWidget {
 }
 
 class SalesData {
-
   final String month;
   final double sales;
 

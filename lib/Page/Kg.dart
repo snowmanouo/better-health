@@ -32,6 +32,10 @@ class Kg extends StatelessWidget {
                   height: 400,
                   child: SfCartesianChart(
                     primaryXAxis: CategoryAxis(),
+                    primaryYAxis: NumericAxis(
+                        minimum: 0,
+                        maximum: 100
+                    ),
 
                     series: <ChartSeries<SalesData, String>>[
                       LineSeries<SalesData, String>(

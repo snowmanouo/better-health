@@ -36,19 +36,8 @@ class Time extends StatelessWidget {
     SalesData('rew', 20),
     SalesData('rwe', 20),
 
-
-
-
-
-
-
-
-
-
-
   ];
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -58,6 +47,7 @@ class Time extends StatelessWidget {
           brightness: Brightness.dark,
         ),
         body: ListView(
+
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -68,9 +58,12 @@ class Time extends StatelessWidget {
                   height: 400,
                   child: SfCartesianChart(
                     primaryXAxis: CategoryAxis(),
-                    zoomPanBehavior: ZoomPanBehavior(
-                      enablePanning: true,
+                    primaryYAxis: NumericAxis(
+                        minimum: 0,
+                        maximum: 24
                     ),
+
+
                     series: <ChartSeries<SalesData, String>>[
                       LineSeries<SalesData, String>(
                         dataSource: data,

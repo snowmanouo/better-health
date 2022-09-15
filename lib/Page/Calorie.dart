@@ -33,65 +33,7 @@ class Calorie extends StatelessWidget {
         year: "2023",
         financial: 375,
         color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2024",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2025",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2026",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2027",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2028",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2029",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2030",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2031",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2032",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2033",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2034",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2022",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2022",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-    BarChartModel(
-        year: "2022",
-        financial: 375,
-        color: charts.ColorUtil.fromDartColor(Colors.cyanAccent)),
-
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +56,7 @@ class Calorie extends StatelessWidget {
         body: ListView(
           children: [
             Column(
+
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -125,7 +68,6 @@ class Calorie extends StatelessWidget {
                       series,
                       animate: true,
                     )),
-
               ],
             ),
           ],

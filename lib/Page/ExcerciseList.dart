@@ -1,16 +1,16 @@
-class excerList {
-  final String excerName;
-  final double excerCal;
+class Exercise {
+  final String name;
+  final double cal;
 
-  const excerList({
-    required this.excerName,
-    required this.excerCal,
+  const Exercise({
+    required this.name,
+    required this.cal,
   });
 }
 
-const allexcerLists = [
-  excerList(excerName: '跑步', excerCal: 132.0),
-  excerList(excerName: 'swimmimg', excerCal: 132.0),
-  excerList(excerName: 'tennis', excerCal: 132.0),
+const allExerciseList = [
+  Exercise(name: '跑步', cal: 132.0),
+  Exercise(name: 'swimmimg', cal: 132.0),
+  Exercise(name: 'tennis', cal: 132.0),
 ];
 

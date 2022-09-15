@@ -9,11 +9,11 @@ class ExcerciseList extends StatefulWidget {
 
 class _ExcerciseListState extends State<ExcerciseList> {
   final controller = TextEditingController();
-  List<excerList> excerLists = allexcerLists;
+  List<Exercise> excerLists = allExerciseList;
 
   void searchExcerList(String query) {
-    final suggestions = allexcerLists.where((excerList) {
-      final excerTitle = excerList.excerName.toLowerCase();
+    final suggestions = allExerciseList.where((excerList) {
+      final excerTitle = excerList.name.toLowerCase();
       final input = query.toLowerCase();
 
       return excerTitle.contains(input);
@@ -360,8 +360,8 @@ class _ExcerciseListState extends State<ExcerciseList> {
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(excerList.excerName),
-                      Text(excerList.excerCal.toString() + "千卡/1小時"),
+                      Text(excerList.name),
+                      Text(excerList.cal.toString() + "千卡/1小時"),
                     ],
                   ),
                   contentPadding: EdgeInsets.all(0),

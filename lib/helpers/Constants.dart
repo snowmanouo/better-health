@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import  'package:intl/intl.dart';
 
 //Color
 
@@ -53,8 +54,14 @@ int Level=1+(EXP~/100);
 double LvPercent=(EXP%100)/100;
 int bar=0+(EXP%100);
 int EXP=2514;
-
-
+//時間
+DateTime now = DateTime.now();
+var begin = DateFormat("HH:mm").format(DateTime.now());
+var finish = DateFormat(":mm").format(DateTime.now());
+var countdown = DateFormat("HH:mm:ss").format(DateTime.now());
+var dt = DateTime.now();
+int hour = now.hour;
+//倒數計時
 
 
 

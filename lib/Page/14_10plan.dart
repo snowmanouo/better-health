@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'finishmonster.dart';
+import 'package:flutter/widgets.dart';
+import 'package:project/Page/fasting.dart';
+import 'package:project/Page/finishmonster.dart';
 import 'package:project/Page/startmonster.dart';
 import '../helpers/Constants.dart';
 import  'package:intl/intl.dart';
 
 class Aplan extends StatelessWidget {
-  String begin = DateFormat("HH:mm").format(DateTime.now());
-  String finish = DateFormat("HH:mm").format(DateTime.now());
+  int a=0;
+  int b=0;
+  Aplan({Key? key, this.a=0, this.b=0}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +18,7 @@ class Aplan extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(0, 163, 165, 1),
             centerTitle: true,
-            title: Text('14-10斷食計畫'),
+            title: Text('斷食計畫'),
           ),
           body: ListView(
             padding: const EdgeInsets.all(20),
@@ -29,7 +32,7 @@ class Aplan extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text('14-10',
+                    Text(a.toString()+'-'+b.toString(),
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold)),
                   ],
@@ -61,7 +64,7 @@ class Aplan extends StatelessWidget {
                         SizedBox(
                           width: 10,
                         ),
-                        Text('斷食14小時',
+                        Text('斷食'+a.toString()+'小時',
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Color.fromRGBO(127, 127, 127, 1))),
@@ -79,7 +82,7 @@ class Aplan extends StatelessWidget {
                         SizedBox(
                           width: 10,
                         ),
-                        Text('進食10小時',
+                        Text('進食'+b.toString()+'小時',
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Color.fromRGBO(127, 127, 127, 1))),
@@ -140,11 +143,18 @@ class Aplan extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: Color.fromRGBO(127, 127, 127, 1))),
                     SizedBox(width: 86),
-                    Text('明天,4:00',
+                    if(hour+a>23)
+                    Text('明天,'+((hour+a)%24).toString()+finish.toString(),
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Color.fromRGBO(127, 127, 127, 1))),
+                    if(hour+a<=23)
+                      Text('今天,'+((hour+a)%24).toString()+finish.toString(),
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(127, 127, 127, 1))),
                   ],
                 ),
               ),
@@ -164,7 +174,7 @@ class Aplan extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => startmonster()));
+                              builder: (context) => finishmonster(a:14,b:10)));
                     }),
               ),
               SizedBox(

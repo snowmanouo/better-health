@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../helpers/Constants.dart';
+import 'ExcerciseList.dart';
 
 class ExcerciseList extends StatefulWidget {
   @override
@@ -48,7 +49,7 @@ class _ExcerciseListState extends State<ExcerciseList> {
                     Icon(Icons.circle, size: 8, color: appCardGreenColor),
                     SizedBox(width: 8),
                     Text('跑步', style: TextStyle(fontSize: 16)),
-                    SizedBox(width: 79),
+                    SizedBox(width: 118),
                     Text('132.0千卡 / 1小時',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
@@ -61,15 +62,6 @@ class _ExcerciseListState extends State<ExcerciseList> {
                       onPressed: () {},
                       icon: Icon(Icons.remove_circle,
                           color: Color.fromRGBO(226, 226, 226, 1)),
-                    ),
-                    SizedBox(width: 11),
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      constraints: BoxConstraints(),
-                      iconSize: 22,
-                      onPressed: () {},
-                      icon: Icon(Icons.more_vert,
-                          color: Color.fromRGBO(127, 127, 127, 1)),
                     ),
                   ],
                 ),
@@ -268,106 +260,114 @@ class _ExcerciseListState extends State<ExcerciseList> {
             itemCount: excerLists.length,
             itemBuilder: (context, index) {
               final excerList = excerLists[index];
-              return ListTile(
-                leading: IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(),
-                  icon: Image.asset('assets/images/addButton.png',height: 22,width: 22),
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            backgroundColor: Colors.white,
-                            insetPadding: EdgeInsets.all(16),
-                            titlePadding: EdgeInsets.only(top: 24),
-                            // contentPadding:
-                            // EdgeInsets.only(top: 24, left: 24, right: 24),
-                            actionsPadding: EdgeInsets.only(left: 24, right: 24, bottom: 24),
-                            title: Text('運動名稱',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                )),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              // crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text("請輸入運動時間(分鐘)"),
-                                SizedBox(height: 8),
-                                TextField(
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 9.5, horizontal: 12),
-                                    fillColor:
-                                    Color.fromRGBO(238, 238, 238, 1.0),
-                                    hintText: 'ex:35',
-                                    hintStyle: TextStyle(fontSize: 14),
-                                    border: OutlineInputBorder(
-                                      borderRadius:
-                                      BorderRadius.circular(8),
-                                      borderSide: BorderSide.none,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            actions: [
-                              Row(
+              return Container(
+                decoration: BoxDecoration(border: Border(bottom: BorderSide(
+                  color: Color.fromRGBO(226, 226, 226, 1),
+                  width: 1,
+                ))),
+                child: ListTile(
+                  leading: IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: BoxConstraints(),
+                    icon: Image.asset('assets/images/addButton.png',height: 22,width: 22),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              backgroundColor: Colors.white,
+                              insetPadding: EdgeInsets.all(16),
+                              titlePadding: EdgeInsets.only(top: 24),
+                              // contentPadding:
+                              // EdgeInsets.only(top: 24, left: 24, right: 24),
+                              actionsPadding: EdgeInsets.only(left: 24, right: 24, bottom: 24),
+                              title: Text('運動名稱',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                  )),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                // crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    width: 132,
-                                    child: ElevatedButton(
-                                      child: Text("確認",
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700)),
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                        MaterialStateProperty.all(
-                                            appCardGreenColor),
+                                  Text("請輸入運動時間(分鐘)"),
+                                  SizedBox(height: 8),
+                                  TextField(
+                                    decoration: InputDecoration(
+                                      filled: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 9.5, horizontal: 12),
+                                      fillColor:
+                                      Color.fromRGBO(238, 238, 238, 1.0),
+                                      hintText: 'ex:35',
+                                      hintStyle: TextStyle(fontSize: 14),
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(8),
+                                        borderSide: BorderSide.none,
                                       ),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(width: 16),
-                                  Container(
-                                    width: 132,
-                                    child: ElevatedButton(
-                                      child: Text("取消",
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700)),
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                        MaterialStateProperty.all(
-                                            appCardGreenColor),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
                                     ),
                                   ),
                                 ],
                               ),
-                            ],
-                          );
-                        });
-                  },
+                              actions: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 132,
+                                      child: ElevatedButton(
+                                        child: Text("確認",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700)),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                          MaterialStateProperty.all(
+                                              appCardGreenColor),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(width: 16),
+                                    Container(
+                                      width: 132,
+                                      child: ElevatedButton(
+                                        child: Text("取消",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700)),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                          MaterialStateProperty.all(
+                                              appCardGreenColor),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                  ),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(excerList.excerName),
+                      Text(excerList.excerCal.toString() + "千卡/1小時"),
+                    ],
+                  ),
+                  contentPadding: EdgeInsets.all(0),
+                  minLeadingWidth: 0,
+                  horizontalTitleGap: 9,
+                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
                 ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(excerList.excerName),
-                    Text(excerList.excerCal.toString() + "千卡/1小時"),
-                  ],
-                ),
-                contentPadding: EdgeInsets.zero,
-                minLeadingWidth: 0,
               );
             },
           ),
@@ -377,18 +377,19 @@ class _ExcerciseListState extends State<ExcerciseList> {
   }
 }
 
-class excerList {
-  final String excerName;
-  final double excerCal;
+// class excerList {
+//   final String excerName;
+//   final double excerCal;
+//
+//   const excerList({
+//     required this.excerName,
+//     required this.excerCal,
+//   });
+// }
+//
+// const allexcerLists = [
+//   excerList(excerName: '跑步', excerCal: 132.0),
+//   excerList(excerName: 'swimmimg', excerCal: 132.0),
+//   excerList(excerName: 'tennis', excerCal: 132.0),
+// ];
 
-  const excerList({
-    required this.excerName,
-    required this.excerCal,
-  });
-}
-
-const allexcerLists = [
-  excerList(excerName: '跑步', excerCal: 132.0),
-  excerList(excerName: 'swimmimg', excerCal: 132.0),
-  excerList(excerName: 'tennis', excerCal: 132.0),
-];

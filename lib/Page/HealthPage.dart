@@ -7,8 +7,8 @@ import 'LunchListPage.dart';
 import 'DinnerListPage.dart';
 import 'SnackListPage.dart';
 import 'package:flutter/services.dart';
-import 'ExcerciseList.dart';
-import 'ExcerciseListPage.dart';
+import 'ExerciseList.dart';
+import 'ExerciseListPage.dart';
 import 'package:project/Page/Database.dart';
 
 class HealthPage extends StatefulWidget {
@@ -197,7 +197,7 @@ class _ExcerciseCardWidgetState extends State<ExcerciseCardWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ExcerciseList(),
+                        builder: (context) => ExerciseList(),
                       ),
                     ).then((value) {
                       widget.notifyParent();

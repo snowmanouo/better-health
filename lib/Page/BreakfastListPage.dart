@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../helpers/Constants.dart';
+import 'BreakfastList.dart';
 
 class BreakfastList extends StatefulWidget {
   @override
@@ -8,17 +9,17 @@ class BreakfastList extends StatefulWidget {
 
 class _BreakfastListState extends State<BreakfastList> {
   final controller = TextEditingController();
-  List<Book> books = allBooks;
+  List<Breakfast> breakfastLists = defaultBreakfastList;
 
-  void searchBook(String query) {
-    final suggestions = allBooks.where((book) {
-      final bookTitle = book.title.toLowerCase();
+  void searchBreakfastList(String query) {
+    final suggestions = defaultBreakfastList.where((breakfastList) {
+      final breakfastTitle = breakfastList.name.toLowerCase();
       final input = query.toLowerCase();
 
-      return bookTitle.contains(input);
+      return breakfastTitle.contains(input);
     }).toList();
 
-    setState(() => books = suggestions);
+    setState(() => breakfastLists = suggestions);
   }
 
   @override
@@ -37,6 +38,64 @@ class _BreakfastListState extends State<BreakfastList> {
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
         children: [
+          Text('當前飲食',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          ListView.builder(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            itemCount: allBreakfastRecords.length,
+            itemBuilder: (context, index) {
+              final currentBreakfast = allBreakfastRecords[index];
+              return Container(
+                decoration: BoxDecoration(border: Border(bottom: BorderSide(
+                  color: Color.fromRGBO(226, 226, 226, 1),
+                  width: 1,
+                ))),
+                child: ListTile(
+                  leading: Icon(Icons.circle, size: 8, color: appCardGreenColor),
+                  title: Row(
+                    children: [
+                      Text(currentBreakfast.name),
+                      Spacer(),
+                      Text(currentBreakfast.cal.toString() + "千卡"),
+                      SizedBox(width: 11),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
+                        //解決按鈕點擊後產生的邊界
+                        iconSize: 22,
+                        onPressed: () {
+                          setState(() {
+                            allBreakfastRecords.removeAt(index);
+                          });
+                        },
+                        icon: Icon(Icons.remove_circle,
+                            color: Color.fromRGBO(226, 226, 226, 1)),
+                      ),
+                    ],
+                  ),
+                  contentPadding: EdgeInsets.all(0),
+                  minLeadingWidth: 0,
+                  horizontalTitleGap: 9,
+                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                ),
+              );
+            },
+          ),
+          SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('加總攝取',
+                  style: TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold)),
+              // SizedBox(width: 193),
+              Text(totalBreakfastCal.toString()+' 千卡',//'132 千卡',
+                  style: TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold)),
+            ],
+          ),
+          SizedBox(height: 22),
           Row(
             children: [
               Text('飲食清單',
@@ -50,7 +109,7 @@ class _BreakfastListState extends State<BreakfastList> {
                   IconButton(
                     padding: EdgeInsets.zero,
                     constraints: BoxConstraints(),
-                    icon: Image.asset('assets/images/addButton.png'),
+                    icon: Image.asset('assets/images/addButton.png',height: 22,width: 22),
                     onPressed: () {
                       showDialog(
                           context: context,
@@ -59,8 +118,10 @@ class _BreakfastListState extends State<BreakfastList> {
                               backgroundColor: Colors.white,
                               insetPadding: EdgeInsets.all(16),
                               titlePadding: EdgeInsets.only(top: 24),
-                              contentPadding: EdgeInsets.only(top: 24,left: 24,right: 24),
-                              actionsPadding: EdgeInsets.only(top: 16,left: 24,right: 24,bottom: 24),
+                              contentPadding:
+                              EdgeInsets.only(top: 24, left: 24, right: 24),
+                              actionsPadding: EdgeInsets.only(
+                                  top: 16, left: 24, right: 24, bottom: 24),
                               title: Text('新增自定義',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -140,7 +201,9 @@ class _BreakfastListState extends State<BreakfastList> {
                                       width: 132,
                                       child: ElevatedButton(
                                         child: Text("確認",
-                                            style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700)),
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700)),
                                         style: ButtonStyle(
                                           backgroundColor:
                                           MaterialStateProperty.all(
@@ -156,7 +219,9 @@ class _BreakfastListState extends State<BreakfastList> {
                                       width: 132,
                                       child: ElevatedButton(
                                         child: Text("取消",
-                                            style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700)),
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700)),
                                         style: ButtonStyle(
                                           backgroundColor:
                                           MaterialStateProperty.all(
@@ -187,8 +252,8 @@ class _BreakfastListState extends State<BreakfastList> {
                 filled: true,
                 fillColor: Color.fromRGBO(238, 238, 238, 1.0),
                 prefixIcon: Icon(Icons.search, color: Colors.black, size: 20),
-                contentPadding: EdgeInsets.symmetric(
-                    vertical: 10, horizontal: 10),
+                contentPadding:
+                EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 hintText: '搜尋',
                 hintStyle: TextStyle(fontSize: 16),
                 border: OutlineInputBorder(
@@ -196,24 +261,132 @@ class _BreakfastListState extends State<BreakfastList> {
                   borderSide: BorderSide.none,
                 ),
               ),
-              onChanged: searchBook,
+              onChanged: searchBreakfastList,
             ),
           ),
           ListView.builder(
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount: books.length,
+            itemCount: breakfastLists.length,
             itemBuilder: (context, index) {
-              final book = books[index];
-              return ListTile(
-                leading: Image.network(
-                  book.urlImage,
-                  fit: BoxFit.cover,
-                  width: 50,
-                  height: 50,
+              final breakfast = breakfastLists[index];
+              var grams = 0;
+              return Container(
+                decoration: BoxDecoration(border: Border(bottom: BorderSide(
+                  color: Color.fromRGBO(226, 226, 226, 1),
+                  width: 1,
+                ))),
+                child: ListTile(
+                  leading: IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: BoxConstraints(),
+                    icon: Image.asset('assets/images/addButton.png',height: 22,width: 22),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              backgroundColor: Colors.white,
+                              insetPadding: EdgeInsets.all(16),
+                              titlePadding: EdgeInsets.only(top: 24),
+                              // contentPadding:
+                              // EdgeInsets.only(top: 24, left: 24, right: 24),
+                              actionsPadding: EdgeInsets.only(left: 24, right: 24, bottom: 24),
+                              title: Text(breakfast.name,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                  )),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                // crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text("請輸入吃了多少(g)"),
+                                  SizedBox(height: 8),
+                                  TextField(
+                                    decoration: InputDecoration(
+                                      filled: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 9.5, horizontal: 12),
+                                      fillColor:
+                                      Color.fromRGBO(238, 238, 238, 1.0),
+                                      hintText: 'ex:100',
+                                      hintStyle: TextStyle(fontSize: 14),
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(8),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                    ),
+                                    onChanged: (value) {
+                                      grams = int.parse(value);
+                                    },
+                                  ),
+                                ],
+                              ),
+                              actions: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 132,
+                                      child: ElevatedButton(
+                                        child: Text("確認",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700)),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                          MaterialStateProperty.all(
+                                              appCardGreenColor),
+                                        ),
+                                        onPressed: () {
+                                          final calories = breakfast.cal * grams / 100;
+                                          final newBreakfast = Breakfast(name: breakfast.name, cal: calories);
+                                          setState(() {
+                                            allBreakfastRecords.add(newBreakfast);
+                                          });
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(width: 16),
+                                    Container(
+                                      width: 132,
+                                      child: ElevatedButton(
+                                        child: Text("取消",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700)),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                          MaterialStateProperty.all(
+                                              appCardGreenColor),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                  ),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(breakfast.name),
+                      Text(breakfast.cal.toString() + "千卡/100g"),
+                    ],
+                  ),
+                  contentPadding: EdgeInsets.all(0),
+                  minLeadingWidth: 0,
+                  horizontalTitleGap: 9,
+                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
                 ),
-                title: Text(book.title),
-                contentPadding: EdgeInsets.zero,
               );
             },
           ),
@@ -223,27 +396,3 @@ class _BreakfastListState extends State<BreakfastList> {
   }
 }
 
-class Book {
-  final String title;
-  final String urlImage;
-
-  const Book({
-    required this.title,
-    required this.urlImage,
-  });
-}
-
-const allBooks = [
-  Book(
-      title: 'A',
-      urlImage:
-      "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
-  Book(
-      title: 'B',
-      urlImage:
-      "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
-  Book(
-      title: 'C',
-      urlImage:
-      "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"),
-];

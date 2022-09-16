@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import '../helpers/Constants.dart';
-import 'ExcerciseList.dart';
+import 'ExerciseList.dart';
 
-class ExcerciseList extends StatefulWidget {
+class ExerciseList extends StatefulWidget {
   @override
-  _ExcerciseListState createState() => _ExcerciseListState();
+  _ExerciseListState createState() => _ExerciseListState();
 }
 
-class _ExcerciseListState extends State<ExcerciseList> {
+class _ExerciseListState extends State<ExerciseList> {
   final controller = TextEditingController();
-  List<Exercise> excerLists = defaultExerciseList;
+  List<Exercise> exerLists = defaultExerciseList;
 
-  void searchExcerList(String query) {
-    final suggestions = defaultExerciseList.where((excerList) {
-      final excerTitle = excerList.name.toLowerCase();
+  void searchExerList(String query) {
+    final suggestions = defaultExerciseList.where((exerList) {
+      final exerTitle = exerList.name.toLowerCase();
       final input = query.toLowerCase();
 
-      return excerTitle.contains(input);
+      return exerTitle.contains(input);
     }).toList();
 
-    setState(() => excerLists = suggestions);
+    setState(() => exerLists = suggestions);
   }
 
   @override
@@ -57,7 +57,7 @@ class _ExcerciseListState extends State<ExcerciseList> {
                     children: [
                       Text(currentExercise.name),
                       Spacer(),
-                      Text(currentExercise.cal.toString() + "千卡/1小時"),
+                      Text(currentExercise.cal.toString() + "千卡"),
                       SizedBox(width: 11),
                       IconButton(
                         padding: EdgeInsets.zero,
@@ -165,7 +165,7 @@ class _ExcerciseListState extends State<ExcerciseList> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      '熱量(千卡/100g)',
+                                      '熱量(千卡/1小時)',
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         fontSize: 14,
@@ -261,15 +261,15 @@ class _ExcerciseListState extends State<ExcerciseList> {
                   borderSide: BorderSide.none,
                 ),
               ),
-              onChanged: searchExcerList,
+              onChanged: searchExerList,
             ),
           ),
           ListView.builder(
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount: excerLists.length,
+            itemCount: exerLists.length,
             itemBuilder: (context, index) {
-              final exercise = excerLists[index];
+              final exercise = exerLists[index];
               var minutes = 0;
               return Container(
                 decoration: BoxDecoration(border: Border(bottom: BorderSide(

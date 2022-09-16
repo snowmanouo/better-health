@@ -59,7 +59,7 @@ class _SnackListState extends State<SnackList> {
                     children: [
                       Text(currentSnack.name),
                       Spacer(),
-                      Text(currentSnack.cal.toString() + "千卡"),
+                      Text(currentSnack.cal.toStringAsFixed(1) + "千卡"),
                       SizedBox(width: 11),
                       IconButton(
                         padding: EdgeInsets.zero,
@@ -92,7 +92,7 @@ class _SnackListState extends State<SnackList> {
                   style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
               // SizedBox(width: 193),
-              Text(totalSnackCal.toString()+' 千卡',//'132 千卡',
+              Text(totalSnackCal.toStringAsFixed(1)+' 千卡',//'132 千卡',
                   style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
             ],
@@ -391,7 +391,7 @@ class _SnackListState extends State<SnackList> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(snack.name),
-                      Text(snack.cal.toString() + "千卡/100g"),
+                      Text(snack.cal.toStringAsFixed(1) + "千卡/100g"),
                     ],
                   ),
                   contentPadding: EdgeInsets.all(0),

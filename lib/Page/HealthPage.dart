@@ -380,7 +380,7 @@ class _MealCardWidgetState extends State<MealCardWidget> {
                 this.widget.mealPic,
                 Positioned(
                   bottom: 10,
-                  child: Text('約吃了${this.widget.cal}千卡',
+                  child: Text('約吃了${this.widget.cal.toStringAsFixed(1)}千卡',
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 16,

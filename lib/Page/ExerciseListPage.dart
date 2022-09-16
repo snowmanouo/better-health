@@ -61,7 +61,7 @@ class _ExerciseListState extends State<ExerciseList> {
                     children: [
                       Text(currentExercise.name),
                       Spacer(),
-                      Text(currentExercise.cal.toString() + "千卡"),
+                      Text(currentExercise.cal.toStringAsFixed(1) + "千卡"),
                       SizedBox(width: 11),
                       IconButton(
                         padding: EdgeInsets.zero,
@@ -94,7 +94,7 @@ class _ExerciseListState extends State<ExerciseList> {
                   style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
               // SizedBox(width: 193),
-              Text(totalExerciseCal.toString()+' 千卡',//'132 千卡',
+              Text(totalExerciseCal.toStringAsFixed(1)+' 千卡',//'132 千卡',
                   style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
             ],
@@ -393,7 +393,7 @@ class _ExerciseListState extends State<ExerciseList> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(exercise.name),
-                      Text(exercise.cal.toString() + "千卡/1小時"),
+                      Text(exercise.cal.toStringAsFixed(1) + "千卡/1小時"),
                     ],
                   ),
                   contentPadding: EdgeInsets.all(0),

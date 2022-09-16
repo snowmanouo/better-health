@@ -59,7 +59,7 @@ class _LunchListState extends State<LunchList> {
                     children: [
                       Text(currentLunch.name),
                       Spacer(),
-                      Text(currentLunch.cal.toString() + "千卡"),
+                      Text(currentLunch.cal.toStringAsFixed(1) + "千卡"),
                       SizedBox(width: 11),
                       IconButton(
                         padding: EdgeInsets.zero,
@@ -92,7 +92,7 @@ class _LunchListState extends State<LunchList> {
                   style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
               // SizedBox(width: 193),
-              Text(totalLunchCal.toString()+' 千卡',//'132 千卡',
+              Text(totalLunchCal.toStringAsFixed(1) + ' 千卡',//'132 千卡',
                   style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
             ],
@@ -391,7 +391,7 @@ class _LunchListState extends State<LunchList> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(lunch.name),
-                      Text(lunch.cal.toString() + "千卡/100g"),
+                      Text(lunch.cal.toStringAsFixed(1) + "千卡/100g"),
                     ],
                   ),
                   contentPadding: EdgeInsets.all(0),

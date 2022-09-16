@@ -59,7 +59,7 @@ class _DinnerListState extends State<DinnerList> {
                     children: [
                       Text(currentDinner.name),
                       Spacer(),
-                      Text(currentDinner.cal.toString() + "千卡"),
+                      Text(currentDinner.cal.toStringAsFixed(1) + "千卡"),
                       SizedBox(width: 11),
                       IconButton(
                         padding: EdgeInsets.zero,
@@ -92,7 +92,7 @@ class _DinnerListState extends State<DinnerList> {
                   style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
               // SizedBox(width: 193),
-              Text(totalDinnerCal.toString()+' 千卡',//'132 千卡',
+              Text(totalDinnerCal.toStringAsFixed(1)+' 千卡',//'132 千卡',
                   style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold)),
             ],
@@ -391,7 +391,7 @@ class _DinnerListState extends State<DinnerList> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(dinner.name),
-                      Text(dinner.cal.toString() + "千卡/100g"),
+                      Text(dinner.cal.toStringAsFixed(1) + "千卡/100g"),
                     ],
                   ),
                   contentPadding: EdgeInsets.all(0),

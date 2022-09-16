@@ -1,6 +1,11 @@
+import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:project/Page/BreakfastList.dart';
+import 'package:project/Page/DinnerList.dart';
+import 'package:project/Page/LunchList.dart';
+import 'package:project/Page/SnackList.dart';
 import '../helpers/Constants.dart';
 import 'BreakfastListPage.dart';
 import 'LunchListPage.dart';
@@ -10,6 +15,13 @@ import 'package:flutter/services.dart';
 import 'ExerciseList.dart';
 import 'ExerciseListPage.dart';
 import 'package:project/Page/Database.dart';
+
+
+double get totalDietCal =>
+    allBreakfastRecords.map((e) => e.cal).sum +
+    allLunchRecords.map((e) => e.cal).sum +
+    allDinnerRecords.map((e) => e.cal).sum +
+    allSnackRecords.map((e) => e.cal).sum;
 
 class HealthPage extends StatefulWidget {
   const HealthPage({Key? key, required User user})
@@ -50,7 +62,7 @@ class _HealthPageState extends State<HealthPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(AppTitle,
+                Text("今天",
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -73,7 +85,7 @@ class _HealthPageState extends State<HealthPage> {
           BodyNumWidget(
             bmi: _ourUser.bmi,
             pbf: _ourUser.pbf,
-            mbr: _ourUser.mbr,
+            bmr: _ourUser.bmr,
             idealWeight: _ourUser.idealWeight,
           ),
           SizedBox(height: 12),
@@ -90,17 +102,23 @@ class _HealthPageState extends State<HealthPage> {
             ),
           ),
           SizedBox(height: 12),
-          YourCalWidget(),
+          YourCalWidget(
+          tdee: _ourUser.tdee,
+          ),
           SizedBox(height: 12),
           Text(EatDrink,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           SizedBox(height: 12),
-          EatDrinkWidget(),
+          EatDrinkWidget(
+            notifyParent: refresh,
+          ),
           SizedBox(height: 12),
           Text(Excercise,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           SizedBox(height: 12),
-          ExcerciseWidget(notifyParent: refresh,),
+          ExerciseWidget(
+            notifyParent: refresh,
+          ),
         ],
       ),
     );
@@ -111,18 +129,17 @@ class _HealthPageState extends State<HealthPage> {
   }
 }
 
-class ExcerciseWidget extends StatefulWidget {
-  const ExcerciseWidget({
-    Key? key, required this.notifyParent
-  }) : super(key: key);
+class ExerciseWidget extends StatefulWidget {
+  const ExerciseWidget({Key? key, required this.notifyParent})
+      : super(key: key);
 
   final Function() notifyParent;
 
   @override
-  State<ExcerciseWidget> createState() => _ExcerciseWidgetState();
+  State<ExerciseWidget> createState() => _ExerciseWidgetState();
 }
 
-class _ExcerciseWidgetState extends State<ExcerciseWidget> {
+class _ExerciseWidgetState extends State<ExerciseWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -137,8 +154,11 @@ class _ExcerciseWidgetState extends State<ExcerciseWidget> {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: <Widget>[
-              ExcerciseCardWidget(
-                  text: '今日運動', mealPic: ExcercisePic, notifyParent: widget.notifyParent,),
+              ExerciseCardWidget(
+                text: '今日運動',
+                mealPic: ExcercisePic,
+                notifyParent: widget.notifyParent,
+              ),
             ],
           )
         ],
@@ -147,19 +167,19 @@ class _ExcerciseWidgetState extends State<ExcerciseWidget> {
   }
 }
 
-class ExcerciseCardWidget extends StatefulWidget {
+class ExerciseCardWidget extends StatefulWidget {
   final String text;
   final Image mealPic;
   final Function() notifyParent;
 
-  ExcerciseCardWidget(
+  ExerciseCardWidget(
       {required this.text, required this.mealPic, required this.notifyParent});
 
   @override
-  State<ExcerciseCardWidget> createState() => _ExcerciseCardWidgetState();
+  State<ExerciseCardWidget> createState() => _ExerciseCardWidgetState();
 }
 
-class _ExcerciseCardWidgetState extends State<ExcerciseCardWidget> {
+class _ExerciseCardWidgetState extends State<ExerciseCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -228,11 +248,17 @@ class _ExcerciseCardWidgetState extends State<ExcerciseCardWidget> {
   }
 }
 
-class EatDrinkWidget extends StatelessWidget {
-  const EatDrinkWidget({
-    Key? key,
-  }) : super(key: key);
+class EatDrinkWidget extends StatefulWidget {
+  const EatDrinkWidget({Key? key, required this.notifyParent})
+      : super(key: key);
 
+  final Function() notifyParent;
+
+  @override
+  State<EatDrinkWidget> createState() => _EatDrinkWidgetState();
+}
+
+class _EatDrinkWidgetState extends State<EatDrinkWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -248,25 +274,33 @@ class EatDrinkWidget extends StatelessWidget {
             shrinkWrap: true,
             children: <Widget>[
               MealCardWidget(
-                  text: '早餐',
-                  mealPic: BreakfastPic,
-                  cal: 55.0,
-                  destination: BreakfastList()),
+                text: '早餐',
+                mealPic: BreakfastPic,
+                cal: totalBreakfastCal,
+                destination: BreakfastList(),
+                notifyParent: widget.notifyParent,
+              ),
               MealCardWidget(
-                  text: '午餐',
-                  mealPic: LunchPic,
-                  cal: 99.0,
-                  destination: LunchList()),
+                text: '午餐',
+                mealPic: LunchPic,
+                cal: totalLunchCal,
+                destination: LunchList(),
+                notifyParent: widget.notifyParent,
+              ),
               MealCardWidget(
-                  text: '晚餐',
-                  mealPic: DinnerPic,
-                  cal: 155.2,
-                  destination: DinnerList()),
+                text: '晚餐',
+                mealPic: DinnerPic,
+                cal: totalDinnerCal,
+                destination: DinnerList(),
+                notifyParent: widget.notifyParent,
+              ),
               MealCardWidget(
-                  text: '點心',
-                  mealPic: DessertPic,
-                  cal: 1355.6,
-                  destination: SnackList()),
+                text: '點心',
+                mealPic: DessertPic,
+                cal: totalSnackCal,
+                destination: SnackList(),
+                notifyParent: widget.notifyParent,
+              ),
             ],
           )
         ],
@@ -275,18 +309,25 @@ class EatDrinkWidget extends StatelessWidget {
   }
 }
 
-class MealCardWidget extends StatelessWidget {
+class MealCardWidget extends StatefulWidget {
   final String text;
   final double cal;
   final Image mealPic;
   final StatefulWidget destination;
+  final Function() notifyParent;
 
   MealCardWidget(
       {required this.text,
       required this.mealPic,
       required this.cal,
-      required this.destination});
+      required this.destination,
+      required this.notifyParent});
 
+  @override
+  State<MealCardWidget> createState() => _MealCardWidgetState();
+}
+
+class _MealCardWidgetState extends State<MealCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -308,7 +349,7 @@ class MealCardWidget extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerLeft,
                   height: 45,
-                  child: Text(this.text,
+                  child: Text(this.widget.text,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
@@ -324,9 +365,11 @@ class MealCardWidget extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => this.destination,
+                        builder: (context) => this.widget.destination,
                       ),
-                    );
+                    ).then((value) {
+                      widget.notifyParent();
+                    });
                   },
                 ),
                 SizedBox(width: 13),
@@ -335,10 +378,10 @@ class MealCardWidget extends StatelessWidget {
             Stack(
               alignment: Alignment.bottomCenter,
               children: <Widget>[
-                this.mealPic,
+                this.widget.mealPic,
                 Positioned(
                   bottom: 10,
-                  child: Text('約吃了${this.cal}千卡',
+                  child: Text('約吃了${this.widget.cal}千卡',
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
@@ -356,16 +399,23 @@ class MealCardWidget extends StatelessWidget {
 class YourCalWidget extends StatefulWidget {
   const YourCalWidget({
     Key? key,
-  }) : super(key: key);
+    required double tdee,
+  }) :  _tdee = tdee,
+        super(key: key);
+
+        final double _tdee;
 
   @override
   State<YourCalWidget> createState() => _YourCalWidgetState();
 }
 
 class _YourCalWidgetState extends State<YourCalWidget> {
+
   @override
   Widget build(BuildContext context) {
     var _totalExerciseCal = totalExerciseCal;
+    var _totalDietCal = totalDietCal;
+    double _tdee;
     return Card(
       clipBehavior: Clip.antiAlias,
       child: Container(
@@ -426,7 +476,7 @@ class _YourCalWidgetState extends State<YourCalWidget> {
                                       ),
                                       SizedBox(height: 4),
                                       Text(
-                                        "1046.5大卡",
+                                        "123",
                                         style: TextStyle(
                                           color:
                                               Color.fromRGBO(24, 24, 24, 0.75),
@@ -444,7 +494,7 @@ class _YourCalWidgetState extends State<YourCalWidget> {
                                       ),
                                       SizedBox(height: 4),
                                       Text(
-                                        "502.2大卡",
+                                        _totalDietCal.toString(),
                                         style: TextStyle(
                                           color:
                                               Color.fromRGBO(24, 24, 24, 0.75),
@@ -583,7 +633,7 @@ class _YourCalWidgetState extends State<YourCalWidget> {
                                                     127, 127, 127, 1),
                                                 fontSize: 12)),
                                         SizedBox(height: 3),
-                                        Text('9999.9千卡',
+                                        Text( _totalDietCal.toString() + '千卡',
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 12)),
@@ -602,7 +652,8 @@ class _YourCalWidgetState extends State<YourCalWidget> {
                                                     127, 127, 127, 1),
                                                 fontSize: 12)),
                                         SizedBox(height: 3),
-                                        Text(_totalExerciseCal.toString()+'千卡',
+                                        Text(
+                                            _totalExerciseCal.toString() + '千卡',
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 12)),
@@ -625,21 +676,29 @@ class _YourCalWidgetState extends State<YourCalWidget> {
   }
 }
 
-class BodyNumWidget extends StatelessWidget {
+class BodyNumWidget extends StatefulWidget {
   const BodyNumWidget({
     Key? key,
     required double bmi,
     required double pbf,
-    required double mbr,
+    required double bmr,
     required double idealWeight,
-  }) : _bmi = bmi, _pbf = pbf, _mbr = mbr, _idealWeight = idealWeight,
+  })  : _bmi = bmi,
+        _pbf = pbf,
+        _bmr = bmr,
+        _idealWeight = idealWeight,
         super(key: key);
 
   final double _bmi;
   final double _pbf;
-  final double _mbr;
+  final double _bmr;
   final double _idealWeight;
 
+  @override
+  State<BodyNumWidget> createState() => _BodyNumWidgetState();
+}
+
+class _BodyNumWidgetState extends State<BodyNumWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
@@ -670,7 +729,7 @@ class BodyNumWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 40),
-                  Text(_bmi.toStringAsFixed(1),
+                  Text(widget._bmi.toStringAsFixed(1),
                       style: TextStyle(fontSize: 12, color: Colors.black)),
                 ],
               ),
@@ -707,7 +766,7 @@ class BodyNumWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 40),
-                  Text(_pbf.toStringAsFixed(1) + "%",
+                  Text(widget._pbf.toStringAsFixed(1) + "%",
                       style: TextStyle(fontSize: 12, color: Colors.black)),
                 ],
               ),
@@ -744,7 +803,7 @@ class BodyNumWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 40),
-                  Text(_mbr.toStringAsFixed(1) + "kcal",
+                  Text(widget._bmr.toStringAsFixed(1) + "kcal",
                       style: TextStyle(fontSize: 12, color: Colors.black)),
                 ],
               ),
@@ -781,7 +840,7 @@ class BodyNumWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 40),
-                  Text(_idealWeight.toStringAsFixed(1) + "kg",
+                  Text(widget._idealWeight.toStringAsFixed(1) + "kg",
                       style: TextStyle(fontSize: 12, color: Colors.black)),
                 ],
               ),

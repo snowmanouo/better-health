@@ -48,8 +48,9 @@ class OurUser {
   int get age => 2022 - born;
   double get bmi => weight / pow(height / 100, 2);
   double get pbf => sex == Sex.male ? (1.2 * bmi + 0.23 * age - 16.2) : (1.2 * bmi + 0.23 * age - 5.4);
-  double get mbr => sex == Sex.male ? (10 * weight + 6.25 * height - 5 * age + 5) :  (10 * weight + 6.25 * height - 5 * age - 161);
+  double get bmr => sex == Sex.male ? (10 * weight + 6.25 * height - 5 * age + 5) :  (10 * weight + 6.25 * height - 5 * age - 161);
   double get idealWeight => sex == Sex.male ? (height - 80) * 0.7 : (height - 70) * 0.6;
+  double get tdee => bmr * freq;
 
   OurUser(Map<String, dynamic> map) {
     uid = map["uid"] ?? "";

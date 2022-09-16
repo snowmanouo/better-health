@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 
+
 class Breakfast {
   final String name;
   final double cal;

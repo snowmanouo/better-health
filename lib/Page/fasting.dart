@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../helpers/Constants.dart';
 import 'startmonster.dart';
@@ -6,11 +8,49 @@ import 'chooseplan.dart';
 import 'window.dart';
 import '../helpers/Constants.dart';
 
-class fasting extends StatelessWidget {
-  fasting createState() => fasting();
+class fasting extends StatefulWidget {
   int a=0;
   int b=0;
   fasting({Key? key, this.a=0, this.b=0}) : super(key: key);
+
+  @override
+  State<fasting> createState() => _fastingState();
+}
+
+class _fastingState extends State<fasting> {
+  fasting createState() => fasting();
+  int time01 = 2;
+  int time02 = 0;
+  int time03 = 0;
+
+  bool time01_start = false;
+  bool time02_start = false;
+  bool time03_start = false;
+  var period = const Duration(seconds: 1);
+
+  void time01_button_event() {
+    if (time01_start) {
+      time01_start = false;
+    } else {
+      time01_start = true;
+    }
+    Timer.periodic(period, (timer) {
+      if (time01 < 1 || time01_start == false) {
+        timer.cancel();
+        // timer = null;
+      } else {
+        time01++;
+      }
+      if(time01%60==59){
+        time02++;
+      }
+      if(time03~/60!=0){
+        time03++;
+      }
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,27 +94,34 @@ class fasting extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     SizedBox(
-                      height: 24,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 16,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('已過時間',
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Color.fromRGBO(85, 85, 85, 1))),
-                      ],
-                    ),
-                    SizedBox(
                       height: 12,
                     ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('已過時間',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(127, 127, 127, 1))),
+                    SizedBox(width: 12,),
+                    ElevatedButton(
+                      onPressed: () => time01_button_event(),
+                      child: Text(
+                        time01_start?'PAUSE':'START',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      style: TextButton.styleFrom(
+                        backgroundColor:
+                        Color.fromRGBO(18, 213, 214, 1),
+                      ),
+                    ),
+                  ],
+                ),
+                    // SizedBox(
+                    //   height: 12,
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -85,7 +132,7 @@ class fasting extends StatelessWidget {
                         SizedBox(
                           width: 10,
                         ),
-                        Text("00:01:30",
+                        Text('$time03' + ":" + '$time02' + ":" + '$time01',
                             style: TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
@@ -147,14 +194,14 @@ class fasting extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: Color.fromRGBO(127, 127, 127, 1))),
                     SizedBox(width: 86),
-                    if(hour+a>23)
-                      Text('明天,'+((hour+a)%24).toString()+finish.toString(),
+                    if(hour+widget.a>23)
+                      Text('明天,'+((hour+widget.a)%24).toString()+finish.toString(),
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Color.fromRGBO(127, 127, 127, 1))),
-                    if(hour+a<=23)
-                      Text('今天,'+((hour+a)%24).toString()+finish.toString(),
+                    if(hour+widget.a<=23)
+                      Text('今天,'+((hour+widget.a)%24).toString()+finish.toString(),
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

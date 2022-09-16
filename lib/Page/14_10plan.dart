@@ -1,15 +1,57 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/Page/fasting.dart';
 import 'package:project/Page/finishmonster.dart';
 import 'package:project/Page/startmonster.dart';
+import 'package:project/Page/Home.dart';
 import '../helpers/Constants.dart';
 import  'package:intl/intl.dart';
 
-class Aplan extends StatelessWidget {
+class Aplan extends StatefulWidget {
   int a=0;
   int b=0;
   Aplan({Key? key, this.a=0, this.b=0}) : super(key: key);
+
+  @override
+  State<Aplan> createState() => _AplanState();
+}
+
+class _AplanState extends State<Aplan> {
+  int time01 = 2;
+
+  int time02 = 0;
+
+  int time03=0;
+
+  bool time01_start = false;
+
+  bool time02_start = false;
+
+  bool time03_start = false;
+
+  var period = const Duration(seconds: 1);
+
+  void time01_button_event(){
+    if (time01_start){
+      time01_start = false;
+    }
+    else{
+      time01_start = true;
+    }
+
+    Timer.periodic(period, (timer) {
+      if (time01 < 1 || time01_start == false) {
+        timer.cancel();
+        // timer = null;
+      }
+      else{
+        time01++;
+      }
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +74,7 @@ class Aplan extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(a.toString()+'-'+b.toString(),
+                    Text(widget.a.toString()+'-'+widget.b.toString(),
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold)),
                   ],
@@ -64,7 +106,7 @@ class Aplan extends StatelessWidget {
                         SizedBox(
                           width: 10,
                         ),
-                        Text('斷食'+a.toString()+'小時',
+                        Text('斷食'+widget.a.toString()+'小時',
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Color.fromRGBO(127, 127, 127, 1))),
@@ -82,7 +124,7 @@ class Aplan extends StatelessWidget {
                         SizedBox(
                           width: 10,
                         ),
-                        Text('進食'+b.toString()+'小時',
+                        Text('進食'+widget.b.toString()+'小時',
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Color.fromRGBO(127, 127, 127, 1))),
@@ -143,14 +185,14 @@ class Aplan extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: Color.fromRGBO(127, 127, 127, 1))),
                     SizedBox(width: 86),
-                    if(hour+a>23)
-                    Text('明天,'+((hour+a)%24).toString()+finish.toString(),
+                    if(hour+widget.a>23)
+                    Text('明天,'+((hour+widget.a)%24).toString()+finish.toString(),
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Color.fromRGBO(127, 127, 127, 1))),
-                    if(hour+a<=23)
-                      Text('今天,'+((hour+a)%24).toString()+finish.toString(),
+                    if(hour+widget.a<=23)
+                      Text('今天,'+((hour+widget.a)%24).toString()+finish.toString(),
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -175,7 +217,8 @@ class Aplan extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => finishmonster(a:14,b:10)));
-                    }),
+                    },
+                    ),
               ),
               SizedBox(
                 height: 28,
@@ -236,6 +279,10 @@ class Aplan extends StatelessWidget {
               ),
             ],
           )),
+      // initialRoute: '/',
+      // routes: {
+      //   '/second': (context) => startmonster(),
+      // },
     );
   }
 }

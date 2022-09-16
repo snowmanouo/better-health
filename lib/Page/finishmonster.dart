@@ -6,18 +6,50 @@ import 'package:percent_indicator/percent_indicator.dart';
 import '../helpers/Constants.dart';
 import 'dart:async';
 
+class finishmonster extends StatefulWidget {
+  int a = 0;
+  int b = 0;
 
-class finishmonster extends StatelessWidget {
-  int a=0;
-  int b=0;
-  finishmonster({Key? key, this.a=0, this.b=0}) : super(key: key);
+  finishmonster({Key? key, this.a = 0, this.b = 0}) : super(key: key);
+
+  @override
+  State<finishmonster> createState() => _finishmonsterState();
+}
+
+class _finishmonsterState extends State<finishmonster> {
   // void _startcountdown(){
-  //     Timer.periodic(Duration(seconds: 1), (timer) {
-  //       setState((){
-  //           lefttime--;
-  //       });
-  //     });
-  // }
+  int time01 = 2;
+  int time02 = 0;
+  int time03 = 0;
+
+  bool time01_start = false;
+  bool time02_start = false;
+  bool time03_start = false;
+  var period = const Duration(seconds: 1);
+
+  void time01_button_event() {
+    if (time01_start) {
+      time01_start = false;
+    } else {
+      time01_start = true;
+    }
+    Timer.periodic(period, (timer) {
+      if (time01 < 1 || time01_start == false) {
+        timer.cancel();
+        // timer = null;
+      } else {
+        time01++;
+      }
+      if(time01%60==59){
+        time02++;
+      }
+      if(time03~/60!=0){
+        time03++;
+      }
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,21 +75,21 @@ class finishmonster extends StatelessWidget {
                   SizedBox(
                     height: 102.5,
                   ),
-                  if(Level<=10)
+                  if (Level <= 10)
                     new ClipOval(
                       child: new Image.asset(
                         'assets/images/monster1.png',
                         height: 160,
                       ),
                     ),
-                  if(Level>=11&&Level<=20)
+                  if (Level >= 11 && Level <= 20)
                     new ClipOval(
                       child: new Image.asset(
                         'assets/images/monster2.png',
                         height: 160,
                       ),
                     ),
-                  if(Level>20)
+                  if (Level > 20)
                     new ClipOval(
                       child: new Image.asset(
                         'assets/images/monster3.png',
@@ -85,15 +117,16 @@ class finishmonster extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('LV'+Level.toString(),
+                      Text('LV' + Level.toString(),
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold)),
                       LinearPercentIndicator(
                         width: 140.0,
                         lineHeight: 20.0,
-                        percent: LvPercent,//變數
+                        percent: LvPercent,
+                        //變數
                         center: Text(
-                          bar.toString()+"%",
+                          bar.toString() + "%",
                           style: new TextStyle(fontSize: 12.0),
                         ),
                         // trailing: Icon(Icons.mood),
@@ -102,9 +135,6 @@ class finishmonster extends StatelessWidget {
                         progressColor: Color.fromRGBO(18, 213, 214, 1),
                       ),
                     ],
-                  ),
-                  SizedBox(
-                    height: 24,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -117,7 +147,7 @@ class finishmonster extends StatelessWidget {
                           BoxShadow(color: Colors.transparent, spreadRadius: 3),
                         ],
                       ),
-                      height: 230,
+                      height: 400,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,14 +160,37 @@ class finishmonster extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold)),
                           ]),
-                          SizedBox(height: 25),
-                          Text('已過時間',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(127, 127, 127, 1))),
+                          SizedBox(height: 15),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text('已過時間',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromRGBO(127, 127, 127, 1))),
+                              SizedBox(width: 12,),
+                              ElevatedButton(
+                                onPressed: () => time01_button_event(),
+                                child: Text(
+                                  time01_start?'PAUSE':'START',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                style: TextButton.styleFrom(
+                                  backgroundColor:
+                                  Color.fromRGBO(18, 213, 214, 1),
+                                ),
+                              ),
+                            ],
+                          ),
+                          // Text('已過時間',
+                          //     style: TextStyle(
+                          //         fontSize: 16,
+                          //         fontWeight: FontWeight.bold,
+                          //         color: Color.fromRGBO(127, 127, 127, 1))),
                           SizedBox(height: 16),
-                          Text('00:01:30',
+                          Text('$time03' + ":" + '$time02' + ":" + '$time01',
                               style: TextStyle(
                                   fontSize: 28,
                                   fontWeight: FontWeight.bold,
@@ -148,12 +201,16 @@ class finishmonster extends StatelessWidget {
                             width: 296,
                             child: ElevatedButton(
                                 child: Text(
-                                  '您的斷食將結束於'+"  "+((hour+a)%24).toString()+finish.toString(),
-                                  style: TextStyle(color: Color.fromRGBO(85, 85, 85, 1)),
+                                  '您的斷食將結束於' +
+                                      "  " +
+                                      ((hour + widget.a) % 24).toString() +
+                                      finish.toString(),
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(85, 85, 85, 1)),
                                 ),
                                 style: TextButton.styleFrom(
                                   backgroundColor:
-                                  Color.fromRGBO(226, 226, 226, 1),
+                                      Color.fromRGBO(226, 226, 226, 1),
                                 ),
                                 onPressed: () {
                                   Navigator.push(
@@ -173,4 +230,3 @@ class finishmonster extends StatelessWidget {
         ));
   }
 }
-

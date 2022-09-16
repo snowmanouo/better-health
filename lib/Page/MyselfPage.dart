@@ -131,16 +131,7 @@ class MyselfPage extends StatelessWidget {
                               ),
                             ),
                             actions: <Widget>[
-                              ElevatedButton(
-                                  onPressed: () async {
-                                    _myDateTime = (await showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(2010),
-                                      lastDate: DateTime(2025),
-                                    ))!;
-                                  },
-                                  child: Text('請選擇日期')),
+
                               TextButton(
                                 onPressed: () => Navigator.pop(context, 'OK'),
                                 child: Text('OK'),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/Page/Home.dart';
 import 'package:project/Page/LoginPage.dart';
 import 'package:project/Page/MyselfPage.dart';
 import 'helpers/Constants.dart';
@@ -28,6 +29,10 @@ class ProjectApp extends StatelessWidget {
             primaryColor: appGreenColor,
           ),
           home: LoginPage(),
+          // initialRoute: '/',
+          // routes: {
+          //   '/second': (context) =>  startmonster()
+          // },
         );
       },
     );

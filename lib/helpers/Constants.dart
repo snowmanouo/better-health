@@ -62,7 +62,7 @@ var countdown = DateFormat("HH:mm:ss").format(DateTime.now());
 var dt = DateTime.now();
 int hour = now.hour;
 //倒數計時
-
+var period = const Duration(seconds: 1);
 
 
 

@@ -24,6 +24,10 @@ class _ExerciseListState extends State<ExerciseList> {
 
   @override
   Widget build(BuildContext context) {
+
+    String newExerName = "";
+    double newExerCal = 0;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -159,6 +163,9 @@ class _ExerciseListState extends State<ExerciseList> {
                                           borderSide: BorderSide.none,
                                         ),
                                       ),
+                                      onChanged: (value) {
+                                        newExerName = value;
+                                      },
                                     ),
                                   ),
                                   SizedBox(height: 16),
@@ -190,6 +197,9 @@ class _ExerciseListState extends State<ExerciseList> {
                                           borderSide: BorderSide.none,
                                         ),
                                       ),
+                                      onChanged: (value) {
+                                        newExerCal = double.parse(value);
+                                      },
                                     ),
                                   ),
                                 ],
@@ -210,6 +220,10 @@ class _ExerciseListState extends State<ExerciseList> {
                                                   appCardGreenColor),
                                         ),
                                         onPressed: () {
+                                          setState(() {
+                                            var newExercise = Exercise(name: newExerName, cal: newExerCal);
+                                            defaultExerciseList.add(newExercise);
+                                          });
                                           Navigator.of(context).pop();
                                         },
                                       ),

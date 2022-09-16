@@ -24,6 +24,8 @@ class _DinnerListState extends State<DinnerList> {
 
   @override
   Widget build(BuildContext context) {
+    String newFoodName = "";
+    double newFoodCal = 0;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -159,6 +161,9 @@ class _DinnerListState extends State<DinnerList> {
                                           borderSide: BorderSide.none,
                                         ),
                                       ),
+                                      onChanged: (value) {
+                                        newFoodName = value;
+                                      },
                                     ),
                                   ),
                                   SizedBox(height: 16),
@@ -190,6 +195,9 @@ class _DinnerListState extends State<DinnerList> {
                                           borderSide: BorderSide.none,
                                         ),
                                       ),
+                                      onChanged: (value) {
+                                        newFoodCal = double.parse(value);
+                                      },
                                     ),
                                   ),
                                 ],
@@ -210,6 +218,10 @@ class _DinnerListState extends State<DinnerList> {
                                               appCardGreenColor),
                                         ),
                                         onPressed: () {
+                                          setState(() {
+                                            var newFood = Dinner(name: newFoodName, cal: newFoodCal);
+                                            defaultDinnerList.add(newFood);
+                                          });
                                           Navigator.of(context).pop();
                                         },
                                       ),

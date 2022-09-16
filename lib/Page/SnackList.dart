@@ -10,7 +10,7 @@ class Snack {
   });
 }
 
-const defaultSnackList = [
+List<Snack> defaultSnackList = [
   Snack(name: '蔥抓餅', cal: 290.0),
   Snack(name: '吐司', cal: 283.0),
   Snack(name: '白饅頭', cal: 228.0),

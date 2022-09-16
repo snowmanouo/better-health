@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:project/Page/BreakfastList.dart';
 
 
 class Breakfast {
@@ -11,7 +12,7 @@ class Breakfast {
   });
 }
 
-const defaultBreakfastList = [
+List<Breakfast> defaultBreakfastList = [
   Breakfast(name: '豬頭皮', cal: 300.0),
   Breakfast(name: '蔥抓餅', cal: 290.0),
   Breakfast(name: '吐司', cal: 283.0),

@@ -24,6 +24,8 @@ class _LunchListState extends State<LunchList> {
 
   @override
   Widget build(BuildContext context) {
+    String newFoodName = "";
+    double newFoodCal = 0;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -159,6 +161,9 @@ class _LunchListState extends State<LunchList> {
                                           borderSide: BorderSide.none,
                                         ),
                                       ),
+                                      onChanged: (value) {
+                                        newFoodName = value;
+                                      },
                                     ),
                                   ),
                                   SizedBox(height: 16),
@@ -190,6 +195,9 @@ class _LunchListState extends State<LunchList> {
                                           borderSide: BorderSide.none,
                                         ),
                                       ),
+                                      onChanged: (value) {
+                                        newFoodCal = double.parse(value);
+                                      },
                                     ),
                                   ),
                                 ],
@@ -210,6 +218,10 @@ class _LunchListState extends State<LunchList> {
                                               appCardGreenColor),
                                         ),
                                         onPressed: () {
+                                          setState(() {
+                                            var newFood = Lunch(name: newFoodName, cal: newFoodCal);
+                                            defaultLunchList.add(newFood);
+                                          });
                                           Navigator.of(context).pop();
                                         },
                                       ),

@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:project/Page/ExerciseList.dart';
 
 class Exercise {
   final String name;
@@ -10,7 +11,7 @@ class Exercise {
   });
 }
 
-const defaultExerciseList = [
+List<Exercise> defaultExerciseList = [
   Exercise(name: '騎腳踏車', cal: 180.0),
   Exercise(name: '走路', cal: 186.0),
   Exercise(name: '高爾夫球', cal: 222.0),

@@ -10,7 +10,7 @@ class Dinner {
   });
 }
 
-const defaultDinnerList = [
+List<Dinner> defaultDinnerList = [
   Dinner(name: '蔥抓餅', cal: 290.0),
   Dinner(name: '吐司', cal: 283.0),
   Dinner(name: '白饅頭', cal: 228.0),
